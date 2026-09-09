@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sdislamiqrapetobo.sch.id.sch.id/sitemap.xml
+Sitemap: https://www.sdislamiqrapetobo.sch.id/sitemap.xml

@@ -9,7 +9,7 @@ description: >-
 
 # Dipakai oleh jekyll-seo-tag & sitemap. WAJIB diisi dengan domain final,
 # contoh: https://namasekolah.github.io atau https://domainkamu.sch.id
-url: "https://iqradevl.github.io"
+url: "https://www.sdislamiqrapetobo.sch.id"
 baseurl: "" # isi "/nama-repo" jika situs bukan di root (mis. GitHub Project Pages)
 
 lang: "id-ID"
