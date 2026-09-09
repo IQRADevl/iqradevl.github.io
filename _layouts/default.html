@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'id-ID' }}">
+{% include head.html %}
+<body>
+  <a class="skip-link" href="#main">Langsung ke isi</a>
+
+  {% include header.html %}
+
+  <main id="main">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+
+  <script src="{{ '/assets/js/main.js' | relative_url }}" defer></script>
+</body>
+</html>

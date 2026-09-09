@@ -1,0 +1,22 @@
+- title: Beranda
+  url: /
+- title: Profil
+  url: /profil/
+
+- title: Berita
+  url: /berita/
+- title: PPDB
+  url: /ppdb/
+- title: PIP
+  url: /pip/
+- title : Layanan
+  url: #
+  subitems:
+    - title: Erapor
+      url: https://erapor.sdislamiqrapetobo.sch.id
+    - title: Validasi Dokumen
+      url: https://cek.sdislamiqrapetobo.sch.id
+    - title: Perpustakaan Digital
+      url: https://nurulilmi.sdislamiqrapetobo.sch.id
+- title: Kontak
+  url: /kontak/

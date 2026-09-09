@@ -1,0 +1,15 @@
+---
+layout: default
+---
+<article class="post">
+  <div class="wrap page__header">
+    <p class="eyebrow">{{ page.date | date: "%-d %B %Y" }}{% if page.category %} · {{ page.category }}{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+  </div>
+  <div class="wrap page__body post__body">
+    {{ content }}
+  </div>
+  <div class="wrap post__nav">
+    <a href="{{ '/berita/' | relative_url }}">← Kembali ke semua berita</a>
+  </div>
+</article>

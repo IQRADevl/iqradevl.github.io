@@ -1,0 +1,49 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0E6B58">
+
+  {% seo %}
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
+  <link rel="sitemap" type="application/xml" href="{{ '/sitemap.xml' | relative_url }}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ '/assets/images/favicon.ico' | relative_url }}">
+
+  <!-- Data terstruktur Schema.org — membantu Google memahami ini situs sekolah -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "School",
+    "name": {{ site.title | jsonify }},
+    "url": {{ site.url | jsonify }},
+    "description": {{ site.description | jsonify }},
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": {{ site.school.address | jsonify }}
+    },
+    "telephone": {{ site.school.phone | jsonify }},
+    "email": {{ site.school.email | jsonify }},
+    "foundingDate": "{{ site.school.founded }}"
+  }
+  </script>
+
+  <!-- Font: Fraunces (judul) + Public Sans (isi) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+  <!-- Set tema (terang/gelap) sebelum CSS dirender, supaya tidak ada "kedipan" warna -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var theme = saved || (prefersDark ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+</head>

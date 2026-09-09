@@ -1,0 +1,73 @@
+# Konfigurasi
+
+title: "SD ISLAM IQRA PETOBO"
+short_name: "SD Islam Iqra Petobo"
+tagline: "Semangat Belajar, Santun Berperilaku, Hebat Bersama."
+description: >-
+  Situs resmi SD ISLAM IQRA PETOBO - informasi akademik, kegiatan siswa,
+  penerimaan siswa baru, dan berita terkini seputar sekolah.
+
+# Dipakai oleh jekyll-seo-tag & sitemap. WAJIB diisi dengan domain final,
+# contoh: https://namasekolah.github.io atau https://domainkamu.sch.id
+url: "https://iqradevl.github.io"
+baseurl: "" # isi "/nama-repo" jika situs bukan di root (mis. GitHub Project Pages)
+
+lang: "id-ID"
+logo: /assets/images/logo.png
+twitter:
+  card: summary_large_image
+social:
+  name: SD ISLAM IQRA PETOBO
+  links:
+    - https://facebook.com/profile.php?id=61553614559016
+    - https://youtube.com/@SDISLAMIQRAPETOBO
+    - https://instagram.com/sdislamiqrapetobo/
+
+# Informasi kontak — dipakai di footer & JSON-LD (data terstruktur SEO)
+school:
+  address: "Jl. Taipa Kana, Kelurahan Petobo Kode Pos 94232"
+  phone: "0878 6018 3263"
+  email: "info@sdislamiqrapetobo.sch.id"
+  founded: 2003
+  students: 110
+  teachers: 9
+  accreditation: "B"
+
+# Menu navigasi utama — tambah/ubah item di _data/navigation.yml
+navigation: navigation.yml
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-paginate
+
+# Konfigurasi Pagination (Batas Berita)
+paginate: 1
+paginate_path: "/berita/page:num/"
+
+sass:
+  style: compressed
+
+collections:
+  posts:
+    output: true
+    permalink: /berita/:year/:month/:day/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  - scope:
+      path: ""
+    values:
+      layout: page
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - node_modules
+  - vendor

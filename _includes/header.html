@@ -1,0 +1,82 @@
+<header class="site-header">
+  <div class="wrap site-header__inner">
+
+    <a class="brand" href="{{ '/' | relative_url }}">
+      {% if site.logo %}
+        <img class="brand__logo" src="{{ site.logo | relative_url }}" alt="Logo {{ site.title }}" width="60" height="60">
+      {% else %}
+        <span class="brand__mark" aria-hidden="true">
+          {% assign initials = site.short_name | default: site.title %}
+          {{ initials | slice: 0, 2 | upcase }}
+        </span>
+      {% endif %}
+
+      <span class="brand__text">
+        <span class="brand__name">{{ site.short_name | default: site.title }}</span>
+        <span class="brand__tagline">{{ site.tagline }}</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" data-state="closed">
+      <ul class="site-nav__list">
+        {% for item in site.data.navigation %}
+          {% if item.subitems %}
+            <!-- Menu dengan Submenu (Layanan) -->
+            <li class="has-dropdown">
+              <a href="javascript:void(0);" onclick="event.preventDefault(); event.stopPropagation(); event.stopImmediatePropagation(); this.parentElement.classList.toggle('is-open');">
+                {{ item.title }} <span class="arrow" aria-hidden="true">▾</span>
+              </a>
+              <ul class="dropdown-menu">
+                {% for subitem in item.subitems %}
+                  <li>
+                    <a href="{% if subitem.url contains '://' %}{{ subitem.url }}{% else %}{{ subitem.url | relative_url }}{% endif %}"
+                       {% if subitem.url contains 'http' %}target="_blank" rel="noopener"{% endif %}>
+                      {{ subitem.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </li>
+          {% else %}
+            <!-- Menu Utama Biasa -->
+            <li>
+              <a href="{% if item.url contains '://' %}{{ item.url }}{% else %}{{ item.url | relative_url }}{% endif %}"
+                 {% if page.url == item.url %}aria-current="page"{% endif %}
+                 {% if item.url contains 'http' %}target="_blank" rel="noopener"{% endif %}>
+                {{ item.title }}
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Ganti mode terang/gelap">
+        <svg class="icon icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="icon icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+        </svg>
+      </button>
+
+      <button type="button" class="hamburger" id="hamburger" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu navigasi">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<script>
+  // Otomatis menutup dropdown jika pengguna mengetuk area lain di luar menu
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.has-dropdown')) {
+      document.querySelectorAll('.has-dropdown.is-open').forEach(function(el) {
+        el.classList.remove('is-open');
+      });
+    }
+  });
+</script>

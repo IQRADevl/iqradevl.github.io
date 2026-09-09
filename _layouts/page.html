@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<article class="page">
+  <div class="wrap page__header">
+    <p class="eyebrow">{{ page.section | default: "Halaman" }}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.excerpt_text %}<p class="page__lede">{{ page.excerpt_text }}</p>{% endif %}
+  </div>
+  <div class="wrap page__body">
+    {{ content }}
+  </div>
+</article>
