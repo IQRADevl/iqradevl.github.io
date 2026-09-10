@@ -126,6 +126,8 @@ Jika Bapak/Ibu membutuhkan informasi lebih lanjut terkait SPMB, silakan hubungi 
 
 ## 7. Pengumuman PPDB/SPMB
 
+
+
 <div class="stats-grid">
   <div class="stat-box green"><span>Total Diterima</span><strong>28</strong></div>
   <div class="stat-box blue"><span>Laki-laki (L)</span><strong>18</strong></div>
