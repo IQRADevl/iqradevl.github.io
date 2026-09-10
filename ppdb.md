@@ -5,6 +5,45 @@ section: PPDB
 permalink: /ppdb/
 ---
 
+<style>
+  /* Memaksa garis tabel muncul menimpa CSS tema */
+  table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+    margin: 20px 0 !important;
+    border: 1px solid #94a3b8 !important; /* Garis bingkai luar */
+  }
+
+  table th, table td {
+    border: 1px solid #cbd5e1 !important; /* Garis kotak di setiap sel (vertikal & horizontal) */
+    padding: 10px 12px !important;
+  }
+
+  table th {
+    background-color: #f1f5f9 !important;
+    font-weight: bold !important;
+    color: #1e293b !important;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f8fafc !important; /* Warna selang-seling */
+  }
+
+  /* Badge L, P, & Status */
+  .badge-p { background: #fce7f3; color: #9d174d; padding: 2px 8px; border-radius: 12px; font-weight: bold; font-size: 0.8rem; }
+  .badge-l { background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-weight: bold; font-size: 0.8rem; }
+  .badge-status { background: #dcfce7; color: #166534; padding: 3px 10px; border-radius: 12px; font-weight: bold; font-size: 0.8rem; }
+
+  /* Box Statistik */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 20px 0; }
+  .stat-box { padding: 12px; border-radius: 8px; text-align: center; font-weight: bold; }
+  .stat-box.green { background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
+  .stat-box.blue { background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; }
+  .stat-box.pink { background: #fdf2f8; border: 1px solid #fbcfe8; color: #be185d; }
+  .stat-box span { display: block; font-size: 0.8rem; opacity: 0.8; }
+  .stat-box strong { font-size: 1.5rem; }
+</style>
+
 
 <figure class="img-large">
   <img src="https://lh3.googleusercontent.com/d/1nJ2ZKi5Lq8WVPSFiDb3dWfcy0NgPx_gR" alt="Foto Cover PPDB Tahun 2026/2027">
@@ -81,43 +120,42 @@ Jika Bapak/Ibu membutuhkan informasi lebih lanjut terkait SPMB, silakan hubungi 
 
 * **Email:** [info@sdislamiqrapetobo.sch.id](mailto:info@sdislamiqrapetobo.sch.id)
 
-
 ## Pengumuman PPDB/SPMB
 
-- **Total Siswa Diterima:** 28
-- **Laki-laki (L):** 18
-- **Perempuan (P):** 10
-
+<div class="stats-grid">
+  <div class="stat-box green"><span>Total Diterima</span><strong>28</strong></div>
+  <div class="stat-box blue"><span>Laki-laki (L)</span><strong>18</strong></div>
+  <div class="stat-box pink"><span>Perempuan (P)</span><strong>10</strong></div>
+</div>
 
 | No | Nama | Jenis Kelamin | Nomor Pendaftaran | Jalur Penerimaan | Status |
 |---:|:---|:---:|:---:|:---|:---:|
-| 1 | MHEY RAHAYU KAISYAFANI | P | 19 | Domisili | Diterima |
-| 2 | ATHAR RAMADAN | L | 35 | Domisili | Diterima |
-| 3 | MUHAMMAD ELVAN SYAHNAKRI PASORI | L | 21 | Domisili | Diterima |
-| 4 | ZAHWA AQILA | P | 30 | Domisili | Diterima |
-| 5 | SYAFIQAH AZZAHRA | P | 1 | Domisili | Diterima |
-| 6 | MUHAMMAD IFDHAL | L | 24 | Domisili | Diterima |
-| 7 | ABBAD NAILUN NABHAN | L | 29 | Domisili | Diterima |
-| 8 | ADZRIL ALFHAREZI | L | 15 | Domisili | Diterima |
-| 9 | MUHAMMAD ULUL AZMI | L | 7 | Domisili | Diterima |
-| 10 | ZEA ALMAYRA | P | 34 | Domisili | Diterima |
-| 11 | SYABIL ALFURQAN | L | 2 | Domisili | Diterima |
-| 12 | UWAIS RAFIDAN | L | 8 | Domisili | Diterima |
-| 13 | AHMAD ZULKARNAIN | L | 5 | Domisili | Diterima |
-| 14 | MOH. AZAM SAPUTRA | L | 10 | Domisili | Diterima |
-| 15 | NUR CAHAYA | P | 16 | Domisili | Diterima |
-| 16 | NUR AZAHRA | P | 3 | Domisili | Diterima |
-| 17 | AL FARUQ ASWIN | L | 14 | Domisili | Diterima |
-| 18 | JINAN RATU GANIA | P | 9 | Domisili | Diterima |
-| 19 | ARYAN ALFARISKI | L | 11 | Domisili | Diterima |
-| 20 | MUHAMMAD OZIL KHALID | L | 12 | Domisili | Diterima |
-| 21 | ABD RAJAB | L | 32 | Domisili | Diterima |
-| 22 | NAZRIEL ALFARIZI | L | 4 | Domisili | Diterima |
-| 23 | KHALIED KENAN KHAZALI SALIM | L | 6 | Domisili | Diterima |
-| 24 | NUR AINI RAMADANI | P | 36 | Domisili | Diterima |
-| 25 | ARJUNA TRI PERMADANI | L | 33 | Domisili | Diterima |
-| 26 | PRABU WIJAYA | L | 28 | Domisili | Diterima |
-| 27 | DIANDRA AQIRA NIRMALA | P | 17 | Domisili | Diterima |
-| 28 | AMEERA GEMPITA RISKY | P | 18 | Domisili | Diterima |
-
+| 1 | MHEY RAHAYU KAISYAFANI | <span class="badge-p">P</span> | 19 | Domisili | <span class="badge-status">Diterima</span> |
+| 2 | ATHAR RAMADAN | <span class="badge-l">L</span> | 35 | Domisili | <span class="badge-status">Diterima</span> |
+| 3 | MUHAMMAD ELVAN SYAHNAKRI PASORI | <span class="badge-l">L</span> | 21 | Domisili | <span class="badge-status">Diterima</span> |
+| 4 | ZAHWA AQILA | <span class="badge-p">P</span> | 30 | Domisili | <span class="badge-status">Diterima</span> |
+| 5 | SYAFIQAH AZZAHRA | <span class="badge-p">P</span> | 1 | Domisili | <span class="badge-status">Diterima</span> |
+| 6 | MUHAMMAD IFDHAL | <span class="badge-l">L</span> | 24 | Domisili | <span class="badge-status">Diterima</span> |
+| 7 | ABBAD NAILUN NABHAN | <span class="badge-l">L</span> | 29 | Domisili | <span class="badge-status">Diterima</span> |
+| 8 | ADZRIL ALFHAREZI | <span class="badge-l">L</span> | 15 | Domisili | <span class="badge-status">Diterima</span> |
+| 9 | MUHAMMAD ULUL AZMI | <span class="badge-l">L</span> | 7 | Domisili | <span class="badge-status">Diterima</span> |
+| 10 | ZEA ALMAYRA | <span class="badge-p">P</span> | 34 | Domisili | <span class="badge-status">Diterima</span> |
+| 11 | SYABIL ALFURQAN | <span class="badge-l">L</span> | 2 | Domisili | <span class="badge-status">Diterima</span> |
+| 12 | UWAIS RAFIDAN | <span class="badge-l">L</span> | 8 | Domisili | <span class="badge-status">Diterima</span> |
+| 13 | AHMAD ZULKARNAIN | <span class="badge-l">L</span> | 5 | Domisili | <span class="badge-status">Diterima</span> |
+| 14 | MOH. AZAM SAPUTRA | <span class="badge-l">L</span> | 10 | Domisili | <span class="badge-status">Diterima</span> |
+| 15 | NUR CAHAYA | <span class="badge-p">P</span> | 16 | Domisili | <span class="badge-status">Diterima</span> |
+| 16 | NUR AZAHRA | <span class="badge-p">P</span> | 3 | Domisili | <span class="badge-status">Diterima</span> |
+| 17 | AL FARUQ ASWIN | <span class="badge-l">L</span> | 14 | Domisili | <span class="badge-status">Diterima</span> |
+| 18 | JINAN RATU GANIA | <span class="badge-p">P</span> | 9 | Domisili | <span class="badge-status">Diterima</span> |
+| 19 | ARYAN ALFARISKI | <span class="badge-l">L</span> | 11 | Domisili | <span class="badge-status">Diterima</span> |
+| 20 | MUHAMMAD OZIL KHALID | <span class="badge-l">L</span> | 12 | Domisili | <span class="badge-status">Diterima</span> |
+| 21 | ABD RAJAB | <span class="badge-l">L</span> | 32 | Domisili | <span class="badge-status">Diterima</span> |
+| 22 | NAZRIEL ALFARIZI | <span class="badge-l">L</span> | 4 | Domisili | <span class="badge-status">Diterima</span> |
+| 23 | KHALIED KENAN KHAZALI SALIM | <span class="badge-l">L</span> | 6 | Domisili | <span class="badge-status">Diterima</span> |
+| 24 | NUR AINI RAMADANI | <span class="badge-p">P</span> | 36 | Domisili | <span class="badge-status">Diterima</span> |
+| 25 | ARJUNA TRI PERMADANI | <span class="badge-l">L</span> | 33 | Domisili | <span class="badge-status">Diterima</span> |
+| 26 | PRABU WIJAYA | <span class="badge-l">L</span> | 28 | Domisili | <span class="badge-status">Diterima</span> |
+| 27 | DIANDRA AQIRA NIRMALA | <span class="badge-p">P</span> | 17 | Domisili | <span class="badge-status">Diterima</span> |
+| 28 | AMEERA GEMPITA RISKY | <span class="badge-p">P</span> | 18 | Domisili | <span class="badge-status">Diterima</span> |
 
