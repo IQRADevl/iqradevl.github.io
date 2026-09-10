@@ -80,3 +80,44 @@ Jika Bapak/Ibu membutuhkan informasi lebih lanjut terkait SPMB, silakan hubungi 
 * **Telepon / WhatsApp:** <a href="https://wa.me/{{ site.school.phone | remove: '+' | remove: '-' | remove: ' ' }}" target="_blank" rel="noopener noreferrer">087860183263 (a.n. Fitriani)</a>
 
 * **Email:** [info@sdislamiqrapetobo.sch.id](mailto:info@sdislamiqrapetobo.sch.id)
+
+
+## Pengumuman PPDB/SPMB
+
+- **Total Siswa Diterima:** 28
+- **Laki-laki (L):** 18
+- **Perempuan (P):** 10
+
+
+| No | Nama | Jenis Kelamin | Nomor Pendaftaran | Jalur Penerimaan | Status |
+|---:|:---|:---:|:---:|:---|:---:|
+| 1 | MHEY RAHAYU KAISYAFANI | P | 19 | Domisili | Diterima |
+| 2 | ATHAR RAMADAN | L | 35 | Domisili | Diterima |
+| 3 | MUHAMMAD ELVAN SYAHNAKRI PASORI | L | 21 | Domisili | Diterima |
+| 4 | ZAHWA AQILA | P | 30 | Domisili | Diterima |
+| 5 | SYAFIQAH AZZAHRA | P | 1 | Domisili | Diterima |
+| 6 | MUHAMMAD IFDHAL | L | 24 | Domisili | Diterima |
+| 7 | ABBAD NAILUN NABHAN | L | 29 | Domisili | Diterima |
+| 8 | ADZRIL ALFHAREZI | L | 15 | Domisili | Diterima |
+| 9 | MUHAMMAD ULUL AZMI | L | 7 | Domisili | Diterima |
+| 10 | ZEA ALMAYRA | P | 34 | Domisili | Diterima |
+| 11 | SYABIL ALFURQAN | L | 2 | Domisili | Diterima |
+| 12 | UWAIS RAFIDAN | L | 8 | Domisili | Diterima |
+| 13 | AHMAD ZULKARNAIN | L | 5 | Domisili | Diterima |
+| 14 | MOH. AZAM SAPUTRA | L | 10 | Domisili | Diterima |
+| 15 | NUR CAHAYA | P | 16 | Domisili | Diterima |
+| 16 | NUR AZAHRA | P | 3 | Domisili | Diterima |
+| 17 | AL FARUQ ASWIN | L | 14 | Domisili | Diterima |
+| 18 | JINAN RATU GANIA | P | 9 | Domisili | Diterima |
+| 19 | ARYAN ALFARISKI | L | 11 | Domisili | Diterima |
+| 20 | MUHAMMAD OZIL KHALID | L | 12 | Domisili | Diterima |
+| 21 | ABD RAJAB | L | 32 | Domisili | Diterima |
+| 22 | NAZRIEL ALFARIZI | L | 4 | Domisili | Diterima |
+| 23 | KHALIED KENAN KHAZALI SALIM | L | 6 | Domisili | Diterima |
+| 24 | NUR AINI RAMADANI | P | 36 | Domisili | Diterima |
+| 25 | ARJUNA TRI PERMADANI | L | 33 | Domisili | Diterima |
+| 26 | PRABU WIJAYA | L | 28 | Domisili | Diterima |
+| 27 | DIANDRA AQIRA NIRMALA | P | 17 | Domisili | Diterima |
+| 28 | AMEERA GEMPITA RISKY | P | 18 | Domisili | Diterima |
+
+
