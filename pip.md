@@ -80,6 +80,10 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
               color: textColor
             },
             grid: {
+              color: gridColor,
+              borderColor: gridColor
+            },
+            border: {
               color: gridColor
             }
           },
@@ -89,6 +93,9 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
             },
             grid: { 
               display: false 
+            },
+            border: {
+              color: gridColor
             }
           }
         }

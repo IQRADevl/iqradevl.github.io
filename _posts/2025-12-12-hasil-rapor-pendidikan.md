@@ -95,6 +95,10 @@ Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualit
               color: textColor 
             },
             grid: {
+              color: gridColor,
+              borderColor: gridColor
+            },
+            border: {
               color: gridColor
             }
           },
@@ -107,6 +111,9 @@ Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualit
             },
             grid: { 
               display: false 
+            },
+            border: {
+              color: gridColor
             }
           }
         }
@@ -117,29 +124,23 @@ Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualit
 
 ## Analisis & Capaian Utama
 1. Kenaikan Capaian Literasi
-Skor literasi mengalami peningkatan dari 60,00 menjadi 85,71. Perkembangan ini mencerminkan keberhasilan ekosistem sekolah dalam membangun budaya membaca serta mengasah kemampuan analisis informasi peserta didik.
+Skor literasi mengalami peningkatan dari 60,00 (2024) menjadi 75,00 (2025). Perkembangan ini mencerminkan keberhasilan ekosistem sekolah dalam membangun budaya membaca serta mengasah kemampuan analisis informasi peserta didik.
 
-2. Konsistensi Iklim Keamanan
-Sekolah berkomitmen menghadirkan lingkungan belajar yang aman dan ramah anak. Skor Iklim Keamanan yang terus naik hingga mencapai 74,61 menunjukkan bahwa program keselamatan dan kenyamanan siswa berjalan secara efektif dan berkelanjutan.
+2. Peningkatan Kemampuan Numerasi
+Capaian numerasi mencatatkan lompatan yang sangat positif. Setelah mencapai skor 70,00 pada tahun 2024, nilai numerasi melonjak naik menjadi 87,50 pada tahun 2025. Hasil ini membuktikan efektivitas pembenahan metode pembelajaran matematika yang telah diterapkan sekolah.
 
-3. Evaluasi Kemampuan Numerasi
-Capaian numerasi mencatatkan fluktuasi. Setelah mencapai titik tertinggi pada tahun 2024, skor mengalami penurunan menjadi 42,86 pada tahun 2025. Hal ini menjadi fokus utama tim pengembang kurikulum untuk melakukan diagnosis dan perbaikan metode pembelajaran matematika.
-
-### Catatan Evaluasi Data:
-
-Penurunan skor numerasi pada tahun 2025 dipengaruhi secara signifikan oleh jumlah peserta asesmen yang jauh lebih sedikit (7 siswa) dibandingkan tahun sebelumnya (17 siswa). Secara statistik, ukuran sampel yang kecil cenderung menghasilkan pemeringkatan nilai yang ekstrem dan tidak sepenuhnya menggambarkan kualitas pengajaran secara menyeluruh.
+3. Konsistensi Iklim Keamanan
+Sekolah berkomitmen menghadirkan lingkungan belajar yang aman dan ramah anak. Skor Iklim Keamanan yang terus naik hingga mencapai 73,00 menunjukkan bahwa program keselamatan dan kenyamanan siswa berjalan secara efektif dan sustained.
 
 4. Pematangan Karakter & Inklusivitas
-Skor Karakter dan Iklim Inklusivitas menunjukkan tren yang stabil dan positif. Capaian ini sejalan dengan visi sekolah untuk membentuk lulusan yang berakhlak mulia, cerdas, dan mampu menghargai keberagaman.
+Skor Karakter (54,10) dan Iklim Inklusivitas (63,00) menunjukkan tren yang stabil dan positif. Capaian ini sejalan dengan visi sekolah untuk membentuk lulusan yang berakhlak mulia, cerdas, dan mampu menghargai keberagaman.
 
 ## Langkah Strategis Sekolah
 Sebagai bentuk tanggung jawab terhadap mutu pendidikan, SD Islam Iqra Petobo telah menyiapkan beberapa prioritas kerja:
 
-Akselerasi Numerasi: Mengimplementasikan metode belajar matematika yang lebih interaktif dan aplikatif.
-
-Penguatan Budaya Sekolah: Memperkuat skor Iklim Kebinekaan lewat kegiatan sosial dan kolaborasi antarpeserta didik.
-
-Modernisasi Pembelajaran: Menjaga standar Kualitas Pembelajaran melalui pelatihan guru secara berkala dan pemanfaatan teknologi yang tepat guna.
+* **Pertahankan & Tingkatkan Numerasi & Literasi**: Mempertahankan tren positif literasi dan numerasi melalui pembelajaran berbasis pemecahan masalah (*problem-solving*).
+* **Penguatan Budaya Sekolah**: Memperkuat skor Iklim Kebinekaan dan Inklusivitas lewat kegiatan sosial dan kolaborasi antarpeserta didik.
+* **Modernisasi Pembelajaran**: Menjaga standar Kualitas Pembelajaran melalui pelatihan guru secara berkala dan pemanfaatan teknologi yang tepat guna.
 
 ## Penutup
 Dinamika capaian pada periode 2022–2025 memberikan banyak ruang evaluasi bagi kami. Setiap capaian positif menjadi dorongan semangat, sementara tantangan yang ada menjadi dasar untuk terus berbenah.
