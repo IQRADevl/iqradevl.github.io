@@ -6,42 +6,70 @@ permalink: /ppdb/
 ---
 
 <style>
-  /* Memaksa garis tabel muncul menimpa CSS tema */
+  /* 1. Box Statistik Responsif HP */
+  .stats-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 8px; 
+    margin: 15px 0; 
+  }
+  .stat-box { 
+    padding: 10px 4px; 
+    border-radius: 10px; 
+    text-align: center; 
+    border: 1px solid rgba(150, 150, 150, 0.2); 
+    background: rgba(150, 150, 150, 0.05); 
+  }
+  .stat-box span { display: block; font-size: 0.75rem; opacity: 0.85; }
+  .stat-box strong { font-size: 1.25rem; display: block; margin-top: 2px; }
+
+  .stat-box.green { border-color: rgba(34, 197, 94, 0.4); background: rgba(34, 197, 94, 0.12); color: #22c55e !important; }
+  .stat-box.blue { border-color: rgba(59, 130, 246, 0.4); background: rgba(59, 130, 246, 0.12); color: #3b82f6 !important; }
+  .stat-box.pink { border-color: rgba(236, 72, 153, 0.4); background: rgba(236, 72, 153, 0.12); color: #ec4899 !important; }
+
+  /* 2. Tabel Bisa Di-scroll Horizontal di HP */
   table {
-    border-collapse: collapse !important;
+    display: block !important;
     width: 100% !important;
-    margin: 20px 0 !important;
-    border: 1px solid #94a3b8 !important; /* Garis bingkai luar */
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    border-collapse: collapse !important;
+    margin: 15px 0 !important;
+    border: 1px solid rgba(150, 150, 150, 0.3) !important;
+    -webkit-overflow-scrolling: touch; /* Biar scroll di iOS/iPhone makin mulus */
   }
 
   table th, table td {
-    border: 1px solid #cbd5e1 !important; /* Garis kotak di setiap sel (vertikal & horizontal) */
-    padding: 10px 12px !important;
+    border: 1px solid rgba(150, 150, 150, 0.25) !important;
+    padding: 8px 10px !important;
+    color: inherit !important; /* Warna teks otomatis ikut mode website */
+    font-size: 0.85rem !important;
   }
 
   table th {
-    background-color: #f1f5f9 !important;
+    background-color: rgba(150, 150, 150, 0.15) !important;
     font-weight: bold !important;
-    color: #1e293b !important;
   }
 
+  /* Baris Selang-seling Adaptif (Warna Transparan) */
   table tr:nth-child(even) {
-    background-color: #f8fafc !important; /* Warna selang-seling */
+    background-color: rgba(150, 150, 150, 0.06) !important;
   }
 
-  /* Badge L, P, & Status */
-  .badge-p { background: #fce7f3; color: #9d174d; padding: 2px 8px; border-radius: 12px; font-weight: bold; font-size: 0.8rem; }
-  .badge-l { background: #dbeafe; color: #1e40af; padding: 2px 8px; border-radius: 12px; font-weight: bold; font-size: 0.8rem; }
-  .badge-status { background: #dcfce7; color: #166534; padding: 3px 10px; border-radius: 12px; font-weight: bold; font-size: 0.8rem; }
+  /* 3. Badge L, P, & Status */
+  .badge-p { background: rgba(236, 72, 153, 0.2); color: #ec4899 !important; padding: 2px 6px; border-radius: 12px; font-weight: bold; font-size: 0.75rem; display: inline-block; }
+  .badge-l { background: rgba(59, 130, 246, 0.2); color: #3b82f6 !important; padding: 2px 6px; border-radius: 12px; font-weight: bold; font-size: 0.75rem; display: inline-block; }
+  .badge-status { background: rgba(34, 197, 94, 0.2); color: #22c55e !important; padding: 2px 8px; border-radius: 12px; font-weight: bold; font-size: 0.75rem; display: inline-block; }
 
-  /* Box Statistik */
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin: 20px 0; }
-  .stat-box { padding: 12px; border-radius: 8px; text-align: center; font-weight: bold; }
-  .stat-box.green { background: #f0fdf4; border: 1px solid #bbf7d0; color: #15803d; }
-  .stat-box.blue { background: #eff6ff; border: 1px solid #bfdbfe; color: #1d4ed8; }
-  .stat-box.pink { background: #fdf2f8; border: 1px solid #fbcfe8; color: #be185d; }
-  .stat-box span { display: block; font-size: 0.8rem; opacity: 0.8; }
-  .stat-box strong { font-size: 1.5rem; }
+  /* 4. Optimalisasi Tambahan Khusus HP Layar Kecil */
+  @media (max-width: 480px) {
+    .stats-grid { gap: 6px; }
+    .stat-box { padding: 8px 2px; }
+    .stat-box span { font-size: 0.68rem; }
+    .stat-box strong { font-size: 1.1rem; }
+    table th, table td { padding: 6px 8px !important; font-size: 0.8rem !important; }
+  }
 </style>
 
 
