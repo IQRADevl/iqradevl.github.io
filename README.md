@@ -71,4 +71,4 @@ profil.markdown, akademik.markdown, ppdb.markdown, berita.markdown, kontak.markd
 ```
 
 ## Kredit
-* (Febra)[github.com/febras] (Creator)
+* [FebraS](http://github.com/febras)
