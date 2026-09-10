@@ -976,3 +976,48 @@ figure.img-large img {
     max-width: 420px;
   }
 }
+
+/* Styling Tombol Unduh */
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  background-color: var(--teal-700, #0E6B58);
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none !important; /* Menghilangkan garis bawah teks */
+  border-radius: 8px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(14, 107, 88, 0.25);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+/* Efek saat kursor diarahkan ke tombol */
+.btn-download:hover {
+  background-color: var(--teal-600, #0b5546);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(14, 107, 88, 0.35);
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* Efek saat tombol diklik */
+.btn-download:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(14, 107, 88, 0.2);
+}
+
+/* Ukuran ikon di dalam tombol */
+.btn-download svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}

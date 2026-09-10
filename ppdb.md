@@ -50,7 +50,9 @@ Calon peserta didik wajib menyiapkan dan melampirkan dokumen-dokumen berikut:
 ### A. Jalur Daring (Online)
 * Orang tua/wali dapat mengunggah dokumen persyaratan secara mandiri melalui aplikasi resmi yang disediakan oleh Dinas Pendidikan / Sekolah.
 * Akses pendaftaran dapat dilakukan dengan mudah, kapan saja, dan di mana saja menggunakan perangkat yang terhubung ke internet (ponsel, tablet, atau laptop).
-* Silakan klik tombol <a href="https://tally.so/r/w8ygBl">**"SPMB Online"**</a> pada situs resmi untuk memulai proses pendaftaran Daring.
+* Silakan klik tombol "SPMB Online" di bawah untuk memulai proses pendaftaran Daring.
+
+<a class="btn-download" href="{{ 'https://tally.so/r/w8ygBl' | relative_url }}">SPMB Online</a>
 
 ### B. Jalur Luring (Offline)
 * Bagi orang tua/wali yang memiliki keterbatasan akses internet atau gawai, pihak sekolah/Pemerintah Daerah menyediakan layanan pendampingan langsung.
