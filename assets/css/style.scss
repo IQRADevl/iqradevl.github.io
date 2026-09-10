@@ -750,3 +750,63 @@ figure.img-large img {
     border-bottom: 1px solid var(--line) !important;
   }
 }
+
+/* Lightbox / Preview Gambar Modal */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox.is-active {
+  display: flex;
+  opacity: 1;
+}
+
+.lightbox__content {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: var(--radius-m);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform: scale(0.92);
+  transition: transform 0.25s ease;
+}
+
+.lightbox.is-active .lightbox__content {
+  transform: scale(1);
+}
+
+.lightbox__caption {
+  margin-top: 1rem;
+  color: #ffffff;
+  font-size: 0.95rem;
+  text-align: center;
+  max-width: 600px;
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+  user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.lightbox__close:hover {
+  transform: scale(1.15);
+}

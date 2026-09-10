@@ -147,4 +147,52 @@
     }
   }
 
+  /* ---------- Lightbox / Preview Gambar ---------- */
+  // Buat elemen modal secara otomatis di DOM
+  var modal = document.createElement("div");
+  modal.className = "lightbox";
+  modal.id = "lightbox-modal";
+  modal.innerHTML = 
+    '<span class="lightbox__close" aria-label="Tutup">&times;</span>' +
+    '<img class="lightbox__content" id="lightbox-img" alt="Preview Gambar">' +
+    '<div class="lightbox__caption" id="lightbox-caption"></div>';
+  document.body.appendChild(modal);
+
+  var modalImg = document.getElementById("lightbox-img");
+  var modalCaption = document.getElementById("lightbox-caption");
+  var closeBtn = modal.querySelector(".lightbox__close");
+
+  // Pasang listener klik ke seluruh gambar dalam konten (post, page, atau figure)
+  var contentImages = document.querySelectorAll(".post__body img, .page__body img, figure img");
+
+  contentImages.forEach(function (img) {
+    img.style.cursor = "zoom-in"; // Mengubah kursor jadi ikon kaca pembesar
+
+    img.addEventListener("click", function () {
+      modal.classList.add("is-active");
+      modalImg.src = this.src;
+      modalImg.alt = this.alt || "Preview gambar";
+
+      // Ambil teks caption dari figcaption (jika ada) atau alt gambar
+      var figcaption = this.closest("figure") ? this.closest("figure").querySelector("figcaption") : null;
+      modalCaption.textContent = figcaption ? figcaption.textContent : this.alt;
+    });
+  });
+
+  function closeLightbox() {
+    modal.classList.remove("is-active");
+  }
+
+  if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+
+  // Tutup jika area gelap di luar gambar diklik
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) closeLightbox();
+  });
+
+  // Tutup dengan tombol Escape
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeLightbox();
+  });
+
 })();
