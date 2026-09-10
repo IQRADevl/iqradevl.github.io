@@ -79,4 +79,4 @@ Tim Pengembang & Tim IT SD Islam Iqra Petobo
 ## Unduh Eranga
 Silakan unduh dan pasang aplikasi Eranga melalui tautan di bawah ini:
 
-<a class="btn-download" href="{{ 'https://drive.google.com/file/d/1Hl_V1dxLshBIdJYoFPNTQRETl0rzLIyG/view?usp=drive_link' | relative_url }}">Unduh Aplikasi Eranga (APK)</a>
+<a class="btn-download" href="https://drive.google.com/file/d/1Hl_V1dxLshBIdJYoFPNTQRETl0rzLIyG/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Unduh Aplikasi Eranga (APK)</a>
