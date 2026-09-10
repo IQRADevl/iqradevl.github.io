@@ -50,7 +50,11 @@ permalink: /ppdb/
 </figure>
 
 
-# Informasi dan Persyaratan SPMB SD Islam Iqra Petobo
+## Daftar Isi
+* Placeholder (akan diganti otomatis oleh Jekyll)
+{:toc}
+
+# Informasi dan Persyaratan SPMB/PPDB SD Islam Iqra Petobo
 
 Selamat datang di Sistem Penerimaan Murid Baru (SPMB) SD Islam Iqra Petobo. Kami mengundang putra-putri Anda untuk bergabung dengan keluarga besar SD Islam Iqra Petobo dan menjadi bagian dari generasi penerus bangsa yang cerdas, berakhlak mulia, serta siap berkontribusi bagi kemajuan bangsa.
 
@@ -120,7 +124,7 @@ Jika Bapak/Ibu membutuhkan informasi lebih lanjut terkait SPMB, silakan hubungi 
 
 * **Email:** [info@sdislamiqrapetobo.sch.id](mailto:info@sdislamiqrapetobo.sch.id)
 
-## Pengumuman PPDB/SPMB
+## 7. Pengumuman PPDB/SPMB
 
 <div class="stats-grid">
   <div class="stat-box green"><span>Total Diterima</span><strong>28</strong></div>
