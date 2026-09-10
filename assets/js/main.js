@@ -231,4 +231,66 @@
     initBackToTop();
   }
 
+  /* ---------- Image Slider / Carousel ---------- */
+  function initCarousel() {
+    var carousel = document.getElementById("home-carousel");
+    if (!carousel) return;
+
+    var slides = carousel.querySelectorAll(".carousel__slide");
+    var dots = carousel.querySelectorAll(".carousel__dot");
+    var prevBtn = carousel.querySelector(".carousel__prev");
+    var nextBtn = carousel.querySelector(".carousel__next");
+
+    if (!slides.length) return;
+
+    var currentIndex = 0;
+    var timer = null;
+
+    function showSlide(index) {
+      if (index >= slides.length) currentIndex = 0;
+      else if (index < 0) currentIndex = slides.length - 1;
+      else currentIndex = index;
+
+      slides.forEach(function (slide, i) {
+        slide.classList.toggle("active", i === currentIndex);
+      });
+
+      dots.forEach(function (dot, i) {
+        dot.classList.toggle("active", i === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      timer = setInterval(nextSlide, 4000); // Berganti otomatis tiap 4 detik
+    }
+
+    function stopAutoPlay() {
+      if (timer) clearInterval(timer);
+    }
+
+    if (nextBtn) nextBtn.addEventListener("click", function () { nextSlide(); startAutoPlay(); });
+    if (prevBtn) prevBtn.addEventListener("click", function () { prevSlide(); startAutoPlay(); });
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () {
+        showSlide(i);
+        startAutoPlay();
+      });
+    });
+
+    carousel.addEventListener("mouseenter", stopAutoPlay);
+    carousel.addEventListener("mouseleave", startAutoPlay);
+
+    startAutoPlay();
+  }
+
 })();

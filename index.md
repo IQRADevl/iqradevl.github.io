@@ -65,6 +65,44 @@ title: Beranda
   </div>
 </section>
 
+<section class="section section--welcome">
+  <div class="wrap welcome__inner">
+    
+    <!-- Kiri: Teks & Poin 01, 02, 03 -->
+    <div class="welcome__content">
+      <p class="eyebrow">Tentang Kami</p>
+      <h2>Tumbuh Bersama Nilai, Ilmu, dan Karakter</h2>
+      <p class="welcome__text">
+        Kami hadir untuk menemani perjalanan belajar setiap siswa. Berlandaskan ajaran Islam dan pendidikan berkualitas, kami berkomitmen membentuk generasi yang cerdas secara akademik sekaligus santun dalam berperilaku.
+      </p>
+      <div class="welcome__features">
+        <div class="welcome__feature">
+          <strong class="feature-num">01.</strong>
+          <h4>Kurikulum Islami</h4>
+          <p>Penguatan adab dan hafalan Al-Qur'an harian.</p>
+        </div>
+        <div class="welcome__feature">
+          <strong class="feature-num">02.</strong>
+          <h4>Metode Interaktif</h4>
+          <p>Belajar menyenangkan berbasis Kurikulum Merdeka.</p>
+        </div>
+        <div class="welcome__feature">
+          <strong class="feature-num">03.</strong>
+          <h4>Lingkungan Aman</h4>
+          <p>Fasilitas pendukung tumbuh kembang siswa.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kanan: Foto Bingkai Lingkaran -->
+    <div class="welcome__media">
+      <div class="welcome__circle-bg"></div>
+      <img src="{{ '/assets/images/kepala-sekolah-murid.png' | relative_url }}" alt="Kepala Sekolah dan Siswa {{ site.title }}" class="welcome__img">
+    </div>
+
+  </div>
+</section>
+
 <section class="section section--alt">
   <div class="wrap">
     <div class="section__head">

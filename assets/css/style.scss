@@ -856,3 +856,123 @@ figure.img-large img {
   stroke-linejoin: round;
   fill: none;
 }
+
+/* Seksi Tengah ala UI Modern */
+.section--welcome {
+  background-color: var(--bg-alt, #f8fafc);
+  padding: 4rem 0;
+  overflow: hidden;
+}
+
+.welcome__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.welcome__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.welcome__content h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.welcome__text {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* Fitur 01, 02, 03 */
+.welcome__features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line, rgba(0, 0, 0, 0.08));
+}
+
+.welcome__feature {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.feature-num {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--teal-700, #0d9488);
+}
+
+.welcome__feature h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.welcome__feature p {
+  font-size: 0.825rem;
+  margin: 0;
+  opacity: 0.75;
+  line-height: 1.4;
+}
+
+/* Kanan: Lingkaran & Gambar Transparan */
+.welcome__media {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 340px;
+}
+
+.welcome__circle-bg {
+  position: absolute;
+  width: 290px;
+  height: 290px;
+  background: linear-gradient(135deg, #d4f472, #d4e11d);
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 16px 32px rgba(225, 29, 72, 0.2);
+}
+
+.welcome__img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, 0.15));
+}
+
+/* Layout Desktop (2 Kolom) */
+@media (min-width: 861px) {
+  .welcome__inner {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .welcome__content h2 {
+    font-size: 2.75rem;
+  }
+
+  .welcome__media {
+    min-height: 420px;
+  }
+
+  .welcome__circle-bg {
+    width: 380px;
+    height: 380px;
+  }
+
+  .welcome__img {
+    max-width: 420px;
+  }
+}
