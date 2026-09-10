@@ -122,8 +122,6 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 
 <a class="btn-download" href="https://docs.google.com/spreadsheets/d/1wD19Q1kOugyUjTm42zrosPLprEEm2NOPhi_4eXVCqHY/" target="_blank" rel="noopener noreferrer">Cek Siswa Nominasi Disini</a>
 
-
-
 **Siswa Pemberian** adalah penetapan bagi peserta didik yang layak menerima PIP, dan sudah melakukan aktivasi rekening (sudah memiliki buku tabungan).
 
 <a class="btn-download" href="https://docs.google.com/spreadsheets/d/1oQorK3-iCptEmuNgOWQQe3TPgNt9xe4ST05eKqU7mLg/" target="_blank" rel="noopener noreferrer">Cek Siswa Pemberian Disini</a>
