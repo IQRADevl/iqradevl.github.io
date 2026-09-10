@@ -46,6 +46,10 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
   document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById('akademikChart').getContext('2d');
     
+    // Warna adaptif agar teks & garis muncul jelas di Dark Mode & Light Mode
+    const gridColor = 'rgba(150, 150, 150, 0.25)';
+    const textColor = 'rgba(160, 175, 195, 0.95)';
+
     new Chart(ctx, {
       type: 'bar',
       data: {
@@ -55,8 +59,9 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
             label: 'Jumlah Penerima',
             data: [56,76,66,61,44,58,35],
             backgroundColor: '#1c7c91',
-            borderRadius: 4
-          },
+            hoverBackgroundColor: '#2393ab',
+            borderRadius: 6
+          }
         ]
       },
       options: {
@@ -67,12 +72,14 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
             position: 'bottom',
             labels: {
               padding: 20,
+              color: textColor,
               font: { family: 'Public Sans', size: 12 }
             }
           },
           title: {
             display: true,
             text: 'Diagram Jumlah Penerima PIP SD Islam Iqra Petobo',
+            color: textColor,
             font: { family: 'Fraunces', size: 15, weight: '600' },
             padding: { bottom: 15 }
           }
@@ -81,17 +88,28 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
           y: {
             beginAtZero: true,
             max: 100,
-            ticks: { stepSize: 25 }
+            ticks: { 
+              stepSize: 25,
+              color: textColor
+            },
+            grid: {
+              color: gridColor
+            }
           },
           x: {
-            grid: { display: false }
+            ticks: {
+              color: textColor
+            },
+            grid: { 
+              display: false 
+            }
           }
         }
       }
     });
   });
 </script>
-  <figcaption>Sumber Data : https://pip.kemdikdasmen.go.id/</figcaption>
+<figcaption>Sumber Data : https://pip.kemdikdasmen.go.id/</figcaption>
 
 ### Catatan dan Tren Data Penerima PIP
 
@@ -106,13 +124,9 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
 Dalam melakukan pencairan atau aktivasi, umumnya diharapkan orang tua/wali bisa menyiapkan beberapa salinan dokumen seperti:
 
 1. Buku Tabungan SimPel (Untuk siswa pemberian)
-
 2. KTP Orang Tua/Wali
-
 3. KIA (Kartu Identitas Anak)
-
 4. Kartu Keluarga
-
 5. Surat Pengantar Dari Pihak Sekolah
 
 ### Yang Dilakukan Setelah Menarik Dana
