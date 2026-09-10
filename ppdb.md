@@ -77,12 +77,7 @@ permalink: /ppdb/
   <img src="https://lh3.googleusercontent.com/d/1nJ2ZKi5Lq8WVPSFiDb3dWfcy0NgPx_gR" alt="Foto Cover PPDB Tahun 2026/2027">
 </figure>
 
-
-## Daftar Isi
-* Placeholder (akan diganti otomatis oleh Jekyll)
-{:toc}
-
-# Informasi dan Persyaratan SPMB/PPDB SD Islam Iqra Petobo
+# Informasi dan Persyaratan PPDB SD Islam Iqra Petobo
 
 Selamat datang di Sistem Penerimaan Murid Baru (SPMB) SD Islam Iqra Petobo. Kami mengundang putra-putri Anda untuk bergabung dengan keluarga besar SD Islam Iqra Petobo dan menjadi bagian dari generasi penerus bangsa yang cerdas, berakhlak mulia, serta siap berkontribusi bagi kemajuan bangsa.
 
