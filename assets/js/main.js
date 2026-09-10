@@ -59,7 +59,6 @@
     });
   }
 
-
   /* ---------- Animasi Statistik / Counter ---------- */
   var statsContainer = document.querySelector(".hero__stats");
 
@@ -147,8 +146,11 @@
     }
   }
 
-/* ---------- Lightbox / Preview Gambar ---------- */
-  document.addEventListener("DOMContentLoaded", function () {
+  /* ---------- Lightbox / Preview Gambar ---------- */
+  function initLightbox() {
+    // Cegah duplikasi pembuatan modal jika fungsi terpanggil dua kali
+    if (document.getElementById("lightbox-modal")) return;
+
     // 1. Buat elemen modal secara otomatis
     var modal = document.createElement("div");
     modal.className = "lightbox";
@@ -163,7 +165,7 @@
     var modalCaption = document.getElementById("lightbox-caption");
     var closeBtn = modal.querySelector(".lightbox__close");
 
-    // 2. Selector dibuat lebih luas agar mencakup semua gambar di artikel/halaman
+    // 2. Selector mencakup semua gambar konten
     var contentImages = document.querySelectorAll(".post__body img, .page__body img, figure img, article img, .post img, .page img");
 
     contentImages.forEach(function (img) {
@@ -195,6 +197,13 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") closeLightbox();
     });
-  });
+  }
+
+  // Pengecekan aman: jalankan langsung jika DOM sudah siap, atau tunggu jika masih loading
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initLightbox);
+  } else {
+    initLightbox();
+  }
 
 })();
