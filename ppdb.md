@@ -76,5 +76,7 @@ Calon peserta didik wajib menyiapkan dan melampirkan dokumen-dokumen berikut:
 Jika Bapak/Ibu membutuhkan informasi lebih lanjut terkait SPMB, silakan hubungi kami melalui saluran resmi berikut:
 
 * **Website:** [www.sdislamiqrapetobo.sch.id](https://www.sdislamiqrapetobo.sch.id/)
-* **Telepon / WhatsApp:** [0878-6018-3263](tel:087860183263) (a.n. Fitriani)
+
+* **Telepon / WhatsApp:** <a href="https://wa.me/{{ site.school.phone | remove: '+' | remove: '-' | remove: ' ' }}" target="_blank" rel="noopener noreferrer">(tel:087860183263) (a.n. Fitriani)</a>
+
 * **Email:** [info@sdislamiqrapetobo.sch.id](mailto:info@sdislamiqrapetobo.sch.id)
