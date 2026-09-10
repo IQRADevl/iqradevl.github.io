@@ -5,19 +5,6 @@ category: Laporan
 excerpt_text: "Ringkasan capaian Rapor Pendidikan SD Islam Iqra Petobo periode 2022–2025 sebagai bentuk transparansi dan evaluasi mutu sekolah."
 ---
 
-<style>
-  /* Container Grafik Adaptif (Mode Terang & Gelap) */
-  .chart-container {
-    position: relative;
-    height: 320px;
-    width: 100%;
-    margin: 20px 0 10px 0;
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid rgba(150, 150, 150, 0.25);
-    background: rgba(150, 150, 150, 0.05);
-  }
-</style>
 
 Assalamu’alaikum Warahmatullahi Wabarakatuh.
 
@@ -36,6 +23,10 @@ Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualit
   document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById('raporMutuChart').getContext('2d');
     
+    // Warna adaptif agar teks & garis terlihat jelas di Dark Mode maupun Light Mode
+    const gridColor = 'rgba(150, 150, 150, 0.25)';
+    const textColor = 'rgba(160, 175, 195, 0.95)';
+
     new Chart(ctx, {
       type: 'bar',
       data: {
@@ -83,12 +74,14 @@ Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualit
             position: 'bottom',
             labels: {
               padding: 20,
+              color: textColor,
               font: { family: 'Public Sans', size: 12 }
             }
           },
           title: {
             display: true,
             text: 'Diagram Capaian Rapor Pendidikan SD Islam Iqra Petobo (2022–2025)',
+            color: textColor,
             font: { family: 'Fraunces', size: 15, weight: '600' },
             padding: { bottom: 15 }
           }
@@ -97,10 +90,24 @@ Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualit
           y: {
             beginAtZero: true,
             max: 100,
-            ticks: { stepSize: 20 }
+            ticks: { 
+              stepSize: 20,
+              color: textColor 
+            },
+            grid: {
+              color: gridColor
+            }
           },
           x: {
-            grid: { display: false }
+            ticks: {
+              color: textColor,
+              maxRotation: 45, /* Miringkan teks label agar tidak bentrok di layar HP */
+              minRotation: 30,
+              font: { size: 11 }
+            },
+            grid: { 
+              display: false 
+            }
           }
         }
       }

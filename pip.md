@@ -5,19 +5,6 @@ section: PIP
 permalink: /pip/
 ---
 
-<style>
-  /* Container Grafik Adaptif (Mode Terang & Gelap) */
-  .chart-container {
-    position: relative;
-    height: 320px;
-    width: 100%;
-    margin: 20px 0 10px 0;
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid rgba(150, 150, 150, 0.25);
-    background: rgba(150, 150, 150, 0.05);
-  }
-</style>
 
 ## Daftar Isi
 * Placeholder (akan diganti otomatis oleh Jekyll)
