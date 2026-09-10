@@ -5,6 +5,20 @@ category: Laporan
 excerpt_text: "Ringkasan capaian Rapor Pendidikan SD Islam Iqra Petobo periode 2022–2025 sebagai bentuk transparansi dan evaluasi mutu sekolah."
 ---
 
+<style>
+  /* Container Grafik Adaptif (Mode Terang & Gelap) */
+  .chart-container {
+    position: relative;
+    height: 320px;
+    width: 100%;
+    margin: 20px 0 10px 0;
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(150, 150, 150, 0.25);
+    background: rgba(150, 150, 150, 0.05);
+  }
+</style>
+
 Assalamu’alaikum Warahmatullahi Wabarakatuh.
 
 Selamat datang di halaman transparansi mutu pendidikan SD Islam Iqra Petobo.

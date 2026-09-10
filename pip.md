@@ -17,33 +17,6 @@ permalink: /pip/
     border: 1px solid rgba(150, 150, 150, 0.25);
     background: rgba(150, 150, 150, 0.05);
   }
-
-  figcaption {
-    font-size: 0.82rem;
-    opacity: 0.75;
-    margin-bottom: 25px;
-  }
-
-  /* Styling Tombol Download / Link Akses */
-  .btn-download {
-    display: inline-block;
-    padding: 10px 18px;
-    margin: 10px 0 20px 0;
-    background-color: #1c7c91;
-    color: #ffffff !important;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border-radius: 8px;
-    text-decoration: none !important;
-    transition: all 0.2s ease;
-    border: 1px solid rgba(28, 124, 145, 0.3);
-  }
-
-  .btn-download:hover {
-    background-color: #145968;
-    color: #ffffff !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
 </style>
 
 ## Daftar Isi
