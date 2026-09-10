@@ -27,7 +27,7 @@
 
     // Tutup menu saat tautan diklik, KECUALI menu pemicu dropdown (seperti Layanan)
     nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function (e) {
+      link.addEventListener("click", function () {
         if (link.parentElement.classList.contains("has-dropdown")) {
           return; // Biarkan dropdown terbuka, jangan tutup hamburger
         }
@@ -66,14 +66,12 @@
     var animated = false;
     var statElements = statsContainer.querySelectorAll(".hero__stat strong");
 
-    // Simpan target asli dari Liquid Jekyll
     statElements.forEach(function (el) {
       var rawText = el.textContent.trim();
       el.setAttribute("data-target", rawText);
 
       var isPureNumber = !isNaN(parseInt(rawText, 10)) && /^\d+$/.test(rawText);
       
-      // Set tampilan awal sebelum animasi jalan
       if (isPureNumber) {
         el.textContent = "0";
       } else {
@@ -87,13 +85,12 @@
         var targetNumber = parseInt(rawTarget, 10);
         var isPureNumber = !isNaN(targetNumber) && /^\d+$/.test(rawTarget);
 
-        var duration = 1500; // Durasi total animasi (1.5 detik)
+        var duration = 1500;
         var stepTime = 30;
         var steps = duration / stepTime;
         var currentStep = 0;
 
         if (isPureNumber) {
-          // Animasi hitung angka (0 -> Target)
           var increment = targetNumber / steps;
           var currentNum = 0;
 
@@ -109,13 +106,12 @@
           }, stepTime);
 
         } else {
-          // Animasi acak abjad untuk huruf Akreditasi (A-Z -> Target "B")
           var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
           var timerChar = setInterval(function () {
             currentStep++;
             if (currentStep >= steps) {
-              el.textContent = rawTarget; // Kunci ke nilai akhir (misal "B")
+              el.textContent = rawTarget;
               clearInterval(timerChar);
             } else {
               var randomLetter = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
@@ -126,7 +122,6 @@
       });
     };
 
-    // Jalankan animasi saat elemen masuk ke area layar
     if ("IntersectionObserver" in window) {
       var observer = new IntersectionObserver(
         function (entries) {
@@ -148,10 +143,8 @@
 
   /* ---------- Lightbox / Preview Gambar ---------- */
   function initLightbox() {
-    // Cegah duplikasi pembuatan modal jika fungsi terpanggil dua kali
     if (document.getElementById("lightbox-modal")) return;
 
-    // 1. Buat elemen modal secara otomatis
     var modal = document.createElement("div");
     modal.className = "lightbox";
     modal.id = "lightbox-modal";
@@ -165,11 +158,9 @@
     var modalCaption = document.getElementById("lightbox-caption");
     var closeBtn = modal.querySelector(".lightbox__close");
 
-    // 2. Selector mencakup semua gambar konten
     var contentImages = document.querySelectorAll(".post__body img, .page__body img, figure img, article img, .post img, .page img");
 
     contentImages.forEach(function (img) {
-      // Abaikan logo header/brand
       if (img.classList.contains("brand__logo") || img.closest(".brand")) return;
 
       img.style.cursor = "zoom-in";
@@ -199,11 +190,45 @@
     });
   }
 
-  // Pengecekan aman: jalankan langsung jika DOM sudah siap, atau tunggu jika masih loading
+  /* ---------- Back to Top Button ---------- */
+  function initBackToTop() {
+    if (document.getElementById("back-to-top")) return;
+
+    var btn = document.createElement("button");
+    btn.id = "back-to-top";
+    btn.className = "back-to-top";
+    btn.type = "button";
+    btn.setAttribute("aria-label", "Kembali ke atas");
+    btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>';
+    document.body.appendChild(btn);
+
+    function toggleBtn() {
+      if (window.scrollY > 300) {
+        btn.classList.add("is-visible");
+      } else {
+        btn.classList.remove("is-visible");
+      }
+    }
+
+    window.addEventListener("scroll", toggleBtn, { passive: true });
+
+    btn.addEventListener("click", function () {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+    });
+  }
+
+  /* ---------- Inisialisasi DOM ---------- */
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initLightbox);
+    document.addEventListener("DOMContentLoaded", function () {
+      initLightbox();
+      initBackToTop();
+    });
   } else {
     initLightbox();
+    initBackToTop();
   }
 
 })();
