@@ -131,4 +131,5 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 ## Kontak PIP
 
 Ada pertanyaan? Hubungi kami di <a href="mailto:{{ site.school.email }}">{{ site.school.email }}</a>
-atau <a href="tel:{{ site.school.phone }}">{{ site.school.phone }}</a>.
+atau
+<a href="https://wa.me/{{ site.school.phone | remove: '+' | remove: '-' | remove: ' ' }}" target="_blank" rel="noopener noreferrer">{{ site.school.phone }}</a>
