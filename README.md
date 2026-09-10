@@ -1,4 +1,4 @@
-# Template Jekyll — Situs Sekolah
+# Template Jekyll — SD ISLAM IQRA PETOBO
 
 Template ringan untuk situs sekolah di GitHub Pages. Tema hijau teal & putih,
 responsif dengan menu hamburger di layar sempit, mendukung mode gelap, dan
@@ -69,3 +69,6 @@ assets/js/main.js      hamburger menu & toggle mode gelap
 index.markdown         beranda
 profil.markdown, akademik.markdown, ppdb.markdown, berita.markdown, kontak.markdown
 ```
+
+## Kredit
+* (Febra)[github.com/febras] (Creator)
