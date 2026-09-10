@@ -97,7 +97,7 @@ title: Beranda
     <!-- Kanan: Foto Bingkai Lingkaran -->
     <div class="welcome__media">
       <div class="welcome__circle-bg"></div>
-      <img src="{{ '/assets/images/kepala-sekolah-murid.png' | relative_url }}" alt="Kepala Sekolah dan Siswa {{ site.title }}" class="welcome__img">
+      <img src="{{ '/assets/images/kepala-sekolah-murid.webp' | relative_url }}" alt="Kepala Sekolah dan Siswa {{ site.title }}" class="welcome__img">
     </div>
 
   </div>
