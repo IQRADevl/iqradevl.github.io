@@ -4,11 +4,13 @@ category: Informasi
 excerpt_text: ""
 ---
 
-# Aplikasi Absensi Digital SD Islam Iqra Petobo
 
 Dalam rangka meningkatkan kedisiplinan dan kemudahan administrasi sekolah, SD Islam Iqra Petobo menggunakan **Eranga**, aplikasi absensi digital untuk membantu Bapak/Ibu mencatat kehadiran dengan lebih mudah, cepat, dan tertib.
 
-![Tampilan aplikasi Eranga](https://lh3.googleusercontent.com/d/1jVgUOKfCBHWYLzwDEWMdhd4MRD2LRwFv)
+<figure class="img-large">
+  <img src="https://lh3.googleusercontent.com/d/1WaA0w4p87zsm_rV0jtbkhiyDpEOKnXlb" alt="Login Aplikasi Eranga">
+  <figcaption>Login aplikasi Eranga.</figcaption>
+</figure>
 
 ## Apa Saja yang Bisa Dilakukan?
 
@@ -17,6 +19,11 @@ Dalam rangka meningkatkan kedisiplinan dan kemudahan administrasi sekolah, SD Is
 Catat kehadiran saat datang dan pulang melalui aplikasi. Sistem akan mencatat waktu absensi secara otomatis setelah proses verifikasi berhasil.
 
 ### Pendaftaran Wajah
+
+<figure class="img-large">
+  <img src="https://lh3.googleusercontent.com/d/1CDoQMLtLmLN2P31IZnnsop_2Jg3YmSRE" alt="Anda perlu mendaftarkan data wajah">
+  <figcaption>Anda perlu mendaftarkan data wajah.</figcaption>
+</figure>
 
 Sebelum melakukan absensi, Bapak/Ibu perlu mendaftarkan wajah satu kali. Pendaftaran ini membantu memastikan bahwa absensi dilakukan oleh pemilik akun yang benar.
 
