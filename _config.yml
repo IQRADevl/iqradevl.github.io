@@ -13,7 +13,7 @@ url: "https://www.sdislamiqrapetobo.sch.id"
 baseurl: "" # isi "/nama-repo" jika situs bukan di root (mis. GitHub Project Pages)
 
 lang: "id-ID"
-logo: /assets/images/logo.png
+logo: /assets/images/logo.webp
 twitter:
   card: summary_large_image
 social:
