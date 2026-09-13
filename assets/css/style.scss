@@ -167,6 +167,7 @@ p.wide { max-width: none; }
   text-decoration: none;
   color: inherit;
   min-width: 0;
+  flex: 1 1 auto;
 }
 
 .brand__mark {
@@ -190,6 +191,8 @@ p.wide { max-width: none; }
   font-size: 1.05rem;
   color: var(--ink);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .brand__tagline {
   font-size: .8rem;
@@ -223,6 +226,7 @@ p.wide { max-width: none; }
   display: flex;
   align-items: center;
   gap: .5rem;
+  flex: none;
 }
 
 .theme-toggle,
