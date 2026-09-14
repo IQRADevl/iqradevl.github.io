@@ -50,7 +50,7 @@ Aplikasi menampilkan status absensi hari ini, termasuk:
 Agar absensi dapat diproses, mohon perhatikan hal-hal berikut:
 
 1. Gunakan HP pribadi yang dalam kondisi baik.
-2. Hubungkan HP ke Wi-Fi resmi SD Islam Iqra Petobo.
+2. Pastikan HP terhubung ke internet melalui Wi-Fi atau paket data.
 3. Aktifkan GPS atau lokasi pada HP.
 4. Izinkan akses kamera dan lokasi saat diminta aplikasi.
 5. Lakukan absensi di lingkungan sekolah.
@@ -58,7 +58,7 @@ Agar absensi dapat diproses, mohon perhatikan hal-hal berikut:
 7. Gunakan akun masing-masing dan jangan membagikan password.
 8. Tunggu sampai muncul pemberitahuan bahwa absensi berhasil.
 
-Absensi masuk dan keluar hanya dapat dilakukan pada hari kerja, Senin sampai Jumat, pukul **06.30 sampai 23.59 WITA**. Sistem juga memastikan bahwa perangkat berada di sekitar area sekolah.
+Absensi masuk dan keluar hanya dapat dilakukan pada hari kerja, Senin sampai Jumat, pukul **06.30 sampai 23.59 WITA**. Sistem juga memastikan bahwa perangkat berada di sekitar area sekolah. Pemeriksaan Wi-Fi resmi sekolah sedang dinonaktifkan sementara.
 
 ## Cara Melakukan Absensi
 
@@ -74,7 +74,7 @@ Absensi masuk dan keluar hanya dapat dilakukan pada hari kerja, Senin sampai Jum
 
 ### Absen Masuk atau Keluar
 
-1. Pastikan Wi-Fi HP terhubung ke Wi-Fi sekolah.
+1. Pastikan HP terhubung ke internet.
 2. Buka Eranga dan masuk ke akun.
 3. Pilih **Absen Masuk** saat datang atau **Absen Keluar** saat pulang.
 4. Posisikan wajah di depan kamera.
@@ -95,9 +95,9 @@ Pengajuan izin atau sakit yang masih aktif dapat dibatalkan melalui tombol **Bat
 
 ## Jika Mengalami Kendala
 
-### Wi-Fi Tidak Terhubung
+### Koneksi Internet Bermasalah
 
-Pastikan Wi-Fi HP aktif dan tersambung ke Wi-Fi resmi sekolah. Matikan sementara paket data apabila diperlukan, lalu coba kembali.
+Pastikan HP terhubung ke internet melalui Wi-Fi atau paket data. Pemeriksaan Wi-Fi resmi sekolah sedang dinonaktifkan sementara.
 
 ### Lokasi Tidak Ditemukan
 
@@ -113,7 +113,7 @@ Pastikan izin kamera sudah diberikan dan tidak ada aplikasi lain yang sedang men
 
 ### Absensi Belum Berhasil
 
-Periksa koneksi internet, Wi-Fi sekolah, GPS, dan posisi Bapak/Ibu. Ulangi proses setelah semua kondisi siap.
+Periksa koneksi internet, GPS, dan posisi Bapak/Ibu. Pastikan verifikasi wajah berhasil, lalu ulangi proses setelah semua kondisi siap.
 
 ## Bantuan
 
