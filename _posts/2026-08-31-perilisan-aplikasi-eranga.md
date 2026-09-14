@@ -58,7 +58,7 @@ Agar absensi dapat diproses, mohon perhatikan hal-hal berikut:
 7. Gunakan akun masing-masing dan jangan membagikan password.
 8. Tunggu sampai muncul pemberitahuan bahwa absensi berhasil.
 
-Absensi masuk dan keluar hanya dapat dilakukan pada hari kerja, Senin sampai Jumat, pukul **06.30 sampai 23.59 WITA**. Sistem juga memastikan bahwa perangkat berada di sekitar area sekolah. Pemeriksaan Wi-Fi resmi sekolah sedang dinonaktifkan sementara.
+Absensi masuk dan keluar hanya dapat dilakukan pada hari kerja, Senin sampai Jumat, pukul **05.30 sampai 23.59 WITA**. Sistem juga memastikan bahwa perangkat berada di sekitar area sekolah. Pemeriksaan Wi-Fi resmi sekolah sedang dinonaktifkan sementara.
 
 ## Cara Melakukan Absensi
 
