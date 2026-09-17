@@ -142,11 +142,204 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 ## Nominasi & Pemberian?
 **Siswa Nominasi** adalah penetapan bagi peserta didik yang layak menerima PIP, namun belum melakukan aktivasi rekening (belum memiliki buku tabungan).
 
-<a class="btn-download" href="https://docs.google.com/spreadsheets/d/1wD19Q1kOugyUjTm42zrosPLprEEm2NOPhi_4eXVCqHY/" target="_blank" rel="noopener noreferrer">Cek Siswa Nominasi Disini</a>
+
+
+---
+
+### Tabel Siswa Nominasi (SK Nominasi Sekolah)
+<div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+  <input type="text" id="searchNominasi" placeholder="🔍 Cari Nama, NISN, atau Tahap..." style="padding: 8px 12px; width: 100%; max-width: 320px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+  <span id="countNominasi" style="font-size: 13px; color: #666; font-weight: 500;">Memuat jumlah data...</span>
+</div>
+
+<div class="table-responsive" style="overflow-x: auto; margin-bottom: 30px; border-radius: 8px; border: 1px solid #e0e0e0;">
+  <table id="tableNominasi" class="table table-bordered table-striped" style="width:100%; min-width: 750px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
+    <thead>
+      <tr style="background: #1c7c91; color: white; text-align: left;">
+        <th style="padding: 10px;">No</th>
+        <th style="padding: 10px;">NISN</th>
+        <th style="padding: 10px;">Nama Siswa</th>
+        <th style="padding: 10px;">L/P</th>
+        <th style="padding: 10px;">Kelas</th>
+        <th style="padding: 10px;">Tahap</th>
+        <th style="padding: 10px;">Status Aktivasi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="7" style="text-align: center; padding: 20px;">Memuat data Nominasi...</td></tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+
+<!--<a class="btn-download" href="https://docs.google.com/spreadsheets/d/1wD19Q1kOugyUjTm42zrosPLprEEm2NOPhi_4eXVCqHY/" target="_blank" rel="noopener noreferrer">Cek Siswa Nominasi Disini</a>-->
 
 **Siswa Pemberian** adalah penetapan bagi peserta didik yang layak menerima PIP, dan sudah melakukan aktivasi rekening (sudah memiliki buku tabungan).
 
-<a class="btn-download" href="https://docs.google.com/spreadsheets/d/1oQorK3-iCptEmuNgOWQQe3TPgNt9xe4ST05eKqU7mLg/" target="_blank" rel="noopener noreferrer">Cek Siswa Pemberian Disini</a>
+---
+
+### Tabel Siswa Pemberian (SK Sekolah)
+<div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+  <input type="text" id="searchPemberian" placeholder="🔍 Cari Nama, NISN, atau Tahap..." style="padding: 8px 12px; width: 100%; max-width: 320px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+  <span id="countPemberian" style="font-size: 13px; color: #666; font-weight: 500;">Memuat jumlah data...</span>
+</div>
+
+<div class="table-responsive" style="overflow-x: auto; margin-bottom: 30px; border-radius: 8px; border: 1px solid #e0e0e0;">
+  <table id="tablePemberian" class="table table-bordered table-striped" style="width:100%; min-width: 750px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
+    <thead>
+      <tr style="background: #1c7c91; color: white; text-align: left;">
+        <th style="padding: 10px;">No</th>
+        <th style="padding: 10px;">NISN</th>
+        <th style="padding: 10px;">Nama Siswa</th>
+        <th style="padding: 10px;">L/P</th>
+        <th style="padding: 10px;">Kelas</th>
+        <th style="padding: 10px;">Tahap</th>
+        <th style="padding: 10px;">Nominal</th>
+        <th style="padding: 10px;">Keterangan Pencairan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td colspan="8" style="text-align: center; padding: 20px;">Memuat data Pemberian...</td></tr>
+    </tbody>
+  </table>
+</div>
+
+---
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const WORKER_BASE_URL = 'https://api.pip.sdislamiqrapetobo.sch.id';
+
+    // Data Pemberian Handle
+    fetch(WORKER_BASE_URL + '/pip-pemberian')
+      .then(response => response.json())
+      .then(res => {
+        const tbody = document.querySelector('#tablePemberian tbody');
+        const countSpan = document.getElementById('countPemberian');
+        tbody.innerHTML = '';
+        
+        if (res.success && res.data && res.data.data) {
+          const rows = res.data.data;
+          countSpan.textContent = `Total: ${rows.length} siswa`;
+
+          if (rows.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
+            return;
+          }
+
+          function renderTablePemberian(dataList) {
+            tbody.innerHTML = '';
+            if (dataList.length === 0) {
+              tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Data tidak ditemukan dalam pencarian.</td></tr>';
+              return;
+            }
+            dataList.forEach((row, index) => {
+              let tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td style="padding: 8px 10px;">${index + 1}</td>
+                <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
+                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
+                <td style="padding: 8px 10px;">${row.jenis_kelamin || '-'}</td>
+                <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
+                <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
+                <td style="padding: 8px 10px; color: #0e6b58; font-weight: 600;">${row.nominal || '-'}</td>
+                <td style="padding: 8px 10px;">${row.keterangan_pencairan || '-'}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+          }
+
+          renderTablePemberian(rows);
+
+          document.getElementById('searchPemberian').addEventListener('input', function(e) {
+            const keyword = e.target.value.toLowerCase();
+            const filtered = rows.filter(r => {
+              const nisn = (r.nisn || '').toLowerCase();
+              const nama = (r.nama_pd || '').toLowerCase();
+              const tahap = (r.tahap_id || '').toLowerCase();
+              return nisn.includes(keyword) || nama.includes(keyword) || tahap.includes(keyword);
+            });
+            renderTablePemberian(filtered);
+          });
+
+        } else {
+          countSpan.textContent = 'Gagal memuat';
+          tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa'}</td></tr>`;
+        }
+      })
+      .catch(err => {
+        document.getElementById('countPemberian').textContent = 'Koneksi Gagal';
+        document.querySelector('#tablePemberian tbody').innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server worker.</td></tr>';
+      });
+
+    // Data Nominasi Handle
+    fetch(WORKER_BASE_URL + '/pip-nominasi')
+      .then(response => response.json())
+      .then(res => {
+        const tbody = document.querySelector('#tableNominasi tbody');
+        const countSpan = document.getElementById('countNominasi');
+        tbody.innerHTML = '';
+        
+        if (res.success && res.data && res.data.data) {
+          const rows = res.data.data;
+          countSpan.textContent = `Total: ${rows.length} siswa`;
+
+          if (rows.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
+            return;
+          }
+
+          function renderTableNominasi(dataList) {
+            tbody.innerHTML = '';
+            if (dataList.length === 0) {
+              tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px;">Data tidak ditemukan dalam pencarian.</td></tr>';
+              return;
+            }
+            dataList.forEach((row, index) => {
+              let tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td style="padding: 8px 10px;">${index + 1}</td>
+                <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
+                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
+                <td style="padding: 8px 10px;">${row.jenis_kelamin || '-'}</td>
+                <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
+                <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
+                <td style="padding: 8px 10px;">${row.aktif || row.keterangan_pencairan || '-'}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+          }
+
+          renderTableNominasi(rows);
+
+          document.getElementById('searchNominasi').addEventListener('input', function(e) {
+            const keyword = e.target.value.toLowerCase();
+            const filtered = rows.filter(r => {
+              const nisn = (r.nisn || '').toLowerCase();
+              const nama = (r.nama_pd || '').toLowerCase();
+              const tahap = (r.tahap_id || '').toLowerCase();
+              return nisn.includes(keyword) || nama.includes(keyword) || tahap.includes(keyword);
+            });
+            renderTableNominasi(filtered);
+          });
+
+        } else {
+          countSpan.textContent = 'Gagal memuat';
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 15px; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa'}</td></tr>`;
+        }
+      })
+      .catch(err => {
+        document.getElementById('countNominasi').textContent = 'Koneksi Gagal';
+        document.querySelector('#tableNominasi tbody').innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server worker.</td></tr>';
+      });
+  });
+</script>
+
+
+
+<!--<a class="btn-download" href="https://docs.google.com/spreadsheets/d/1oQorK3-iCptEmuNgOWQQe3TPgNt9xe4ST05eKqU7mLg/" target="_blank" rel="noopener noreferrer">Cek Siswa Pemberian Disini</a>-->
 
 ## Kontak PIP
 
