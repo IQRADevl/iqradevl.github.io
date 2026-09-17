@@ -5,11 +5,9 @@ section: PIP
 permalink: /pipdata/
 ---
 
-
 ## Daftar Isi
 * Placeholder (akan diganti otomatis oleh Jekyll)
 {:toc}
-
 
 ## PIP
 PIP (Program Indonesia Pintar) adalah bantuan berupa uang tunai, perluasan akses, dan kesempatan belajar dari pemerintah yang diberikan kepada peserta didik dan mahasiswa yang berasal dari keluarga miskin atau rentan miskin untuk membiayai pendidikan.
@@ -24,7 +22,7 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
 ---
 
 ## Data Real-Time PIP (Siswa Pemberian & Nominasi)
-Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikdasmen melalui server Cloudflare Worker.
+Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikdasmen melalui server Cloudflare Worker terproteksi.
 
 ### 1. Tabel Siswa Pemberian (SK Sekolah)
 <div class="table-responsive" style="overflow-x: auto; margin-bottom: 20px;">
@@ -65,13 +63,23 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
   </table>
 </div>
 
-<!-- Script untuk Fetch Data dari Custom Domain Worker secara Otomatis -->
+<!-- Script untuk Fetch Data dengan Bearer Token yang Disuntikkan Otomatis -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const WORKER_BASE_URL = 'https://api.pip.sdislamiqrapetobo.sch.id';
+    
+    // Token disuntikkan secara aman dari environment GitHub Actions saat Jekyll build
+    const API_TOKEN = '{{ site.env.API_SECRET_KEY | default: "TOKEN_DEFAULT_ANDA" }}';
+
+    const fetchOptions = {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + API_TOKEN
+      }
+    };
 
     // 1. Fetch Data Pemberian
-    fetch(WORKER_BASE_URL + '/pip-pemberian')
+    fetch(WORKER_BASE_URL + '/pip-pemberian', fetchOptions)
       .then(response => response.json())
       .then(res => {
         const tbody = document.querySelector('#tablePemberian tbody');
@@ -96,7 +104,7 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
             tbody.appendChild(tr);
           });
         } else {
-          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa'}</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa / Token salah'}</td></tr>`;
         }
       })
       .catch(err => {
@@ -104,7 +112,7 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
       });
 
     // 2. Fetch Data Nominasi
-    fetch(WORKER_BASE_URL + '/pip-nominasi')
+    fetch(WORKER_BASE_URL + '/pip-nominasi', fetchOptions)
       .then(response => response.json())
       .then(res => {
         const tbody = document.querySelector('#tableNominasi tbody');
@@ -128,7 +136,7 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
             tbody.appendChild(tr);
           });
         } else {
-          tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa'}</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa / Token salah'}</td></tr>`;
         }
       })
       .catch(err => {
@@ -151,7 +159,6 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
   document.addEventListener("DOMContentLoaded", function () {
     const ctx = document.getElementById('akademikChart').getContext('2d');
     
-    // Warna adaptif agar teks & garis muncul jelas di Dark Mode & Light Mode
     const gridColor = 'rgba(150, 150, 150, 0.25)';
     const textColor = 'rgba(160, 175, 195, 0.95)';
 
@@ -249,13 +256,11 @@ Bapak/Ibu Orang Tua atau Wali Murid, setelah Anda berhasil menarik dana PIP, moh
 3. **Bukti Tarik ATM**
 4. **File Identitas Siswa (KIA/KTP/Kartu Keluarga/Rapor)**
 
-
 Jika dokumen diminta dalam bentuk "File", Bapak/Ibu cukup memfoto dokumen tersebut dengan jelas (tidak buram/terpotong) lalu mengirimkannya via WhatsApp/Email ke pihak sekolah.
 
 Mohon pastikan bukti tarik ATM disimpan dengan baik karena kertas ATM mudah pudar.
 
 Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putri kita di tahap selanjutnya.
-
 
 ## Nominasi & Pemberian?
 **Siswa Nominasi** adalah penetapan bagi peserta didik yang layak menerima PIP, namun belum melakukan aktivasi rekening (belum memiliki buku tabungan).
