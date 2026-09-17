@@ -10,10 +10,6 @@ WORKER_URL = os.getenv("WORKER_URL")
 WORKER_SECRET_PASS = os.getenv("WORKER_SECRET_PASS")
 
 def get_new_cookie():
-    totp = pyotp.TOTP(TOTP_SECRET)
-    totp_code = totp.now()
-    print(f"[INFO] Kode TOTP Generated: {totp_code}")
-
     SSO_LOGIN_URL = "https://sso.data.kemendikdasmen.go.id/sys/login?appkey=348310F2-0262-4F5D-B7D1-41F92ECDCA93"
 
     with sync_playwright() as p:
@@ -27,39 +23,38 @@ def get_new_cookie():
         )
         page = context.new_page()
 
-        # 1. Buka Halaman SSO
+        # 1. Buka Halaman Login SSO
         print("[INFO] Membuka halaman SSO Kemendikdasmen...")
         page.goto(SSO_LOGIN_URL, wait_until="domcontentloaded")
         page.wait_for_timeout(2000)
 
-        # 2. Mengisi Form SSO (Sesuai ID/Name dari HTML)
-        print("[INFO] Mengisi Email & Password SSO...")
+        # 2. Mengisi Form Login (Email & Password)
+        print("[INFO] Mengisi Email & Password...")
         page.wait_for_selector("#email", timeout=15000).fill(SSO_USERNAME)
         page.wait_for_selector("#password", timeout=10000).fill(SSO_PASSWORD)
-
-        # 3. Klik Submit Login
-        print("[INFO] Menekan tombol Login...")
+        
+        # Klik tombol Login
         page.click("button[type='submit']")
-        page.wait_for_timeout(4000)
 
-        # 4. Langkah 2: Verifikasi Kode TOTP (Jika halaman 2FA muncul)
-        totp_input = page.locator("input[name='totp'], input[name='code'], input[name='otp'], input#code, input[type='text']")
-        if totp_input.count() > 0 and totp_input.first.is_visible():
-            print("[INFO] Mengisi kode 2FA / TOTP...")
-            fresh_totp = pyotp.TOTP(TOTP_SECRET).now()
-            totp_input.first.fill(fresh_totp)
+        # 3. Menunggu dan Mengisi Form Verifikasi OTP
+        print("[INFO] Menunggu halaman Verifikasi Kode OTP...")
+        totp_input = page.wait_for_selector("#totp_code", timeout=15000)
+        
+        # Generate kode TOTP segar tepat sebelum dimasukkan
+        totp_code = pyotp.TOTP(TOTP_SECRET).now()
+        print(f"[INFO] Mengisi Kode OTP: {totp_code}")
+        totp_input.fill(totp_code)
 
-            btn_submit_2fa = page.locator("button[type='submit'], input[type='submit']")
-            if btn_submit_2fa.count() > 0:
-                btn_submit_2fa.first.click()
-            page.wait_for_timeout(5000)
+        # Klik tombol Verifikasi
+        page.click("button[type='submit']")
+        page.wait_for_timeout(5000)
 
-        # 5. Akses VervalPD untuk menerbitkan cookie ci_session
+        # 4. Akses VervalPD untuk menerbitkan session cookie (ci_session)
         print("[INFO] Mengakses VervalPD untuk mengambil session cookie...")
         page.goto("https://vervalpd.data.kemendikdasmen.go.id/index.php/Csekolah/residu", wait_until="domcontentloaded")
         page.wait_for_timeout(5000)
 
-        # 6. Ambil Cookies
+        # 5. Ambil Cookies
         cookies = context.cookies()
         cookie_string = "; ".join([f"{c['name']}={c['value']}" for c in cookies])
 
