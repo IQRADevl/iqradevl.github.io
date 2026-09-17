@@ -16,35 +16,52 @@ def get_new_cookie():
     print(f"[INFO] Kode TOTP Generated: {totp_code}")
 
     with sync_playwright() as p:
+        # Gunakan User-Agent browser asli
         browser = p.chromium.launch(headless=True)
-        context = browser.new_context()
+        context = browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        )
         page = context.new_page()
 
-        # 2. Akses Portal VervalPD
         print("[INFO] Buka VervalPD...")
-        page.goto("https://vervalpd.data.kemendikdasmen.go.id/index.php/Csekolah/residu")
+        page.goto("https://vervalpd.data.kemendikdasmen.go.id/index.php/Csekolah/residu", wait_until="domcontentloaded")
         page.wait_for_timeout(3000)
 
-        # 3. Handle SSO Login
-        if "sso" in page.url or page.locator("input[name='username']").is_visible():
-            print("[INFO] Mengisi kredensial SSO...")
-            page.fill("input[name='username']", SSO_USERNAME)
-            page.fill("input[name='password']", SSO_PASSWORD)
-            
-            # Isi input TOTP jika ada
-            if page.locator("input[name='totp']").is_visible():
-                page.fill("input[name='totp']", totp_code)
-            elif page.locator("input[name='code']").is_visible():
-                page.fill("input[name='code']", totp_code)
+        # 1. Cek jika ada tombol Login/SSO di halaman landing, lalu klik
+        login_btn = page.locator("a:has-text('Login'), button:has-text('Login'), a:has-text('SSO')")
+        if login_btn.count() > 0 and login_btn.first.is_visible():
+            print("[INFO] Memilih tombol Login/SSO...")
+            login_btn.first.click()
+            page.wait_for_timeout(3000)
 
-            # Klik tombol submit
-            page.click("button[type='submit']")
-            page.wait_for_timeout(5000)
+        # 2. Cari input Username/Email SSO dengan selector lebih luas
+        print("[INFO] Mengisi kredensial SSO...")
+        username_input = page.locator("input[name='username'], input#username, input[type='email'], input[name='email']").first
+        username_input.wait_for(state="visible", timeout=15000)
+        username_input.fill(SSO_USERNAME)
 
-        # 4. Ambil Cookies setelah Login Berhasil
+        # 3. Isi Password
+        password_input = page.locator("input[name='password'], input#password, input[type='password']").first
+        password_input.fill(SSO_PASSWORD)
+
+        # 4. Isi TOTP jika kolomnya muncul
+        page.wait_for_timeout(1000)
+        totp_input = page.locator("input[name='totp'], input[name='code'], input[name='token'], input#totp").first
+        if totp_input.is_visible():
+            print("[INFO] Mengisi kode TOTP...")
+            totp_input.fill(totp_code)
+
+        # 5. Klik Submit Login
+        submit_btn = page.locator("button[type='submit'], input[type='submit'], button:has-text('Log In'), button:has-text('Masuk')").first
+        submit_btn.click()
+
+        print("[INFO] Menunggu proses login selesai...")
+        page.wait_for_timeout(7000)
+
+        # 6. Tangkap Cookies
         cookies = context.cookies()
         cookie_string = "; ".join([f"{c['name']}={c['value']}" for c in cookies])
-        
+
         browser.close()
         return cookie_string
 
