@@ -8,60 +8,44 @@ SSO_PASSWORD = os.getenv("SSO_PASSWORD")
 TOTP_SECRET = os.getenv("TOTP_SECRET")
 WORKER_URL = os.getenv("WORKER_URL")
 WORKER_SECRET_PASS = os.getenv("WORKER_SECRET_PASS")
+PROXY_SERVER = os.getenv("PROXY_SERVER")
 
 def get_new_cookie():
     SSO_LOGIN_URL = "https://sso.data.kemendikdasmen.go.id/sys/login?appkey=348310F2-0262-4F5D-B7D1-41F92ECDCA93"
 
+    chromium_args = ["--no-sandbox", "--disable-setuid-sandbox"]
+
+    launch_kwargs = {
+        "headless": True,
+        "args": chromium_args
+    }
+
+    # Konfigurasi SOCKS4 Proxy
+    if PROXY_SERVER:
+        print(f"[INFO] Mengaktifkan Proxy: {PROXY_SERVER}")
+        launch_kwargs["proxy"] = {"server": PROXY_SERVER}
+
     with sync_playwright() as p:
-        # Launch Chromium dengan bypass stealth
-        browser = p.chromium.launch(
-            headless=True,
-            args=[
-                "--no-sandbox",
-                "--disable-setuid-sandbox",
-                "--disable-blink-features=AutomationControlled",
-                "--disable-infobars"
-            ]
-        )
+        browser = p.chromium.launch(**launch_kwargs)
         context = browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
-            viewport={"width": 1366, "height": 768},
-            locale="id-ID",
-            timezone_id="Asia/Jakarta"
+            viewport={"width": 1366, "height": 768}
         )
-        
         page = context.new_page()
 
-        # Injeksi JavaScript untuk menyamarkan atribut bot/automation
-        page.add_init_script("""
-            Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
-            window.chrome = { runtime: {} };
-        """)
-
+        # 1. Buka Halaman Login SSO
         print("[INFO] Membuka halaman SSO Kemendikdasmen...")
-        page.goto(SSO_LOGIN_URL, wait_until="networkidle", timeout=60000)
-        page.wait_for_timeout(3000)
+        page.goto(SSO_LOGIN_URL, wait_until="domcontentloaded", timeout=60000)
+        page.wait_for_timeout(2000)
 
-        print(f"[DEBUG] Judul Halaman: '{page.title()}' | URL: {page.url}")
-
-        # Cek ketersediaan form #email
-        try:
-            email_input = page.wait_for_selector("#email", timeout=15000)
-        except Exception as err:
-            print("[ERROR] Elemen '#email' tidak ditemukan.")
-            print(f"[DEBUG] Potongan HTML Halaman yang Terbuka:\n{page.content()[:800]}")
-            page.screenshot(path="error.png", full_page=True)
-            raise err
-
-        # Fill Login Credentials
+        # 2. Mengisi Form Login
         print("[INFO] Mengisi Email & Password...")
-        email_input.fill(SSO_USERNAME)
+        page.wait_for_selector("#email", timeout=30000).fill(SSO_USERNAME)
         page.wait_for_selector("#password", timeout=10000).fill(SSO_PASSWORD)
         
-        # Submit Login Form
         page.click("button[type='submit']")
 
-        # Fill OTP Verification Form
+        # 3. Menunggu dan Mengisi Form Verifikasi OTP
         print("[INFO] Menunggu halaman Verifikasi Kode OTP...")
         totp_input = page.wait_for_selector("#totp_code", timeout=20000)
         
@@ -72,12 +56,12 @@ def get_new_cookie():
         page.click("button[type='submit']")
         page.wait_for_timeout(5000)
 
-        # Redirect to VervalPD to collect session cookies
+        # 4. Akses VervalPD untuk menerbitkan session cookie (ci_session)
         print("[INFO] Mengakses VervalPD untuk mengambil session cookie...")
-        page.goto("https://vervalpd.data.kemendikdasmen.go.id/index.php/Csekolah/residu", wait_until="domcontentloaded")
+        page.goto("https://vervalpd.data.kemendikdasmen.go.id/index.php/Csekolah/residu", wait_until="domcontentloaded", timeout=60000)
         page.wait_for_timeout(5000)
 
-        # Retrieve all session cookies
+        # 5. Ambil Cookies
         cookies = context.cookies()
         cookie_string = "; ".join([f"{c['name']}={c['value']}" for c in cookies])
 
