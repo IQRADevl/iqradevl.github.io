@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 title: Data Residu VervalPD
 permalink: /residu/
 ---
