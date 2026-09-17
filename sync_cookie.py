@@ -15,77 +15,90 @@ def get_new_cookie():
     totp_code = totp.now()
     print(f"[INFO] Kode TOTP Generated: {totp_code}")
 
-    # URL SSO Langsung dengan AppKey VervalPD
     SSO_LOGIN_URL = "https://sso.data.kemendikdasmen.go.id/sys/login?appkey=348310F2-0262-4F5D-B7D1-41F92ECDCA93"
 
     with sync_playwright() as p:
+        # Menyamarkan headless Chromium agar tidak terdeteksi sebagai bot
         browser = p.chromium.launch(
             headless=True,
             args=[
                 "--disable-blink-features=AutomationControlled",
                 "--no-sandbox",
-                "--disable-setuid-sandbox"
+                "--disable-setuid-sandbox",
+                "--disable-dev-shm-usage",
+                "--disable-accelerated-2d-canvas",
+                "--no-first-run",
+                "--no-zygote",
+                "--disable-gpu"
             ]
         )
         context = browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-            viewport={"width": 1280, "height": 720}
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+            viewport={"width": 1366, "height": 768},
+            locale="id-ID"
         )
         page = context.new_page()
 
-        # 1. Buka Halaman SSO Langsung
-        print("[INFO] Buka halaman SSO Kemendikdasmen...")
-        page.goto(SSO_LOGIN_URL, wait_until="domcontentloaded")
-        page.wait_for_timeout(3000)
+        try:
+            print("[INFO] Buka halaman SSO Kemendikdasmen...")
+            page.goto(SSO_LOGIN_URL, wait_until="networkidle", timeout=60000)
+            page.wait_for_timeout(3000)
 
-        # 2. Isi Username dan Password
-        print("[INFO] Mengisi Username & Password SSO...")
-        input_user = page.wait_for_selector(
-            "input[name='username'], input#username, input[type='email'], input[type='text']",
-            timeout=20000
-        )
-        input_user.fill(SSO_USERNAME)
+            print(f"[INFO] Halaman Terbuka: {page.title()} | URL: {page.url}")
 
-        input_pass = page.wait_for_selector(
-            "input[name='password'], input#password, input[type='password']",
-            timeout=10000
-        )
-        input_pass.fill(SSO_PASSWORD)
+            # Cari input username
+            print("[INFO] Mengisi Username & Password SSO...")
+            input_user = page.wait_for_selector(
+                "input[name='username'], input#username, input[type='email'], input[type='text']",
+                timeout=20000
+            )
+            input_user.fill(SSO_USERNAME)
 
-        # Jika input TOTP tampil di halaman pertama
-        totp_step1 = page.locator("input[name='totp'], input[name='code'], input[name='otp'], input#totp")
-        if totp_step1.count() > 0 and totp_step1.first.is_visible():
-            print("[INFO] Mengisi TOTP (Langkah 1)...")
-            totp_step1.first.fill(totp_code)
+            input_pass = page.wait_for_selector(
+                "input[name='password'], input#password, input[type='password']",
+                timeout=10000
+            )
+            input_pass.fill(SSO_PASSWORD)
 
-        # Klik Tombol Masuk
-        print("[INFO] Submit Login SSO...")
-        btn_submit = page.locator("button[type='submit'], input[type='submit'], button:has-text('Masuk'), button:has-text('Log In')").first
-        btn_submit.click()
-        page.wait_for_timeout(4000)
+            # Cek TOTP di halaman 1
+            totp_step1 = page.locator("input[name='totp'], input[name='code'], input[name='otp'], input#totp")
+            if totp_step1.count() > 0 and totp_step1.first.is_visible():
+                print("[INFO] Mengisi TOTP (Langkah 1)...")
+                totp_step1.first.fill(totp_code)
 
-        # 3. Cek jika TOTP/2FA berada di halaman terpisah (Langkah 2)
-        totp_step2 = page.locator("input[name='totp'], input[name='code'], input[name='otp'], input[name='token'], input#totp, input#code")
-        if totp_step2.count() > 0 and totp_step2.first.is_visible():
-            print("[INFO] Mengisi TOTP pada halaman Verifikasi 2FA...")
-            fresh_totp = pyotp.TOTP(TOTP_SECRET).now()
-            totp_step2.first.fill(fresh_totp)
-
-            btn_2fa = page.locator("button[type='submit'], input[type='submit'], button:has-text('Verifikasi'), button:has-text('Masuk')").first
-            btn_2fa.click()
+            # Klik Masuk
+            print("[INFO] Submit Login SSO...")
+            btn_submit = page.locator("button[type='submit'], input[type='submit'], button:has-text('Masuk'), button:has-text('Log In')").first
+            btn_submit.click()
             page.wait_for_timeout(5000)
 
-        # 4. Masuk ke VervalPD untuk menerbitkan cookie `ci_session`
-        print("[INFO] Mengakses VervalPD untuk mengambil session cookie...")
-        page.goto("https://vervalpd.data.kemendikdasmen.go.id/index.php/Csekolah/residu", wait_until="domcontentloaded")
-        page.wait_for_timeout(5000)
+            # Cek TOTP di halaman 2
+            totp_step2 = page.locator("input[name='totp'], input[name='code'], input[name='otp'], input[name='token'], input#totp, input#code")
+            if totp_step2.count() > 0 and totp_step2.first.is_visible():
+                print("[INFO] Mengisi TOTP (Langkah 2)...")
+                fresh_totp = pyotp.TOTP(TOTP_SECRET).now()
+                totp_step2.first.fill(fresh_totp)
 
-        # 5. Ambil Cookie
-        cookies = context.cookies()
-        cookie_string = "; ".join([f"{c['name']}={c['value']}" for c in cookies])
+                btn_2fa = page.locator("button[type='submit'], input[type='submit'], button:has-text('Verifikasi'), button:has-text('Masuk')").first
+                btn_2fa.click()
+                page.wait_for_timeout(5000)
 
-        browser.close()
-        return cookie_string
+            # Redirect ke VervalPD
+            print("[INFO] Mengakses VervalPD untuk penerbitan session cookie...")
+            page.goto("https://vervalpd.data.kemendikdasmen.go.id/index.php/Csekolah/residu", wait_until="domcontentloaded")
+            page.wait_for_timeout(5000)
+
+            cookies = context.cookies()
+            cookie_string = "; ".join([f"{c['name']}={c['value']}" for c in cookies])
+            browser.close()
+            return cookie_string
+
+        except Exception as err:
+            # Ambil screenshot jika terjadi kegagalan
+            page.screenshot(path="error.png", full_page=True)
+            print("[ERROR] Screenshot error disimpan ke error.png")
+            browser.close()
+            raise err
 
 def update_cloudflare(cookie_string):
     print("[INFO] Mengirim cookie baru ke Cloudflare KV...")
@@ -103,6 +116,5 @@ if __name__ == "__main__":
             update_cloudflare(cookie)
         else:
             print("[ERROR] Login gagal. Cookie ci_session tidak ditemukan.")
-            print(f"[DEBUG] Cookie yang didapat: {cookie}")
     except Exception as e:
         print(f"[ERROR] Terjadi kendala: {e}")
