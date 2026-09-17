@@ -24,52 +24,69 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
 ## Data Real-Time PIP (Siswa Pemberian & Nominasi)
 Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikdasmen melalui server Cloudflare Worker terproteksi.
 
+---
+
 ### 1. Tabel Siswa Pemberian (SK Sekolah)
-<div class="table-responsive" style="overflow-x: auto; margin-bottom: 20px;">
-  <table id="tablePemberian" class="table table-bordered table-striped" style="width:150%; font-size: 14px;">
+<div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+  <input type="text" id="searchPemberian" placeholder="🔍 Cari Nama atau NISN Siswa Pemberian..." style="padding: 8px 12px; width: 100%; max-width: 320px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+  <span id="countPemberian" style="font-size: 13px; color: #666; font-weight: 500;">Memuat jumlah data...</span>
+</div>
+
+<div class="table-responsive" style="overflow-x: auto; margin-bottom: 30px; border-radius: 8px; border: 1px solid #e0e0e0;">
+  <table id="tablePemberian" class="table table-bordered table-striped" style="width:100%; min-width: 700px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
     <thead>
-      <tr style="background: #1c7c91; color: white;">
-        <th>No</th>
-        <th>NISN</th>
-        <th>Nama Siswa</th>
-        <th>Jenis Kelamin</th>
-        <th>Kelas</th>
-        <th>Nominal</th>
-        <th>Keterangan Pencairan</th>
+      <tr style="background: #1c7c91; color: white; text-align: left;">
+        <th style="padding: 10px;">No</th>
+        <th style="padding: 10px;">NISN</th>
+        <th style="padding: 10px;">Nama Siswa</th>
+        <th style="padding: 10px;">L/P</th>
+        <th style="padding: 10px;">Kelas</th>
+        <th style="padding: 10px;">Nominal</th>
+        <th style="padding: 10px;">Keterangan Pencairan</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td colspan="7" style="text-align: center;">Memuat data Pemberian...</td></tr>
+      <tr><td colspan="7" style="text-align: center; padding: 20px;">Memuat data Pemberian...</td></tr>
     </tbody>
   </table>
 </div>
+
+---
 
 ### 2. Tabel Siswa Nominasi
-<div class="table-responsive" style="overflow-x: auto; margin-bottom: 20px;">
-  <table id="tableNominasi" class="table table-bordered table-striped" style="width:150%; font-size: 14px;">
+<div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+  <input type="text" id="searchNominasi" placeholder="🔍 Cari Nama atau NISN Siswa Nominasi..." style="padding: 8px 12px; width: 100%; max-width: 320px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+  <span id="countNominasi" style="font-size: 13px; color: #666; font-weight: 500;">Memuat jumlah data...</span>
+</div>
+
+<div class="table-responsive" style="overflow-x: auto; margin-bottom: 20px; border-radius: 8px; border: 1px solid #e0e0e0;">
+  <table id="tableNominasi" class="table table-bordered table-striped" style="width:100%; min-width: 700px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
     <thead>
-      <tr style="background: #1c7c91; color: white;">
-        <th>No</th>
-        <th>NISN</th>
-        <th>Nama Siswa</th>
-        <th>Jenis Kelamin</th>
-        <th>Kelas</th>
-        <th>Status Aktivasi</th>
+      <tr style="background: #1c7c91; color: white; text-align: left;">
+        <th style="padding: 10px;">No</th>
+        <th style="padding: 10px;">NISN</th>
+        <th style="padding: 10px;">Nama Siswa</th>
+        <th style="padding: 10px;">L/P</th>
+        <th style="padding: 10px;">Kelas</th>
+        <th style="padding: 10px;">Status Aktivasi</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td colspan="6" style="text-align: center;">Memuat data Nominasi...</td></tr>
+      <tr><td colspan="6" style="text-align: center; padding: 20px;">Memuat data Nominasi...</td></tr>
     </tbody>
   </table>
 </div>
 
-<!-- Script untuk Fetch Data dengan Bearer Token yang Disuntikkan Otomatis -->
+<!-- Memuat file konfigurasi token rahasia hasil generate GitHub Actions -->
+<script src="{{ '/assets/js/pip-config.js' | relative_url }}"></script>
+
+<!-- Script Utama untuk Fetch dan Fitur Pencarian Interaktif -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const WORKER_BASE_URL = 'https://api.pip.sdislamiqrapetobo.sch.id';
     
-    // Token disuntikkan secara aman dari environment GitHub Actions saat Jekyll build
-    const API_TOKEN = '{{ site.env.API_SECRET_KEY | default: "TOKEN_DEFAULT_ANDA" }}';
+    // Mengambil token secara aman dari window.PIP_CONFIG yang disuntikkan saat build
+    const API_TOKEN = (typeof window.PIP_CONFIG !== 'undefined') ? window.PIP_CONFIG.token : '';
 
     const fetchOptions = {
       method: 'GET',
@@ -78,69 +95,123 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
       }
     };
 
-    // 1. Fetch Data Pemberian
+    // --- 1. HANDLE DATA PEMBERIAN ---
     fetch(WORKER_BASE_URL + '/pip-pemberian', fetchOptions)
       .then(response => response.json())
       .then(res => {
         const tbody = document.querySelector('#tablePemberian tbody');
+        const countSpan = document.getElementById('countPemberian');
         tbody.innerHTML = '';
         
         if (res.success && res.data && res.data.data) {
-          if (res.data.data.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center;">Tidak ada data.</td></tr>';
+          const rows = res.data.data;
+          countSpan.textContent = `Total: ${rows.length} siswa`;
+
+          if (rows.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
             return;
           }
-          res.data.data.forEach((row, index) => {
-            let tr = document.createElement('tr');
-            tr.innerHTML = `
-              <td>${index + 1}</td>
-              <td>${row.nisn || '-'}</td>
-              <td>${row.nama_siswa || row.nama || '-'}</td>
-              <td>${row.jk || '-'}</td>
-              <td>${row.rombel || row.kelas || '-'}</td>
-              <td>${row.nominal || '-'}</td>
-              <td>${row.keterangan_pencairan || '-'}</td>
-            `;
-            tbody.appendChild(tr);
+
+          function renderTablePemberian(dataList) {
+            tbody.innerHTML = '';
+            if (dataList.length === 0) {
+              tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px;">Data tidak ditemukan dalam pencarian.</td></tr>';
+              return;
+            }
+            dataList.forEach((row, index) => {
+              let tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td style="padding: 8px 10px;">${index + 1}</td>
+                <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
+                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_siswa || row.nama || '-'}</td>
+                <td style="padding: 8px 10px;">${row.jk || '-'}</td>
+                <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
+                <td style="padding: 8px 10px; color: #0e6b58; font-weight: 600;">${row.nominal || '-'}</td>
+                <td style="padding: 8px 10px;">${row.keterangan_pencairan || '-'}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+          }
+
+          renderTablePemberian(rows);
+
+          document.getElementById('searchPemberian').addEventListener('input', function(e) {
+            const keyword = e.target.value.toLowerCase();
+            const filtered = rows.filter(r => {
+              const nisn = (r.nisn || '').toLowerCase();
+              const nama = (r.nama_siswa || r.nama || '').toLowerCase();
+              return nisn.includes(keyword) || nama.includes(keyword);
+            });
+            renderTablePemberian(filtered);
           });
+
         } else {
-          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa / Token salah'}</td></tr>`;
+          countSpan.textContent = 'Gagal memuat';
+          tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 15px; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa / Token salah'}</td></tr>`;
         }
       })
       .catch(err => {
-        document.querySelector('#tablePemberian tbody').innerHTML = '<tr><td colspan="7" style="text-align: center; color: red;">Gagal terhubung ke server worker.</td></tr>';
+        document.getElementById('countPemberian').textContent = 'Koneksi Gagal';
+        document.querySelector('#tablePemberian tbody').innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server worker.</td></tr>';
       });
 
-    // 2. Fetch Data Nominasi
+    // --- 2. HANDLE DATA NOMINASI ---
     fetch(WORKER_BASE_URL + '/pip-nominasi', fetchOptions)
       .then(response => response.json())
       .then(res => {
         const tbody = document.querySelector('#tableNominasi tbody');
+        const countSpan = document.getElementById('countNominasi');
         tbody.innerHTML = '';
         
         if (res.success && res.data && res.data.data) {
-          if (res.data.data.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align: center;">Tidak ada data.</td></tr>';
+          const rows = res.data.data;
+          countSpan.textContent = `Total: ${rows.length} siswa`;
+
+          if (rows.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
             return;
           }
-          res.data.data.forEach((row, index) => {
-            let tr = document.createElement('tr');
-            tr.innerHTML = `
-              <td>${index + 1}</td>
-              <td>${row.nisn || '-'}</td>
-              <td>${row.nama_siswa || row.nama || '-'}</td>
-              <td>${row.jk || '-'}</td>
-              <td>${row.rombel || row.kelas || '-'}</td>
-              <td>${row.aktif || row.keterangan_pencairan || '-'}</td>
-            `;
-            tbody.appendChild(tr);
+
+          function renderTableNominasi(dataList) {
+            tbody.innerHTML = '';
+            if (dataList.length === 0) {
+              tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 15px;">Data tidak ditemukan dalam pencarian.</td></tr>';
+              return;
+            }
+            dataList.forEach((row, index) => {
+              let tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td style="padding: 8px 10px;">${index + 1}</td>
+                <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
+                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_siswa || row.nama || '-'}</td>
+                <td style="padding: 8px 10px;">${row.jk || '-'}</td>
+                <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
+                <td style="padding: 8px 10px;">${row.aktif || row.keterangan_pencairan || '-'}</td>
+              `;
+              tbody.appendChild(tr);
+            });
+          }
+
+          renderTableNominasi(rows);
+
+          document.getElementById('searchNominasi').addEventListener('input', function(e) {
+            const keyword = e.target.value.toLowerCase();
+            const filtered = rows.filter(r => {
+              const nisn = (r.nisn || '').toLowerCase();
+              const nama = (r.nama_siswa || r.nama || '').toLowerCase();
+              return nisn.includes(keyword) || nama.includes(keyword);
+            });
+            renderTableNominasi(filtered);
           });
+
         } else {
-          tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa / Token salah'}</td></tr>`;
+          countSpan.textContent = 'Gagal memuat';
+          tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 15px; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa / Token salah'}</td></tr>`;
         }
       })
       .catch(err => {
-        document.querySelector('#tableNominasi tbody').innerHTML = '<tr><td colspan="6" style="text-align: center; color: red;">Gagal terhubung ke server worker.</td></tr>';
+        document.getElementById('countNominasi').textContent = 'Koneksi Gagal';
+        document.querySelector('#tableNominasi tbody').innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server worker.</td></tr>';
       });
   });
 </script>
@@ -207,9 +278,6 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
             grid: {
               color: gridColor,
               borderColor: gridColor
-            },
-            border: {
-              color: gridColor
             }
           },
           x: {
@@ -218,9 +286,6 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
             },
             grid: { 
               display: false 
-            },
-            border: {
-              color: gridColor
             }
           }
         }
@@ -228,7 +293,7 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
     });
   });
 </script>
-<figcaption>Sumber Data : https://pip.kemdikdasmen.go.id/</figcaption>
+<figcaption>Sumber Data : https://pip.kemendikdasmen.go.id/</figcaption>
 
 ### Catatan dan Tren Data Penerima PIP
 
