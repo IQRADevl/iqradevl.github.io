@@ -20,4 +20,5 @@
       url: https://nurulilmi.sdislamiqrapetobo.sch.id
 - title: Kontak
   url: /kontak/
-  
+- title: PIP Data (Experimental)
+  url: /pipdata/
