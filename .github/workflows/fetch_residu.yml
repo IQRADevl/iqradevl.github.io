@@ -1,0 +1,32 @@
+name: Fetch VervalPD Residu Data
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Jalan otomatis setiap jam 12 malam UTC
+  workflow_dispatch: # Memungkinkan kamu menjalankan workflow manual dari tab Actions
+
+jobs:
+  fetch-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch data dari VervalPD
+        env:
+          COOKIE: ${{ secrets.VERVAL_COOKIE }}
+        run: |
+          mkdir -p _data
+          curl -s "https://vervalpd.data.kemendikdasmen.go.id/index.php/Csekolah/json_residu?sekolah_id=&search=&sort=&order=&offset=0&limit=50" \
+            -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) Firefox/156.0" \
+            -H "X-Requested-With: XMLHttpRequest" \
+            -H "Referer: https://vervalpd.data.kemendikdasmen.go.id/index.php/Csekolah/residu" \
+            -H "Cookie: $COOKIE" \
+            -o _data/residu.json
+
+      - name: Commit & Push jika ada perubahan data
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/residu.json
+          git status | grep -q "nothing to commit" || (git commit -m "update: data residu vervalpd" && git push)
