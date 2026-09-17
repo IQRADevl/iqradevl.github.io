@@ -123,8 +123,8 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
               tr.innerHTML = `
                 <td style="padding: 8px 10px;">${index + 1}</td>
                 <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
-                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_siswa || row.nama || '-'}</td>
-                <td style="padding: 8px 10px;">${row.jk || '-'}</td>
+                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
+                <td style="padding: 8px 10px;">${row.jenis_kelamin || '-'}</td>
                 <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
                 <td style="padding: 8px 10px; color: #0e6b58; font-weight: 600;">${row.nominal || '-'}</td>
                 <td style="padding: 8px 10px;">${row.keterangan_pencairan || '-'}</td>
@@ -139,7 +139,7 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
             const keyword = e.target.value.toLowerCase();
             const filtered = rows.filter(r => {
               const nisn = (r.nisn || '').toLowerCase();
-              const nama = (r.nama_siswa || r.nama || '').toLowerCase();
+              const nama = (r.nama_pd || '').toLowerCase();
               return nisn.includes(keyword) || nama.includes(keyword);
             });
             renderTablePemberian(filtered);
@@ -183,8 +183,8 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
               tr.innerHTML = `
                 <td style="padding: 8px 10px;">${index + 1}</td>
                 <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
-                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_siswa || row.nama || '-'}</td>
-                <td style="padding: 8px 10px;">${row.jk || '-'}</td>
+                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
+                <td style="padding: 8px 10px;">${row.jenis_kelamin || '-'}</td>
                 <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
                 <td style="padding: 8px 10px;">${row.aktif || row.keterangan_pencairan || '-'}</td>
               `;
@@ -198,7 +198,7 @@ Berikut adalah data terkini yang langsung disinkronkan dari sistem PIP Kemendikd
             const keyword = e.target.value.toLowerCase();
             const filtered = rows.filter(r => {
               const nisn = (r.nisn || '').toLowerCase();
-              const nama = (r.nama_siswa || r.nama || '').toLowerCase();
+              const nama = (r.nama_pd || '').toLowerCase();
               return nisn.includes(keyword) || nama.includes(keyword);
             });
             renderTableNominasi(filtered);
