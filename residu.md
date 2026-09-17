@@ -27,8 +27,6 @@ permalink: /residu/
   .badge-err { color: #c62828; font-weight: bold; }
 </style>
 
-<h2>Data Residu VervalPD</h2>
-
 <div class="residu-table-wrapper">
   <table class="residu-table">
     <thead>
