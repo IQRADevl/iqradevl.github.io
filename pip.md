@@ -82,9 +82,9 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
             grid: {
               color: gridColor,
               borderColor: gridColor
-            },
-            border: {
-              color: gridColor
+          },
+          border: {
+            color: gridColor
           }
         },
         x: {
@@ -148,18 +148,18 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 ### Tabel Siswa Nominasi (SK Nominasi Sekolah)
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
   <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
-    <input type="text" id="searchNominasi" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
-    <select id="filterTahunNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
-      <option value="all">Semua Tahun</option>
-      <option value="2026" selected>2026</option>
-      <option value="2025">2025</option>
-      <option value="2024">2024</option>
+    <input type="text" id="searchNominasi" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+    <select id="filterTahunNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Tahun</option>
+      <option value="2026" selected style="background-color: var(--card-background, #222); color: inherit;">2026</option>
+      <option value="2025" style="background-color: var(--card-background, #222); color: inherit;">2025</option>
+      <option value="2024" style="background-color: var(--card-background, #222); color: inherit;">2024</option>
     </select>
-    <select id="filterTahapNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
-      <option value="all">Semua Tahap</option>
+    <select id="filterTahapNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Tahap</option>
     </select>
-    <select id="filterStatusNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
-      <option value="all">Semua Status</option>
+    <select id="filterStatusNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Status</option>
     </select>
   </div>
   <span id="countNominasi" style="font-size: 13px; opacity: 0.8; font-weight: 500;">Memuat jumlah data...</span>
@@ -195,18 +195,18 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 ### Tabel Siswa Pemberian (SK Sekolah)
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
   <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
-    <input type="text" id="searchPemberian" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
-    <select id="filterTahunPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
-      <option value="all">Semua Tahun</option>
-      <option value="2026" selected>2026</option>
-      <option value="2025">2025</option>
-      <option value="2024">2024</option>
+    <input type="text" id="searchPemberian" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+    <select id="filterTahunPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Tahun</option>
+      <option value="2026" selected style="background-color: var(--card-background, #222); color: inherit;">2026</option>
+      <option value="2025" style="background-color: var(--card-background, #222); color: inherit;">2025</option>
+      <option value="2024" style="background-color: var(--card-background, #222); color: inherit;">2024</option>
     </select>
-    <select id="filterTahapPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
-      <option value="all">Semua Tahap</option>
+    <select id="filterTahapPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Tahap</option>
     </select>
-    <select id="filterStatusPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
-      <option value="all">Semua Status</option>
+    <select id="filterStatusPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Status</option>
     </select>
   </div>
   <span id="countPemberian" style="font-size: 13px; opacity: 0.8; font-weight: 500;">Memuat jumlah data...</span>
