@@ -184,18 +184,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (res.success && res.data && res.data.data) {
           let rows = res.data.data;
 
-          // 1. Kumpulkan daftar Tahap & Status Aktif unik dari data tahun tersebut
+          // 1. Kumpulkan daftar Tahap & Status Aktivasi unik dari data tahun tersebut
           let tahapSet = new Set();
           let statusSet = new Set();
           rows.forEach(r => {
             if (r.tahap_id) tahapSet.add(String(r.tahap_id));
-            let statusVal = r.aktif || r.keterangan_pencairan;
-            if (statusVal) statusSet.add(String(statusVal));
             statusSet.add(getAktivasiStatus(r));
           });
 
           populateSelect(selectTahap, tahapSet, "Semua Tahap");
-          populateSelect(selectStatus, statusSet, "Semua Status");
+          populateSelect(selectStatus, statusSet, "Semua Status Aktivasi");
 
           // 2. Ambil ulang nilai filter yang sedang aktif
           const currentTahapVal = document.getElementById('filterTahapNominasi').value;
@@ -206,11 +204,11 @@ document.addEventListener("DOMContentLoaded", function () {
             rows = rows.filter(r => String(r.tahap_id) === String(currentTahapVal));
           }
 
-          // 4. Filter lokal berdasarkan status aktivasi / status aktif
+          // 4. Filter lokal berdasarkan status aktivasi saja
           if (currentStatusVal && currentStatusVal !== 'all') {
             rows = rows.filter(r => {
               const aktivasiStatus = getAktivasiStatus(r);
-              return String(r.aktif || r.keterangan_pencairan) === String(currentStatusVal) || aktivasiStatus === String(currentStatusVal);
+              return aktivasiStatus === String(currentStatusVal);
             });
           }
 
