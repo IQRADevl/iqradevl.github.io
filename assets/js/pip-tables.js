@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const WORKER_BASE_URL = 'https://api.pip.sdislamiqrapetobo.sch.id';
   const ROWS_PER_PAGE = 10;
 
-  // Fungsi helper untuk mengisi dropdown secara dinamis
+  // Fungsi helper untuk mengisi dropdown secara dinamis dengan styling adaptif Dark/Light Mode
   function populateSelect(selectElement, valuesSet, defaultText = "Semua Tahap") {
-    const currentValue = selectElement.value; // Simpan nilai yang sedang dipilih user jika ada
-    selectElement.innerHTML = `<option value="all">${defaultText}</option>`;
+    const currentValue = selectElement.value; 
+    
+    // Memberikan background & warna teks yang jelas pada opsi default (Semua Tahap)
+    selectElement.innerHTML = `<option value="all" style="background-color: var(--card-background, #222); color: inherit;">${defaultText}</option>`;
     
     Array.from(valuesSet).sort((a, b) => Number(a) - Number(b)).forEach(val => {
       if (val && val !== 'all') {
@@ -46,22 +48,22 @@ document.addEventListener("DOMContentLoaded", function () {
         if (res.success && res.data && res.data.data) {
           let rows = res.data.data;
 
-          // 1. Kumpulkan daftar tahap unik berdasarkan data yang diterima dari API (sesuai tahun)
+          // 1. Kumpulkan daftar tahap unik berdasarkan data tahun tersebut
           let tahapSet = new Set();
           rows.forEach(r => {
             if (r.tahap_id) tahapSet.add(String(r.tahap_id));
           });
           populateSelect(selectTahap, tahapSet, "Semua Tahap");
 
-          // 2. Ambil ulang nilai tahap yang mungkin sudah ter-reset atau terpilih
+          // 2. Ambil nilai tahap aktif
           const currentTahapVal = document.getElementById('filterTahapPemberian').value;
 
-          // 3. Filter lokal berdasarkan tahap jika user memilih tahap tertentu selain 'all'
+          // 3. Filter lokal berdasarkan tahap
           if (currentTahapVal && currentTahapVal !== 'all') {
             rows = rows.filter(r => String(r.tahap_id) === String(currentTahapVal));
           }
 
-          // 4. Filter lokal pencarian teks nama/nisn
+          // 4. Filter lokal pencarian teks
           if (searchKeyword) {
             rows = rows.filter(r => 
               (r.nisn || '').toLowerCase().includes(searchKeyword) || 
