@@ -143,8 +143,6 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 **Siswa Nominasi** adalah penetapan bagi peserta didik yang layak menerima PIP, namun belum melakukan aktivasi rekening (belum memiliki buku tabungan).
 
 
----
-
 ### Tabel Siswa Nominasi (SK Nominasi Sekolah)
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
   <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
@@ -182,11 +180,9 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 </div>
 <div id="paginationNominasi" style="display: flex; justify-content: flex-end; gap: 5px; margin-bottom: 30px; flex-wrap: wrap;"></div>
 
----
+
 
 **Siswa Pemberian** adalah penetapan bagi peserta didik yang layak menerima PIP, dan sudah melakukan aktivasi rekening (sudah memiliki buku tabungan).
-
----
 
 ### Tabel Siswa Pemberian (SK Sekolah)
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
@@ -224,8 +220,6 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
   </table>
 </div>
 <div id="paginationPemberian" style="display: flex; justify-content: flex-end; gap: 5px; margin-bottom: 30px; flex-wrap: wrap;"></div>
-
----
 
 <script src="{{ '/assets/js/pip-tables.js' | relative_url }}"></script>
 
