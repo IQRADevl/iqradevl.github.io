@@ -1,14 +1,8 @@
 source "https://rubygems.org"
 
-gem "jekyll", "~> 4.3"
-gem "liquid", ">= 4.0.4"
+gem "github-pages", group: :jekyll_plugins
 
-group :jekyll_plugins do
-  gem "jekyll-seo-tag"
-  gem "jekyll-sitemap"
-  gem "jekyll-feed"
-  gem "jekyll-paginate"
-end
+gem "webrick", "~> 1.8"
 
 gem "csv"
 gem "base64"

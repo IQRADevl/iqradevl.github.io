@@ -96,7 +96,7 @@ p.wide { max-width: none; }
 }
 
 .wrap {
-  width: min(1120px, 100% - 3rem);
+  width: min(1120px, calc(100% - 3rem));
   margin-inline: auto;
 }
 
