@@ -146,39 +146,44 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 ---
 
 ### Tabel Siswa Nominasi (SK Nominasi Sekolah)
-<!-- Panel Filter & Pencarian Nominasi -->
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
   <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
-    <input type="text" id="searchNominasi" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 180px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
-    <select id="filterTahapNominasi" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
-      <option value="">Semua Tahap</option>
+    <input type="text" id="searchNominasi" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
+    <select id="filterTahunNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
+      <option value="all">Semua Tahun</option>
+      <option value="2026" selected>2026</option>
+      <option value="2025">2025</option>
+      <option value="2024">2024</option>
     </select>
-    <select id="filterStatusNominasi" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
-      <option value="">Semua Status</option>
+    <select id="filterTahapNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
+      <option value="all">Semua Tahap</option>
+    </select>
+    <select id="filterStatusNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
+      <option value="all">Semua Status</option>
     </select>
   </div>
   <span id="countNominasi" style="font-size: 13px; opacity: 0.8; font-weight: 500;">Memuat jumlah data...</span>
 </div>
 
 <div class="table-responsive" style="overflow-x: auto; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border-color, #e0e0e0);">
-  <table id="tableNominasi" class="table table-bordered table-striped" style="width:100%; min-width: 750px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
+  <table id="tableNominasi" class="table table-bordered table-striped" style="width:100%; min-width: 800px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
     <thead>
       <tr style="background: #1c7c91; color: white; text-align: left;">
         <th style="padding: 10px;">No</th>
         <th style="padding: 10px;">NISN</th>
-        <th style="padding: 10px;">Nama Siswa</th>
-        <th style="padding: 10px;">L/P</th>
-        <th style="padding: 10px;">Kelas</th>
-        <th style="padding: 10px;">Tahap</th>
-        <th style="padding: 10px;">Status Aktivasi</th>
+        <th style="padding: 10px;">Nama Peserta Didik</th>
+        <th style="padding: 10px;">Rombel</th>
+        <th style="padding: 10px;">Tahap ID</th>
+        <th style="padding: 10px;">Tanggal SK</th>
+        <th style="padding: 10px;">Nomor SK</th>
+        <th style="padding: 10px;">Status Aktif</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td colspan="7" style="text-align: center; padding: 20px;">Memuat data Nominasi...</td></tr>
+      <tr><td colspan="8" style="text-align: center; padding: 20px;">Memuat data Nominasi...</td></tr>
     </tbody>
   </table>
 </div>
-<!-- Tombol Pagination Nominasi di Kanan Bawah -->
 <div id="paginationNominasi" style="display: flex; justify-content: flex-end; gap: 5px; margin-bottom: 30px; flex-wrap: wrap;"></div>
 
 ---
@@ -188,18 +193,20 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 ---
 
 ### Tabel Siswa Pemberian (SK Sekolah)
-<!-- Panel Filter & Pencarian Pemberian -->
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
   <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
-    <input type="text" id="searchPemberian" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
-    <select id="filterTahunPemberian" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
-      <option value="">Semua Tahun</option>
+    <input type="text" id="searchPemberian" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
+    <select id="filterTahunPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
+      <option value="all">Semua Tahun</option>
+      <option value="2026" selected>2026</option>
+      <option value="2025">2025</option>
+      <option value="2024">2024</option>
     </select>
-    <select id="filterTahapPemberian" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
-      <option value="">Semua Tahap</option>
+    <select id="filterTahapPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
+      <option value="all">Semua Tahap</option>
     </select>
-    <select id="filterStatusPemberian" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
-      <option value="">Semua Status</option>
+    <select id="filterStatusPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid var(--border-color, #ced4da); border-radius: 6px; font-size: 13px; background: var(--input-bg, var(--card-background, #fff)); color: var(--text-color, inherit);">
+      <option value="all">Semua Status</option>
     </select>
   </div>
   <span id="countPemberian" style="font-size: 13px; opacity: 0.8; font-weight: 500;">Memuat jumlah data...</span>
@@ -224,309 +231,11 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
     </tbody>
   </table>
 </div>
-<!-- Tombol Pagination Pemberian di Kanan Bawah -->
 <div id="paginationPemberian" style="display: flex; justify-content: flex-end; gap: 5px; margin-bottom: 30px; flex-wrap: wrap;"></div>
 
 ---
 
-<!-- Script Utama untuk Fetch, Filter, & Pagination Interaktif -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const WORKER_BASE_URL = 'https://api.pip.sdislamiqrapetobo.sch.id';
-    const ROWS_PER_PAGE = 10; // Batasi 10 data per halaman
-
-    function populateDropdown(selectElement, valuesSet) {
-      const defaultOption = selectElement.options[0];
-      selectElement.innerHTML = '';
-      selectElement.appendChild(defaultOption);
-      
-      Array.from(valuesSet).sort().forEach(val => {
-        if (val) {
-          let opt = document.createElement('option');
-          opt.value = val;
-          opt.textContent = val;
-          selectElement.appendChild(opt);
-        }
-      });
-    }
-
-    // Data Pemberian
-    fetch(WORKER_BASE_URL + '/pip-pemberian')
-      .then(response => response.json())
-      .then(res => {
-        const tbody = document.querySelector('#tablePemberian tbody');
-        const countSpan = document.getElementById('countPemberian');
-        const searchInput = document.getElementById('searchPemberian');
-        const filterTahun = document.getElementById('filterTahunPemberian');
-        const filterTahap = document.getElementById('filterTahapPemberian');
-        const filterStatus = document.getElementById('filterStatusPemberian');
-        const paginationDiv = document.getElementById('paginationPemberian');
-        
-        tbody.innerHTML = '';
-        
-        if (res.success && res.data && res.data.data) {
-          const rows = res.data.data;
-          let currentPage = 1;
-
-          if (rows.length === 0) {
-            countSpan.textContent = `Total: 0 siswa`;
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
-            return;
-          }
-
-          let tahunSet = new Set();
-          let tahapSet = new Set();
-          let statusSet = new Set();
-          rows.forEach(r => {
-            if (r.tanggal_sk) {
-              let tahun = r.tanggal_sk.substring(0, 4);
-              tahunSet.add(tahun);
-            }
-            if (r.tahap_id) tahapSet.add(String(r.tahap_id));
-            if (r.status_cair) statusSet.add(String(r.status_cair));
-          });
-          populateDropdown(filterTahun, tahunSet);
-        populateDropdown(filterTahap, tahapSet);
-        populateDropdown(filterStatus, statusSet);
-
-        function getFilteredData() {
-          const keyword = searchInput.value.toLowerCase();
-          const selectedTahun = filterTahun.value;
-          const selectedTahap = filterTahap.value;
-          const selectedStatus = filterStatus.value;
-
-          return rows.filter(r => {
-            const nisn = (r.nisn || '').toLowerCase();
-            const nama = (r.nama_pd || '').toLowerCase();
-            const tahun = r.tanggal_sk ? r.tanggal_sk.substring(0, 4) : '';
-            const tahap = String(r.tahap_id || '');
-            const status = String(r.status_cair || '');
-
-            const matchText = nisn.includes(keyword) || nama.includes(keyword);
-            const matchTahun = !selectedTahun || tahun === selectedTahun;
-            const matchTahap = !selectedTahap || tahap === selectedTahap;
-            const matchStatus = !selectedStatus || status === selectedStatus;
-
-            return matchText && matchTahun && matchTahap && matchStatus;
-        });
-      }
-
-      function renderTable() {
-          const filteredData = getFilteredData();
-          const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE) || 1;
-          
-          if (currentPage > totalPages) currentPage = 1;
-
-          const start = (currentPage - 1) * ROWS_PER_PAGE;
-          const paginatedData = filteredData.slice(start, start + ROWS_PER_PAGE);
-
-          tbody.innerHTML = '';
-          if (paginatedData.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Data tidak ditemukan sesuai filter.</td></tr>';
-          } else {
-            paginatedData.forEach((row, index) => {
-              let tr = document.createElement('tr');
-              tr.innerHTML = `
-                <td style="padding: 8px 10px;">${start + index + 1}</td>
-                <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
-                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
-                <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
-                <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
-                <td style="padding: 8px 10px;">${row.keterangan_pencairan || '-'}</td>
-                <td style="padding: 8px 10px;">${row.tanggal_sk || '-'}</td>
-                <td style="padding: 8px 10px; font-weight: 600; color: ${row.status_cair === 'Sudah Cair' ? '#2ecc71' : '#e74c3c'};">${row.status_cair || '-'}</td>
-            `;
-            tbody.appendChild(tr);
-        });
-      }
-
-      countSpan.textContent = `Ditampilkan: ${filteredData.length} dari ${rows.length} siswa`;
-      renderPagination(totalPages);
-    }
-
-    function renderPagination(totalPages) {
-        paginationDiv.innerHTML = '';
-        if (totalPages <= 1) return;
-
-        for (let i = 1; i <= totalPages; i++) {
-          let btn = document.createElement('button');
-          btn.textContent = i;
-          btn.style.padding = '5px 10px';
-          btn.style.border = '1px solid var(--border-color, #ccc)';
-          btn.style.borderRadius = '4px';
-          btn.style.cursor = 'pointer';
-          btn.style.fontSize = '13px';
-          
-          if (i === currentPage) {
-            btn.style.background = '#1c7c91';
-            btn.style.color = 'white';
-            btn.style.fontWeight = 'bold';
-            btn.style.borderColor = '#1c7c91';
-          } else {
-            btn.style.background = 'var(--input-bg, #fff)';
-            btn.style.color = 'var(--text-color, #333)';
-        }
-
-        btn.addEventListener('click', function() {
-          currentPage = i;
-          renderTable();
-        });
-
-        paginationDiv.appendChild(btn);
-      }
-    }
-
-    renderTable();
-
-    searchInput.addEventListener('input', function() { currentPage = 1; renderTable(); });
-    filterTahun.addEventListener('change', function() { currentPage = 1; renderTable(); });
-    filterTahap.addEventListener('change', function() { currentPage = 1; renderTable(); });
-    filterStatus.addEventListener('change', function() { currentPage = 1; renderTable(); });
-
-    } else {
-      countSpan.textContent = 'Gagal memuat';
-      tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa'}</td></tr>`;
-    }
-  })
-  .catch(err => {
-    document.getElementById('countPemberian').textContent = 'Koneksi Gagal';
-    document.querySelector('#tablePemberian tbody').innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server worker.</td></tr>';
-  });
-
-  // Data Nominasi
-  fetch(WORKER_BASE_URL + '/pip-nominasi')
-    .then(response => response.json())
-    .then(res => {
-      const tbody = document.querySelector('#tableNominasi tbody');
-      const countSpan = document.getElementById('countNominasi');
-      const searchInput = document.getElementById('searchNominasi');
-      const filterTahap = document.getElementById('filterTahapNominasi');
-      const filterStatus = document.getElementById('filterStatusNominasi');
-      const paginationDiv = document.getElementById('paginationNominasi');
-
-      tbody.innerHTML = '';
-      
-      if (res.success && res.data && res.data.data) {
-        const rows = res.data.data;
-        let currentPage = 1;
-
-        if (rows.length === 0) {
-          countSpan.textContent = `Total: 0 siswa`;
-          tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
-          return;
-        }
-
-        let tahapSet = new Set();
-        let statusSet = new Set();
-        rows.forEach(r => {
-          if (r.tahap_id) tahapSet.add(String(r.tahap_id));
-          if (r.aktif || r.keterangan_pencairan) statusSet.add(String(r.aktif || r.keterangan_pencairan));
-        });
-        populateDropdown(filterTahap, tahapSet);
-        populateDropdown(filterStatus, statusSet);
-
-        function getFilteredData() {
-          const keyword = searchInput.value.toLowerCase();
-          const selectedTahap = filterTahap.value;
-          const selectedStatus = filterStatus.value;
-
-          return rows.filter(r => {
-            const nisn = (r.nisn || '').toLowerCase();
-            const nama = (r.nama_pd || '').toLowerCase();
-            const tahap = String(r.tahap_id || '');
-            const status = String(r.aktif || r.keterangan_pencairan || '');
-
-            const matchText = nisn.includes(keyword) || nama.includes(keyword);
-            const matchTahap = !selectedTahap || tahap === selectedTahap;
-            const matchStatus = !selectedStatus || status === selectedStatus;
-
-            return matchText && matchTahap && matchStatus;
-        });
-      }
-
-      function renderTable() {
-        const filteredData = getFilteredData();
-        const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE) || 1;
-        
-        if (currentPage > totalPages) currentPage = 1;
-
-        const start = (currentPage - 1) * ROWS_PER_PAGE;
-        const paginatedData = filteredData.slice(start, start + ROWS_PER_PAGE);
-
-        tbody.innerHTML = '';
-        if (paginatedData.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px;">Data tidak ditemukan sesuai filter.</td></tr>';
-        } else {
-          paginatedData.forEach((row, index) => {
-            let tr = document.createElement('tr');
-            tr.innerHTML = `
-              <td style="padding: 8px 10px;">${start + index + 1}</td>
-              <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
-              <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
-              <td style="padding: 8px 10px;">${row.jenis_kelamin || '-'}</td>
-              <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
-              <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
-              <td style="padding: 8px 10px;">${row.aktif || row.keterangan_pencairan || '-'}</td>
-            `;
-            tbody.appendChild(tr);
-        });
-      }
-
-      countSpan.textContent = `Ditampilkan: ${filteredData.length} dari ${rows.length} siswa`;
-      renderPagination(totalPages);
-    }
-
-    function renderPagination(totalPages) {
-        paginationDiv.innerHTML = '';
-        if (totalPages <= 1) return;
-
-        for (let i = 1; i <= totalPages; i++) {
-          let btn = document.createElement('button');
-          btn.textContent = i;
-          btn.style.padding = '5px 10px';
-          btn.style.border = '1px solid var(--border-color, #ccc)';
-          btn.style.borderRadius = '4px';
-          btn.style.cursor = 'pointer';
-          btn.style.fontSize = '13px';
-          
-          if (i === currentPage) {
-            btn.style.background = '#1c7c91';
-            btn.style.color = 'white';
-            btn.style.fontWeight = 'bold';
-            btn.style.borderColor = '#1c7c91';
-          } else {
-            btn.style.background = 'var(--input-bg, #fff)';
-            btn.style.color = 'var(--text-color, #333)';
-        }
-
-        btn.addEventListener('click', function() {
-          currentPage = i;
-          renderTable();
-        });
-
-        paginationDiv.appendChild(btn);
-      }
-    }
-
-    renderTable();
-
-    searchInput.addEventListener('input', function() { currentPage = 1; renderTable(); });
-    filterTahap.addEventListener('change', function() { currentPage = 1; renderTable(); });
-    filterStatus.addEventListener('change', function() { currentPage = 1; renderTable(); });
-
-    } else {
-      countSpan.textContent = 'Gagal memuat';
-      tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; padding: 15px; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa'}</td></tr>`;
-    }
-  })
-  .catch(err => {
-    document.getElementById('countNominasi').textContent = 'Koneksi Gagal';
-    document.querySelector('#tableNominasi tbody').innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server worker.</td></tr>';
-  });
-});
-</script>
-
----
+<script src="{{ '/assets/js/pip-tables.js' | relative_url }}"></script>
 
 ## Kontak PIP
 
