@@ -36,8 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return text !== '' && text.toLowerCase() !== 'null' ? 'Sudah Aktivasi' : 'Belum Aktivasi';
   }
 
-  function scrollToTableHeader(tableId) {
-    const table = document.getElementById(tableId);
+  function scrollToTableHeader(table) {
     const siteHeader = document.querySelector('.site-header');
     if (!table) return;
 
@@ -169,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
               btn.addEventListener('click', () => {
                 renderTablePage(i);
-                scrollToTableHeader('tablePemberian');
+                scrollToTableHeader(tbody.closest('table'));
               });
               paginationDiv.appendChild(btn);
             }
@@ -311,7 +310,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
               btn.addEventListener('click', () => {
                 renderTablePage(i);
-                scrollToTableHeader('tableNominasi');
+                scrollToTableHeader(tbody.closest('table'));
               });
               paginationDiv.appendChild(btn);
             }
