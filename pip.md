@@ -171,8 +171,8 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
         <th style="padding: 10px;">Rombel</th>
         <th style="padding: 10px;">Tahap ID</th>
         <th style="padding: 10px;">Tanggal SK</th>
-        <th style="padding: 10px;">Nomor SK</th>
         <th style="padding: 10px;">Status Aktif</th>
+        <th style="padding: 10px;">Status Aktivasi</th>
       </tr>
     </thead>
     <tbody>

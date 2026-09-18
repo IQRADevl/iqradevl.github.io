@@ -28,6 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  function getAktivasiStatus(row) {
+    const value = row && row.tanggal_aktivasi;
+    const text = value == null ? '' : String(value).trim();
+    return text !== '' && text.toLowerCase() !== 'null' ? 'Sudah Aktivasi' : 'Belum Aktivasi';
+  }
+
   const TAHUN_AKTIF = '2026';
 
   function loadPemberianData() {
@@ -185,6 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
             if (r.tahap_id) tahapSet.add(String(r.tahap_id));
             let statusVal = r.aktif || r.keterangan_pencairan;
             if (statusVal) statusSet.add(String(statusVal));
+            statusSet.add(getAktivasiStatus(r));
           });
 
           populateSelect(selectTahap, tahapSet, "Semua Tahap");
@@ -199,9 +206,12 @@ document.addEventListener("DOMContentLoaded", function () {
             rows = rows.filter(r => String(r.tahap_id) === String(currentTahapVal));
           }
 
-          // 4. Filter lokal berdasarkan status aktif
+          // 4. Filter lokal berdasarkan status aktivasi / status aktif
           if (currentStatusVal && currentStatusVal !== 'all') {
-            rows = rows.filter(r => String(r.aktif || r.keterangan_pencairan) === String(currentStatusVal));
+            rows = rows.filter(r => {
+              const aktivasiStatus = getAktivasiStatus(r);
+              return String(r.aktif || r.keterangan_pencairan) === String(currentStatusVal) || aktivasiStatus === String(currentStatusVal);
+            });
           }
 
           // 5. Filter lokal pencarian teks
@@ -226,6 +236,9 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
               paginatedData.forEach((row, index) => {
                 let tr = document.createElement('tr');
+                const aktivasiStatus = getAktivasiStatus(row);
+                const aktivasiColor = aktivasiStatus === 'Sudah Aktivasi' ? '#2ecc71' : '#e74c3c';
+
                 tr.innerHTML = `
                   <td style="padding: 8px 10px;">${start + index + 1}</td>
                   <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
@@ -233,8 +246,8 @@ document.addEventListener("DOMContentLoaded", function () {
                   <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
                   <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
                   <td style="padding: 8px 10px;">${row.tanggal_sk || '-'}</td>
-                  <td style="padding: 8px 10px;">${row.nomor_sk || '-'}</td>
                   <td style="padding: 8px 10px;">${row.aktif || row.keterangan_pencairan || '-'}</td>
+                  <td style="padding: 8px 10px; font-weight: 600; color: ${aktivasiColor};">${aktivasiStatus}</td>
                 `;
                 tbody.appendChild(tr);
               });
