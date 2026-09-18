@@ -144,19 +144,19 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 
 
 ### Tabel Siswa Nominasi (SK Nominasi Sekolah)
-<div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-  <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
-    <input type="text" id="searchNominasi" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+<div class="pip-filters">
+  <div class="pip-filters__controls">
+    <input type="text" id="searchNominasi" class="pip-filter-input" placeholder="Cari Nama / NISN...">
     
-    <select id="filterTahapNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
-      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Tahap</option>
+    <select id="filterTahapNominasi" class="pip-filter-select">
+      <option value="all">Semua Tahap</option>
     </select>
     
-    <select id="filterStatusNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
-      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Status</option>
+    <select id="filterStatusNominasi" class="pip-filter-select">
+      <option value="all">Semua Status</option>
     </select>
   </div>
-  <span id="countNominasi" style="font-size: 13px; opacity: 0.8; font-weight: 500;">Memuat jumlah data...</span>
+  <span id="countNominasi" class="pip-filter-count">Memuat jumlah data...</span>
 </div>
 
 <div class="table-responsive" style="overflow-x: auto; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border-color, #e0e0e0);">
@@ -185,19 +185,19 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 **Siswa Pemberian** adalah penetapan bagi peserta didik yang layak menerima PIP, dan sudah melakukan aktivasi rekening (sudah memiliki buku tabungan).
 
 ### Tabel Siswa Pemberian (SK Sekolah)
-<div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-  <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
-    <input type="text" id="searchPemberian" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
+<div class="pip-filters">
+  <div class="pip-filters__controls">
+    <input type="text" id="searchPemberian" class="pip-filter-input" placeholder="Cari Nama / NISN...">
     
-    <select id="filterTahapPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
-      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Tahap</option>
+    <select id="filterTahapPemberian" class="pip-filter-select">
+      <option value="all">Semua Tahap</option>
     </select>
     
-    <select id="filterStatusPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
-      <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Status</option>
+    <select id="filterStatusPemberian" class="pip-filter-select">
+      <option value="all">Semua Status</option>
     </select>
   </div>
-  <span id="countPemberian" style="font-size: 13px; opacity: 0.8; font-weight: 500;">Memuat jumlah data...</span>
+  <span id="countPemberian" class="pip-filter-count">Memuat jumlah data...</span>
 </div>
 
 <div class="table-responsive" style="overflow-x: auto; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border-color, #e0e0e0);">

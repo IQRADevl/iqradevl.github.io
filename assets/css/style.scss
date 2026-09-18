@@ -89,6 +89,59 @@ h3 { font-size: 1.25rem; }
 p { max-width: 68ch; }
 p.wide { max-width: none; }
 
+.pip-filters {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pip-filters__controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.pip-filter-input,
+.pip-filter-select {
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-s) !important;
+  background-color: var(--surface) !important;
+  color: var(--ink) !important;
+  font: inherit;
+  font-size: 13px;
+}
+
+.pip-filter-input {
+  padding: 6px 10px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.pip-filter-select {
+  padding: 6px 10px;
+}
+
+.pip-filter-input::placeholder {
+  color: var(--ink-soft);
+  opacity: 1;
+}
+
+.pip-filter-select option {
+  background-color: var(--surface);
+  color: var(--ink);
+}
+
+.pip-filter-count {
+  font-size: 13px;
+  opacity: .8;
+  font-weight: 500;
+  color: var(--ink);
+}
+
 :focus-visible {
   outline: 2px solid var(--teal-500);
   outline-offset: 3px;

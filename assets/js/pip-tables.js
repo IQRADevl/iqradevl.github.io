@@ -1,21 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
   const WORKER_BASE_URL = 'https://api.pip.sdislamiqrapetobo.sch.id';
   const ROWS_PER_PAGE = 10;
+  let pemberianRowsCache = null;
+  let nominasiRowsCache = null;
+  let pemberianDataPromise = null;
+  let nominasiDataPromise = null;
 
   // Fungsi helper untuk mengisi dropdown secara dinamis dengan styling adaptif Dark/Light Mode
   function populateSelect(selectElement, valuesSet, defaultText) {
     const currentValue = selectElement.value; 
     
     // Memberikan background & warna teks yang jelas pada opsi default
-    selectElement.innerHTML = `<option value="all" style="background-color: var(--card-background, #222); color: inherit;">${defaultText}</option>`;
+    selectElement.innerHTML = `<option value="all">${defaultText}</option>`;
     
     Array.from(valuesSet).sort().forEach(val => {
       if (val && val !== 'all') {
         let opt = document.createElement('option');
         opt.value = val;
         opt.textContent = val;
-        opt.style.backgroundColor = 'var(--card-background, #222)';
-        opt.style.color = 'inherit';
         selectElement.appendChild(opt);
       }
     });
@@ -51,11 +53,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let apiUrl = `${WORKER_BASE_URL}/pip-pemberian?tahun=${tahunVal}&tahap=all&cair=all`;
 
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(res => {
-        if (res.success && res.data && res.data.data) {
-          let rows = res.data.data;
+    const dataPromise = pemberianRowsCache
+      ? Promise.resolve(pemberianRowsCache)
+      : (pemberianDataPromise ||= fetch(apiUrl)
+          .then(response => response.json())
+          .then(res => {
+            if (!res.success || !res.data || !res.data.data) {
+              throw new Error(res.message || 'Data kosong');
+            }
+            pemberianRowsCache = res.data.data;
+            return pemberianRowsCache;
+          }));
+
+    dataPromise
+      .then(data => {
+          let rows = data;
 
           // 1. Kumpulkan daftar Tahap & Status unik dari data yang diterima
           let tahapSet = new Set();
@@ -152,14 +164,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
           renderTablePage(1);
 
-        } else {
-          countSpan.textContent = 'Gagal memuat';
-          tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">${res.message || 'Data kosong'}</td></tr>`;
-        }
       })
-      .catch(() => {
+      .catch(error => {
         countSpan.textContent = 'Koneksi Gagal';
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server.</td></tr>';
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">${error.message || 'Gagal terhubung ke server.'}</td></tr>`;
       });
   }
 
@@ -178,11 +186,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let apiUrl = `${WORKER_BASE_URL}/pip-nominasi?tahun=${tahunVal}&tahap=all&aktif=all`;
 
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(res => {
-        if (res.success && res.data && res.data.data) {
-          let rows = res.data.data;
+    const dataPromise = nominasiRowsCache
+      ? Promise.resolve(nominasiRowsCache)
+      : (nominasiDataPromise ||= fetch(apiUrl)
+          .then(response => response.json())
+          .then(res => {
+            if (!res.success || !res.data || !res.data.data) {
+              throw new Error(res.message || 'Data kosong');
+            }
+            nominasiRowsCache = res.data.data;
+            return nominasiRowsCache;
+          }));
+
+    dataPromise
+      .then(data => {
+          let rows = data;
 
           // 1. Kumpulkan daftar Tahap & Status Aktivasi unik dari data tahun tersebut
           let tahapSet = new Set();
@@ -285,14 +303,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
           renderTablePage(1);
 
-        } else {
-          countSpan.textContent = 'Gagal memuat';
-          tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">${res.message || 'Data kosong'}</td></tr>`;
-        }
       })
-      .catch(() => {
+      .catch(error => {
         countSpan.textContent = 'Koneksi Gagal';
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server.</td></tr>';
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">${error.message || 'Gagal terhubung ke server.'}</td></tr>`;
       });
   }
 
@@ -303,10 +317,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // Event listener untuk filter Pemberian
   document.getElementById('filterTahapPemberian').addEventListener('change', loadPemberianData);
   document.getElementById('filterStatusPemberian').addEventListener('change', loadPemberianData);
-  document.getElementById('searchPemberian').addEventListener('input', loadPemberianData);
+  document.getElementById('searchPemberian').addEventListener('input', debounce(loadPemberianData));
 
   // Event listener untuk filter Nominasi
   document.getElementById('filterTahapNominasi').addEventListener('change', loadNominasiData);
   document.getElementById('filterStatusNominasi').addEventListener('change', loadNominasiData);
-  document.getElementById('searchNominasi').addEventListener('input', loadNominasiData);
+  document.getElementById('searchNominasi').addEventListener('input', debounce(loadNominasiData));
+
+  function debounce(callback, delay = 250) {
+    let timeoutId;
+    return function () {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => callback(), delay);
+    };
+  }
 });
