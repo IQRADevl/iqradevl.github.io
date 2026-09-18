@@ -36,6 +36,16 @@ document.addEventListener("DOMContentLoaded", function () {
     return text !== '' && text.toLowerCase() !== 'null' ? 'Sudah Aktivasi' : 'Belum Aktivasi';
   }
 
+  function scrollToTableHeader(tableId) {
+    const table = document.getElementById(tableId);
+    const siteHeader = document.querySelector('.site-header');
+    if (!table) return;
+
+    const headerHeight = siteHeader ? siteHeader.getBoundingClientRect().height : 0;
+    const targetTop = table.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
+    window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+  }
+
   const TAHUN_AKTIF = '2026';
 
   function loadPemberianData() {
@@ -157,7 +167,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 btn.style.color = 'var(--text-color, #333)';
               }
 
-              btn.addEventListener('click', () => renderTablePage(i));
+              btn.addEventListener('click', () => {
+                renderTablePage(i);
+                scrollToTableHeader('tablePemberian');
+              });
               paginationDiv.appendChild(btn);
             }
           }
@@ -296,7 +309,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 btn.style.color = 'var(--text-color, #333)';
               }
 
-              btn.addEventListener('click', () => renderTablePage(i));
+              btn.addEventListener('click', () => {
+                renderTablePage(i);
+                scrollToTableHeader('tableNominasi');
+              });
               paginationDiv.appendChild(btn);
             }
           }
