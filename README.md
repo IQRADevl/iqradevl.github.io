@@ -1,9 +1,25 @@
-# Template Jekyll — SD ISLAM IQRA PETOBO
+# SD Islam Iqra Petobo
 
-Template ringan untuk situs sekolah di GitHub Pages. Tema hijau teal & putih,
-responsif dengan menu hamburger di layar sempit, mendukung mode gelap, dan
-sudah dilengkapi SEO dasar (meta tag, `sitemap.xml`, `feed.xml`, data terstruktur
-Schema.org).
+Website resmi SD Islam Iqra Petobo yang dikembangkan dengan Jekyll dan dihosting di GitHub Pages. Situs ini menampilkan informasi sekolah, berita, PPDB, profil, kontak, serta halaman PIP yang menampilkan data nominasi dan pemberian bantuan.
+
+## Fitur utama
+
+- Layout responsif untuk desktop dan mobile
+- Tema terang/gelap
+- Navigasi halaman sekolah
+- Halaman berita dengan pagination
+- Halaman PPDB dan profil sekolah
+- Halaman PIP dengan pencarian, filter tahap/status, dan tabel data dinamis
+- SEO dasar siap pakai via Jekyll SEO Tag, sitemap, dan feed
+
+## Prasyarat
+
+Pastikan di komputer sudah terpasang:
+
+- Ruby
+- Bundler
+
+Untuk deploy di GitHub Pages, project ini menggunakan konfigurasi yang kompatibel dengan `github-pages` agar build aman dan konsisten.
 
 ## Menjalankan di komputer lokal
 
@@ -12,24 +28,66 @@ bundle install
 bundle exec jekyll serve
 ```
 
-Buka `http://localhost:4000`.
+Lalu buka:
 
-## Yang perlu diubah pertama kali
+```text
+http://localhost:4000
+```
 
-1. **`_config.yml`** — ganti `title`, `short_name`, `tagline`, `description`, `url`,
-   dan bagian `school:` (alamat, telepon, email, tahun berdiri, jumlah siswa/guru,
-   akreditasi).
-2. **`_data/navigation.yml`** — sesuaikan menu navigasi.
-3. **`assets/images/logo.svg` & `favicon.svg`** — ganti dengan logo sekolah asli.
-4. **`index.markdown`** — ubah teks hero, daftar program, dan kutipan.
-5. Halaman `profil.markdown`, `akademik.markdown`, `ppdb.markdown`, `kontak.markdown`
-   — isi dengan informasi sekolah sebenarnya.
+## Struktur folder penting
 
-## Menambah berita/pengumuman
+```text
+_config.yml                  Konfigurasi situs dan metadata SEO
+Gemfile                      Dependency Jekyll yang kompatibel dengan GitHub Pages
+_data/navigation.yml         Menu navigasi utama
+_layouts/                    Layout halaman default dan post
+_includes/                   Header, footer, dan metadata HTML
+_posts/                      File berita dan pengumuman
+assets/css/style.scss        Styling utama situs
+assets/js/main.js            Script umum situs
+assets/js/pip-tables.js      Script tabel PIP (filter, pencarian, pagination)
+index.md                     Halaman depan
+profil.md                    Profil sekolah
+ppdb.md                      Informasi PPDB
+pip.md                       Data PIP nominasi dan pemberian
+berita/index.md              Halaman daftar berita
+kontak.md                    Kontak sekolah
+```
 
-Buat file baru di `_posts/` dengan format nama `YYYY-MM-DD-judul-singkat.markdown`:
+## Konfigurasi utama
 
-```markdown
+### `_config.yml`
+
+Atur nilai berikut sesuai kenyataan sekolah:
+
+- `title`
+- `short_name`
+- `tagline`
+- `description`
+- `url`
+- `school.address`
+- `school.phone`
+- `school.email`
+- `school.founded`
+- `school.students`
+- `school.teachers`
+- `school.accreditation`
+
+### `Gemfile`
+
+Project ini telah diatur agar kompatibel dengan GitHub Pages. Hindari memasang versi Jekyll yang tidak sesuai dengan `github-pages`, karena akan memicu konflik dependency saat build di GitHub Actions.
+
+## Menambah berita
+
+Buat file baru di folder `_posts/` dengan format:
+
+```text
+YYYY-MM-DD-judul-singkat.md
+```
+
+Contoh front matter:
+
+```yaml
 ---
 title: "Judul Berita"
 category: Akademik
@@ -39,36 +97,41 @@ excerpt_text: "Ringkasan singkat satu-dua kalimat."
 Isi berita di sini.
 ```
 
-## Mengubah warna tema
+## Menambah/ubah halaman
 
-Semua warna diatur lewat CSS variable di `assets/css/style.scss`, di bagian atas
-file (blok `:root` untuk mode terang, `html[data-theme="dark"]` untuk mode gelap).
-Ubah nilai `--teal-700`, `--bg`, dll. — seluruh halaman ikut menyesuaikan otomatis.
+Semua halaman utama berada di root project seperti:
+
+- `index.md`
+- `profil.md`
+- `ppdb.md`
+- `pip.md`
+- `kontak.md`
+
+Gunakan layout Jekyll yang sudah disediakan di `_layouts/`, lalu sesuaikan isi halaman sesuai kebutuhan.
 
 ## Deploy ke GitHub Pages
 
-Repo ini sudah menyertakan workflow di `.github/workflows/pages.yml`.
+1. Push repository ke GitHub.
+2. Buka GitHub repository → Settings → Pages.
+3. Pilih source: GitHub Actions.
+4. Setiap push ke branch utama akan otomatis melakukan build dan deploy.
 
-1. Push repo ini ke GitHub.
-2. Buka **Settings → Pages**, pilih source **GitHub Actions**.
-3. Setiap push ke branch `main` akan otomatis membangun dan menerbitkan situs.
+Catatan penting:
 
-Jangan lupa perbarui `url` (dan `baseurl` jika perlu) di `_config.yml` agar
-tag SEO dan sitemap menunjuk ke alamat situs yang benar.
+- Pastikan `Gemfile` tetap kompatibel dengan GitHub Pages.
+- Hindari plugin custom yang konflik dengan `github-pages`.
+- Untuk plugin umum seperti SEO, sitemap, feed, dan pagination, GitHub Pages biasanya sudah menyediakan konfigurasi yang sesuai.
 
-## Struktur folder
+## Catatan pengembangan
 
-```
-_config.yml          konfigurasi situs
-_data/navigation.yml  menu navigasi
-_layouts/             kerangka halaman (default, page, post)
-_includes/            head, header, footer
-_posts/               berita/pengumuman
-assets/css/style.scss  seluruh styling + token warna
-assets/js/main.js      hamburger menu & toggle mode gelap
-index.markdown         beranda
-profil.markdown, akademik.markdown, ppdb.markdown, berita.markdown, kontak.markdown
-```
+Beberapa fitur khusus dibuat dengan JavaScript pada `assets/js/pip-tables.js`, misalnya:
+
+- pencarian nama/NISN
+- filter tahap dan status
+- paginasi tabel PIP
+- pengambilan data real-time dari API sekolah
 
 ## Kredit
-* [FebraS](http://github.com/febras) Sebagai Pembuat
+
+- [FebraS](https://github.com/febras)
+- SD Islam Iqra Petobo
