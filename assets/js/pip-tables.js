@@ -3,17 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const ROWS_PER_PAGE = 10;
 
   // Fungsi helper untuk mengisi dropdown secara dinamis dengan styling adaptif Dark/Light Mode
-  function populateSelect(selectElement, valuesSet, defaultText = "Semua Tahap") {
+  function populateSelect(selectElement, valuesSet, defaultText) {
     const currentValue = selectElement.value; 
     
-    // Memberikan background & warna teks yang jelas pada opsi default (Semua Tahap)
+    // Memberikan background & warna teks yang jelas pada opsi default
     selectElement.innerHTML = `<option value="all" style="background-color: var(--card-background, #222); color: inherit;">${defaultText}</option>`;
     
-    Array.from(valuesSet).sort((a, b) => Number(a) - Number(b)).forEach(val => {
+    Array.from(valuesSet).sort().forEach(val => {
       if (val && val !== 'all') {
         let opt = document.createElement('option');
         opt.value = val;
-        opt.textContent = `Tahap ${val}`;
+        opt.textContent = val;
         opt.style.backgroundColor = 'var(--card-background, #222)';
         opt.style.color = 'inherit';
         selectElement.appendChild(opt);
@@ -37,10 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const tbody = document.querySelector('#tablePemberian tbody');
     const countSpan = document.getElementById('countPemberian');
     const selectTahap = document.getElementById('filterTahapPemberian');
+    const selectStatus = document.getElementById('filterStatusPemberian');
     
     tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Memuat data...</td></tr>';
 
-    let apiUrl = `${WORKER_BASE_URL}/pip-pemberian?tahun=${tahunVal}&tahap=all&cair=${statusVal}`;
+    let apiUrl = `${WORKER_BASE_URL}/pip-pemberian?tahun=${tahunVal}&tahap=all&cair=all`;
 
     fetch(apiUrl)
       .then(response => response.json())
@@ -48,22 +49,32 @@ document.addEventListener("DOMContentLoaded", function () {
         if (res.success && res.data && res.data.data) {
           let rows = res.data.data;
 
-          // 1. Kumpulkan daftar tahap unik berdasarkan data tahun tersebut
+          // 1. Kumpulkan daftar Tahap & Status unik dari data yang diterima
           let tahapSet = new Set();
+          let statusSet = new Set();
           rows.forEach(r => {
             if (r.tahap_id) tahapSet.add(String(r.tahap_id));
+            if (r.status_cair) statusSet.add(String(r.status_cair));
           });
-          populateSelect(selectTahap, tahapSet, "Semua Tahap");
 
-          // 2. Ambil nilai tahap aktif
+          populateSelect(selectTahap, tahapSet, "Semua Tahap");
+          populateSelect(selectStatus, statusSet, "Semua Status");
+
+          // 2. Ambil ulang nilai filter yang sedang aktif
           const currentTahapVal = document.getElementById('filterTahapPemberian').value;
+          const currentStatusVal = document.getElementById('filterStatusPemberian').value;
 
           // 3. Filter lokal berdasarkan tahap
           if (currentTahapVal && currentTahapVal !== 'all') {
             rows = rows.filter(r => String(r.tahap_id) === String(currentTahapVal));
           }
 
-          // 4. Filter lokal pencarian teks
+          // 4. Filter lokal berdasarkan status cair
+          if (currentStatusVal && currentStatusVal !== 'all') {
+            rows = rows.filter(r => String(r.status_cair) === String(currentStatusVal));
+          }
+
+          // 5. Filter lokal pencarian teks nama/nisn
           if (searchKeyword) {
             rows = rows.filter(r => 
               (r.nisn || '').toLowerCase().includes(searchKeyword) || 
@@ -153,10 +164,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const tbody = document.querySelector('#tableNominasi tbody');
     const countSpan = document.getElementById('countNominasi');
     const selectTahap = document.getElementById('filterTahapNominasi');
+    const selectStatus = document.getElementById('filterStatusNominasi');
     
     tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Memuat data...</td></tr>';
 
-    let apiUrl = `${WORKER_BASE_URL}/pip-nominasi?tahun=${tahunVal}&tahap=all&aktif=${statusVal}`;
+    let apiUrl = `${WORKER_BASE_URL}/pip-nominasi?tahun=${tahunVal}&tahap=all&aktif=all`;
 
     fetch(apiUrl)
       .then(response => response.json())
@@ -164,22 +176,33 @@ document.addEventListener("DOMContentLoaded", function () {
         if (res.success && res.data && res.data.data) {
           let rows = res.data.data;
 
-          // 1. Kumpulkan daftar tahap unik berdasarkan data tahun tersebut
+          // 1. Kumpulkan daftar Tahap & Status Aktif unik dari data tahun tersebut
           let tahapSet = new Set();
+          let statusSet = new Set();
           rows.forEach(r => {
             if (r.tahap_id) tahapSet.add(String(r.tahap_id));
+            let statusVal = r.aktif || r.keterangan_pencairan;
+            if (statusVal) statusSet.add(String(statusVal));
           });
-          populateSelect(selectTahap, tahapSet, "Semua Tahap");
 
-          // 2. Ambil nilai tahap aktif
+          populateSelect(selectTahap, tahapSet, "Semua Tahap");
+          populateSelect(selectStatus, statusSet, "Semua Status");
+
+          // 2. Ambil ulang nilai filter yang sedang aktif
           const currentTahapVal = document.getElementById('filterTahapNominasi').value;
+          const currentStatusVal = document.getElementById('filterStatusNominasi').value;
 
           // 3. Filter lokal berdasarkan tahap
           if (currentTahapVal && currentTahapVal !== 'all') {
             rows = rows.filter(r => String(r.tahap_id) === String(currentTahapVal));
           }
 
-          // 4. Filter lokal pencarian teks
+          // 4. Filter lokal berdasarkan status aktif
+          if (currentStatusVal && currentStatusVal !== 'all') {
+            rows = rows.filter(r => String(r.aktif || r.keterangan_pencairan) === String(currentStatusVal));
+          }
+
+          // 5. Filter lokal pencarian teks
           if (searchKeyword) {
             rows = rows.filter(r => 
               (r.nisn || '').toLowerCase().includes(searchKeyword) || 
