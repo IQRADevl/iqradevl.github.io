@@ -28,8 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  const TAHUN_AKTIF = '2026';
+
   function loadPemberianData() {
-    const tahunVal = document.getElementById('filterTahunPemberian').value;
+    const tahunVal = TAHUN_AKTIF;
     const tahapVal = document.getElementById('filterTahapPemberian').value;
     const statusVal = document.getElementById('filterStatusPemberian').value;
     const searchKeyword = document.getElementById('searchPemberian').value.toLowerCase();
@@ -156,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function loadNominasiData() {
-    const tahunVal = document.getElementById('filterTahunNominasi').value;
+    const tahunVal = TAHUN_AKTIF;
     const tahapVal = document.getElementById('filterTahapNominasi').value;
     const statusVal = document.getElementById('filterStatusNominasi').value;
     const searchKeyword = document.getElementById('searchNominasi').value.toLowerCase();
@@ -288,13 +290,11 @@ document.addEventListener("DOMContentLoaded", function () {
   loadNominasiData();
 
   // Event listener untuk filter Pemberian
-  document.getElementById('filterTahunPemberian').addEventListener('change', loadPemberianData);
   document.getElementById('filterTahapPemberian').addEventListener('change', loadPemberianData);
   document.getElementById('filterStatusPemberian').addEventListener('change', loadPemberianData);
   document.getElementById('searchPemberian').addEventListener('input', loadPemberianData);
 
   // Event listener untuk filter Nominasi
-  document.getElementById('filterTahunNominasi').addEventListener('change', loadNominasiData);
   document.getElementById('filterTahapNominasi').addEventListener('change', loadNominasiData);
   document.getElementById('filterStatusNominasi').addEventListener('change', loadNominasiData);
   document.getElementById('searchNominasi').addEventListener('input', loadNominasiData);

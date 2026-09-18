@@ -150,10 +150,6 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
   <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
     <input type="text" id="searchNominasi" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
     
-    <select id="filterTahunNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
-      <option value="2026" selected style="background-color: var(--card-background, #222); color: inherit;">2026</option>
-    </select>
-    
     <select id="filterTahapNominasi" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
       <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Tahap</option>
     </select>
@@ -196,10 +192,6 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
   <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
     <input type="text" id="searchPemberian" class="form-control" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
-    
-    <select id="filterTahunPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
-      <option value="2026" selected style="background-color: var(--card-background, #222); color: inherit;">2026</option>
-    </select>
     
     <select id="filterTahapPemberian" class="form-select" style="padding: 6px 10px; border: 1px solid rgba(150, 150, 150, 0.4); border-radius: 6px; font-size: 13px; background-color: var(--input-bg, rgba(128, 128, 128, 0.15)); color: inherit;">
       <option value="all" style="background-color: var(--card-background, #222); color: inherit;">Semua Tahap</option>
