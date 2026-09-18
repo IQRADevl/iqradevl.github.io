@@ -143,16 +143,24 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 **Siswa Nominasi** adalah penetapan bagi peserta didik yang layak menerima PIP, namun belum melakukan aktivasi rekening (belum memiliki buku tabungan).
 
 
-
 ---
 
 ### Tabel Siswa Nominasi (SK Nominasi Sekolah)
+<!-- Panel Filter & Pencarian Nominasi -->
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-  <input type="text" id="searchNominasi" placeholder="🔍 Cari Nama, NISN, atau Tahap..." style="padding: 8px 12px; width: 100%; max-width: 320px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+  <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
+    <input type="text" id="searchNominasi" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 180px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px;">
+    <select id="filterTahapNominasi" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff;">
+      <option value="">Semua Tahap</option>
+    </select>
+    <select id="filterStatusNominasi" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff;">
+      <option value="">Semua Status</option>
+    </select>
+  </div>
   <span id="countNominasi" style="font-size: 13px; color: #666; font-weight: 500;">Memuat jumlah data...</span>
 </div>
 
-<div class="table-responsive" style="overflow-x: auto; margin-bottom: 30px; border-radius: 8px; border: 1px solid #e0e0e0;">
+<div class="table-responsive" style="overflow-x: auto; margin-bottom: 10px; border-radius: 8px; border: 1px solid #e0e0e0;">
   <table id="tableNominasi" class="table table-bordered table-striped" style="width:100%; min-width: 750px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
     <thead>
       <tr style="background: #1c7c91; color: white; text-align: left;">
@@ -170,6 +178,8 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
     </tbody>
   </table>
 </div>
+<!-- Tombol Pagination Nominasi di Kanan Bawah -->
+<div id="paginationNominasi" style="display: flex; justify-content: flex-end; gap: 5px; margin-bottom: 30px; flex-wrap: wrap;"></div>
 
 ---
 
@@ -181,12 +191,21 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 ---
 
 ### Tabel Siswa Pemberian (SK Sekolah)
+<!-- Panel Filter & Pencarian Pemberian -->
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-  <input type="text" id="searchPemberian" placeholder="🔍 Cari Nama, NISN, atau Tahap..." style="padding: 8px 12px; width: 100%; max-width: 320px; border: 1px solid #ccc; border-radius: 6px; font-size: 14px;">
+  <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
+    <input type="text" id="searchPemberian" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 180px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px;">
+    <select id="filterTahapPemberian" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff;">
+      <option value="">Semua Tahap</option>
+    </select>
+    <select id="filterStatusPemberian" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff;">
+      <option value="">Semua Status</option>
+    </select>
+  </div>
   <span id="countPemberian" style="font-size: 13px; color: #666; font-weight: 500;">Memuat jumlah data...</span>
 </div>
 
-<div class="table-responsive" style="overflow-x: auto; margin-bottom: 30px; border-radius: 8px; border: 1px solid #e0e0e0;">
+<div class="table-responsive" style="overflow-x: auto; margin-bottom: 10px; border-radius: 8px; border: 1px solid #e0e0e0;">
   <table id="tablePemberian" class="table table-bordered table-striped" style="width:100%; min-width: 750px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
     <thead>
       <tr style="background: #1c7c91; color: white; text-align: left;">
@@ -205,64 +224,153 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
     </tbody>
   </table>
 </div>
+<!-- Tombol Pagination Pemberian di Kanan Bawah -->
+<div id="paginationPemberian" style="display: flex; justify-content: flex-end; gap: 5px; margin-bottom: 30px; flex-wrap: wrap;"></div>
 
 ---
 
+<!-- Script Utama untuk Fetch, Filter, & Pagination Interaktif -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const WORKER_BASE_URL = 'https://api.pip.sdislamiqrapetobo.sch.id';
+    const ROWS_PER_PAGE = 10; // Batasi 10 data per halaman
 
-    // Data Pemberian Handle
+    function populateDropdown(selectElement, valuesSet) {
+      const defaultOption = selectElement.options[0];
+      selectElement.innerHTML = '';
+      selectElement.appendChild(defaultOption);
+      
+      Array.from(valuesSet).sort().forEach(val => {
+        if (val) {
+          let opt = document.createElement('option');
+          opt.value = val;
+          opt.textContent = val;
+          selectElement.appendChild(opt);
+        }
+      });
+    }
+
+    // Data Pemberian
     fetch(WORKER_BASE_URL + '/pip-pemberian')
       .then(response => response.json())
       .then(res => {
         const tbody = document.querySelector('#tablePemberian tbody');
         const countSpan = document.getElementById('countPemberian');
+        const searchInput = document.getElementById('searchPemberian');
+        const filterTahap = document.getElementById('filterTahapPemberian');
+        const filterStatus = document.getElementById('filterStatusPemberian');
+        const paginationDiv = document.getElementById('paginationPemberian');
+        
         tbody.innerHTML = '';
         
         if (res.success && res.data && res.data.data) {
           const rows = res.data.data;
-          countSpan.textContent = `Total: ${rows.length} siswa`;
+          let currentPage = 1;
 
           if (rows.length === 0) {
+            countSpan.textContent = `Total: 0 siswa`;
             tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
             return;
           }
 
-          function renderTablePemberian(dataList) {
-            tbody.innerHTML = '';
-            if (dataList.length === 0) {
-              tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Data tidak ditemukan dalam pencarian.</td></tr>';
-              return;
-            }
-            dataList.forEach((row, index) => {
-              let tr = document.createElement('tr');
-              tr.innerHTML = `
-                <td style="padding: 8px 10px;">${index + 1}</td>
-                <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
-                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
-                <td style="padding: 8px 10px;">${row.jenis_kelamin || '-'}</td>
-                <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
-                <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
-                <td style="padding: 8px 10px; color: #0e6b58; font-weight: 600;">${row.nominal || '-'}</td>
-                <td style="padding: 8px 10px;">${row.keterangan_pencairan || '-'}</td>
-              `;
-              tbody.appendChild(tr);
+          let tahapSet = new Set();
+          let statusSet = new Set();
+          rows.forEach(r => {
+            if (r.tahap_id) tahapSet.add(String(r.tahap_id));
+            if (r.keterangan_pencairan) statusSet.add(String(r.keterangan_pencairan));
+          });
+          populateDropdown(filterTahap, tahapSet);
+          populateDropdown(filterStatus, statusSet);
+
+          function getFilteredData() {
+            const keyword = searchInput.value.toLowerCase();
+            const selectedTahap = filterTahap.value;
+            const selectedStatus = filterStatus.value;
+
+            return rows.filter(r => {
+              const nisn = (r.nisn || '').toLowerCase();
+              const nama = (r.nama_pd || '').toLowerCase();
+              const tahap = String(r.tahap_id || '');
+              const status = String(r.keterangan_pencairan || '');
+
+              const matchText = nisn.includes(keyword) || nama.includes(keyword);
+              const matchTahap = !selectedTahap || tahap === selectedTahap;
+              const matchStatus = !selectedStatus || status === selectedStatus;
+
+              return matchText && matchTahap && matchStatus;
             });
           }
 
-          renderTablePemberian(rows);
+          function renderTable() {
+            const filteredData = getFilteredData();
+            const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE) || 1;
+            
+            if (currentPage > totalPages) currentPage = 1;
 
-          document.getElementById('searchPemberian').addEventListener('input', function(e) {
-            const keyword = e.target.value.toLowerCase();
-            const filtered = rows.filter(r => {
-              const nisn = (r.nisn || '').toLowerCase();
-              const nama = (r.nama_pd || '').toLowerCase();
-              const tahap = (r.tahap_id || '').toLowerCase();
-              return nisn.includes(keyword) || nama.includes(keyword) || tahap.includes(keyword);
-            });
-            renderTablePemberian(filtered);
-          });
+            const start = (currentPage - 1) * ROWS_PER_PAGE;
+            const paginatedData = filteredData.slice(start, start + ROWS_PER_PAGE);
+
+            tbody.innerHTML = '';
+            if (paginatedData.length === 0) {
+              tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Data tidak ditemukan sesuai filter.</td></tr>';
+            } else {
+              paginatedData.forEach((row, index) => {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                  <td style="padding: 8px 10px;">${start + index + 1}</td>
+                  <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
+                  <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
+                  <td style="padding: 8px 10px;">${row.jenis_kelamin || '-'}</td>
+                  <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
+                  <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
+                  <td style="padding: 8px 10px; color: #0e6b58; font-weight: 600;">${row.nominal || '-'}</td>
+                  <td style="padding: 8px 10px;">${row.keterangan_pencairan || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+              });
+            }
+
+            countSpan.textContent = `Ditampilkan: ${filteredData.length} dari ${rows.length} siswa`;
+            renderPagination(totalPages);
+          }
+
+          function renderPagination(totalPages) {
+            paginationDiv.innerHTML = '';
+            if (totalPages <= 1) return; // Sembunyikan jika halaman hanya 1
+
+            for (let i = 1; i <= totalPages; i++) {
+              let btn = document.createElement('button');
+              btn.textContent = i;
+              btn.style.padding = '5px 10px';
+              btn.style.border = '1px solid #ccc';
+              btn.style.borderRadius = '4px';
+              btn.style.cursor = 'pointer';
+              btn.style.fontSize = '13px';
+              
+              if (i === currentPage) {
+                btn.style.background = '#1c7c91';
+                btn.style.color = 'white';
+                btn.style.fontWeight = 'bold';
+                btn.style.borderColor = '#1c7c91';
+              } else {
+                btn.style.background = '#fff';
+                btn.style.color = '#333';
+              }
+
+              btn.addEventListener('click', function() {
+                currentPage = i;
+                renderTable();
+              });
+
+              paginationDiv.appendChild(btn);
+            }
+          }
+
+          renderTable();
+
+          searchInput.addEventListener('input', function() { currentPage = 1; renderTable(); });
+          filterTahap.addEventListener('change', function() { currentPage = 1; renderTable(); });
+          filterStatus.addEventListener('change', function() { currentPage = 1; renderTable(); });
 
         } else {
           countSpan.textContent = 'Gagal memuat';
@@ -274,56 +382,126 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
         document.querySelector('#tablePemberian tbody').innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server worker.</td></tr>';
       });
 
-    // Data Nominasi Handle
+    // Data Nominasi
     fetch(WORKER_BASE_URL + '/pip-nominasi')
       .then(response => response.json())
       .then(res => {
         const tbody = document.querySelector('#tableNominasi tbody');
         const countSpan = document.getElementById('countNominasi');
+        const searchInput = document.getElementById('searchNominasi');
+        const filterTahap = document.getElementById('filterTahapNominasi');
+        const filterStatus = document.getElementById('filterStatusNominasi');
+        const paginationDiv = document.getElementById('paginationNominasi');
+
         tbody.innerHTML = '';
         
         if (res.success && res.data && res.data.data) {
           const rows = res.data.data;
-          countSpan.textContent = `Total: ${rows.length} siswa`;
+          let currentPage = 1;
 
           if (rows.length === 0) {
+            countSpan.textContent = `Total: 0 siswa`;
             tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
             return;
           }
 
-          function renderTableNominasi(dataList) {
-            tbody.innerHTML = '';
-            if (dataList.length === 0) {
-              tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px;">Data tidak ditemukan dalam pencarian.</td></tr>';
-              return;
-            }
-            dataList.forEach((row, index) => {
-              let tr = document.createElement('tr');
-              tr.innerHTML = `
-                <td style="padding: 8px 10px;">${index + 1}</td>
-                <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
-                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
-                <td style="padding: 8px 10px;">${row.jenis_kelamin || '-'}</td>
-                <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
-                <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
-                <td style="padding: 8px 10px;">${row.aktif || row.keterangan_pencairan || '-'}</td>
-              `;
-              tbody.appendChild(tr);
+          let tahapSet = new Set();
+          let statusSet = new Set();
+          rows.forEach(r => {
+            if (r.tahap_id) tahapSet.add(String(r.tahap_id));
+            if (r.aktif || r.keterangan_pencairan) statusSet.add(String(r.aktif || r.keterangan_pencairan));
+          });
+          populateDropdown(filterTahap, tahapSet);
+          populateDropdown(filterStatus, statusSet);
+
+          function getFilteredData() {
+            const keyword = searchInput.value.toLowerCase();
+            const selectedTahap = filterTahap.value;
+            const selectedStatus = filterStatus.value;
+
+            return rows.filter(r => {
+              const nisn = (r.nisn || '').toLowerCase();
+              const nama = (r.nama_pd || '').toLowerCase();
+              const tahap = String(r.tahap_id || '');
+              const status = String(r.aktif || r.keterangan_pencairan || '');
+
+              const matchText = nisn.includes(keyword) || nama.includes(keyword);
+              const matchTahap = !selectedTahap || tahap === selectedTahap;
+              const matchStatus = !selectedStatus || status === selectedStatus;
+
+              return matchText && matchTahap && matchStatus;
             });
           }
 
-          renderTableNominasi(rows);
+          function renderTable() {
+            const filteredData = getFilteredData();
+            const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE) || 1;
+            
+            if (currentPage > totalPages) currentPage = 1;
 
-          document.getElementById('searchNominasi').addEventListener('input', function(e) {
-            const keyword = e.target.value.toLowerCase();
-            const filtered = rows.filter(r => {
-              const nisn = (r.nisn || '').toLowerCase();
-              const nama = (r.nama_pd || '').toLowerCase();
-              const tahap = (r.tahap_id || '').toLowerCase();
-              return nisn.includes(keyword) || nama.includes(keyword) || tahap.includes(keyword);
-            });
-            renderTableNominasi(filtered);
-          });
+            const start = (currentPage - 1) * ROWS_PER_PAGE;
+            const paginatedData = filteredData.slice(start, start + ROWS_PER_PAGE);
+
+            tbody.innerHTML = '';
+            if (paginatedData.length === 0) {
+              tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 15px;">Data tidak ditemukan sesuai filter.</td></tr>';
+            } else {
+              paginatedData.forEach((row, index) => {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                  <td style="padding: 8px 10px;">${start + index + 1}</td>
+                  <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
+                  <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
+                  <td style="padding: 8px 10px;">${row.jenis_kelamin || '-'}</td>
+                  <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
+                  <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
+                  <td style="padding: 8px 10px;">${row.aktif || r.keterangan_pencairan || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+              });
+            }
+
+            countSpan.textContent = `Ditampilkan: ${filteredData.length} dari ${rows.length} siswa`;
+            renderPagination(totalPages);
+          }
+
+          function renderPagination(totalPages) {
+            paginationDiv.innerHTML = '';
+            if (totalPages <= 1) return;
+
+            for (let i = 1; i <= totalPages; i++) {
+              let btn = document.createElement('button');
+              btn.textContent = i;
+              btn.style.padding = '5px 10px';
+              btn.style.border = '1px solid #ccc';
+              btn.style.borderRadius = '4px';
+              btn.style.cursor = 'pointer';
+              btn.style.fontSize = '13px';
+              
+              if (i === currentPage) {
+                btn.style.background = '#1c7c91';
+                btn.style.color = 'white';
+                btn.style.fontWeight = 'bold';
+                btn.style.borderColor = '#1c7c91';
+              } else {
+                btn.style.background = '#fff';
+                btn.style.color = '#333';
+              }
+
+              btn.addEventListener('click', function() {
+                currentPage = i;
+                renderTable();
+              });
+
+              paginationDiv.appendChild(btn);
+            }
+          }
+
+          renderTable();
+
+          searchInput.addEventListener('input', function() { currentPage = 1; renderTable(); });
+          filterTahap.addEventListener('change', function() { currentPage = 1; renderTable(); });
+          filterStatus.addEventListener('change', function() { currentPage = 1; renderTable(); });
 
         } else {
           countSpan.textContent = 'Gagal memuat';
