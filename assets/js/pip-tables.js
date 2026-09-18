@@ -2,6 +2,30 @@ document.addEventListener("DOMContentLoaded", function () {
   const WORKER_BASE_URL = 'https://api.pip.sdislamiqrapetobo.sch.id';
   const ROWS_PER_PAGE = 10;
 
+  // Fungsi helper untuk mengisi dropdown secara dinamis
+  function populateSelect(selectElement, valuesSet, defaultText = "Semua Tahap") {
+    const currentValue = selectElement.value; // Simpan nilai yang sedang dipilih user jika ada
+    selectElement.innerHTML = `<option value="all">${defaultText}</option>`;
+    
+    Array.from(valuesSet).sort((a, b) => Number(a) - Number(b)).forEach(val => {
+      if (val && val !== 'all') {
+        let opt = document.createElement('option');
+        opt.value = val;
+        opt.textContent = `Tahap ${val}`;
+        opt.style.backgroundColor = 'var(--card-background, #222)';
+        opt.style.color = 'inherit';
+        selectElement.appendChild(opt);
+      }
+    });
+
+    // Kembalikan pilihan sebelumnya jika masih ada di opsi baru
+    if (Array.from(selectElement.options).some(opt => opt.value === currentValue)) {
+      selectElement.value = currentValue;
+    } else {
+      selectElement.value = 'all';
+    }
+  }
+
   function loadPemberianData() {
     const tahunVal = document.getElementById('filterTahunPemberian').value;
     const tahapVal = document.getElementById('filterTahapPemberian').value;
@@ -10,9 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
     
     const tbody = document.querySelector('#tablePemberian tbody');
     const countSpan = document.getElementById('countPemberian');
+    const selectTahap = document.getElementById('filterTahapPemberian');
+    
     tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Memuat data...</td></tr>';
 
-    let apiUrl = `${WORKER_BASE_URL}/pip-pemberian?tahun=${tahunVal}&tahap=${tahapVal}&cair=${statusVal}`;
+    let apiUrl = `${WORKER_BASE_URL}/pip-pemberian?tahun=${tahunVal}&tahap=all&cair=${statusVal}`;
 
     fetch(apiUrl)
       .then(response => response.json())
@@ -20,6 +46,22 @@ document.addEventListener("DOMContentLoaded", function () {
         if (res.success && res.data && res.data.data) {
           let rows = res.data.data;
 
+          // 1. Kumpulkan daftar tahap unik berdasarkan data yang diterima dari API (sesuai tahun)
+          let tahapSet = new Set();
+          rows.forEach(r => {
+            if (r.tahap_id) tahapSet.add(String(r.tahap_id));
+          });
+          populateSelect(selectTahap, tahapSet, "Semua Tahap");
+
+          // 2. Ambil ulang nilai tahap yang mungkin sudah ter-reset atau terpilih
+          const currentTahapVal = document.getElementById('filterTahapPemberian').value;
+
+          // 3. Filter lokal berdasarkan tahap jika user memilih tahap tertentu selain 'all'
+          if (currentTahapVal && currentTahapVal !== 'all') {
+            rows = rows.filter(r => String(r.tahap_id) === String(currentTahapVal));
+          }
+
+          // 4. Filter lokal pencarian teks nama/nisn
           if (searchKeyword) {
             rows = rows.filter(r => 
               (r.nisn || '').toLowerCase().includes(searchKeyword) || 
@@ -108,9 +150,11 @@ document.addEventListener("DOMContentLoaded", function () {
     
     const tbody = document.querySelector('#tableNominasi tbody');
     const countSpan = document.getElementById('countNominasi');
+    const selectTahap = document.getElementById('filterTahapNominasi');
+    
     tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Memuat data...</td></tr>';
 
-    let apiUrl = `${WORKER_BASE_URL}/pip-nominasi?tahun=${tahunVal}&tahap=${tahapVal}&aktif=${statusVal}`;
+    let apiUrl = `${WORKER_BASE_URL}/pip-nominasi?tahun=${tahunVal}&tahap=all&aktif=${statusVal}`;
 
     fetch(apiUrl)
       .then(response => response.json())
@@ -118,6 +162,22 @@ document.addEventListener("DOMContentLoaded", function () {
         if (res.success && res.data && res.data.data) {
           let rows = res.data.data;
 
+          // 1. Kumpulkan daftar tahap unik berdasarkan data tahun tersebut
+          let tahapSet = new Set();
+          rows.forEach(r => {
+            if (r.tahap_id) tahapSet.add(String(r.tahap_id));
+          });
+          populateSelect(selectTahap, tahapSet, "Semua Tahap");
+
+          // 2. Ambil nilai tahap aktif
+          const currentTahapVal = document.getElementById('filterTahapNominasi').value;
+
+          // 3. Filter lokal berdasarkan tahap
+          if (currentTahapVal && currentTahapVal !== 'all') {
+            rows = rows.filter(r => String(r.tahap_id) === String(currentTahapVal));
+          }
+
+          // 4. Filter lokal pencarian teks
           if (searchKeyword) {
             rows = rows.filter(r => 
               (r.nisn || '').toLowerCase().includes(searchKeyword) || 
@@ -198,7 +258,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // Panggil fungsi muat data pertama kali
+  // Panggil fungsi muat data pertama kali saat halaman dibuka
   loadPemberianData();
   loadNominasiData();
 
