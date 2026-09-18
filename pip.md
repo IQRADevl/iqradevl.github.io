@@ -85,21 +85,21 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
             },
             border: {
               color: gridColor
-            }
+          }
+        },
+        x: {
+          ticks: {
+            color: textColor
           },
-          x: {
-            ticks: {
-              color: textColor
-            },
-            grid: { 
-              display: false 
-            },
-            border: {
-              color: gridColor
-            }
+          grid: { 
+            display: false 
+          },
+          border: {
+            color: gridColor
           }
         }
       }
+    }
   });
 });
 </script>
@@ -149,18 +149,18 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 <!-- Panel Filter & Pencarian Nominasi -->
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
   <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
-    <input type="text" id="searchNominasi" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 180px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px;">
-    <select id="filterTahapNominasi" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff;">
+    <input type="text" id="searchNominasi" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 180px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
+    <select id="filterTahapNominasi" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
       <option value="">Semua Tahap</option>
     </select>
-    <select id="filterStatusNominasi" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff;">
+    <select id="filterStatusNominasi" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
       <option value="">Semua Status</option>
     </select>
   </div>
-  <span id="countNominasi" style="font-size: 13px; color: #666; font-weight: 500;">Memuat jumlah data...</span>
+  <span id="countNominasi" style="font-size: 13px; opacity: 0.8; font-weight: 500;">Memuat jumlah data...</span>
 </div>
 
-<div class="table-responsive" style="overflow-x: auto; margin-bottom: 10px; border-radius: 8px; border: 1px solid #e0e0e0;">
+<div class="table-responsive" style="overflow-x: auto; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border-color, #e0e0e0);">
   <table id="tableNominasi" class="table table-bordered table-striped" style="width:100%; min-width: 750px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
     <thead>
       <tr style="background: #1c7c91; color: white; text-align: left;">
@@ -191,19 +191,22 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 <!-- Panel Filter & Pencarian Pemberian -->
 <div style="margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
   <div style="display: flex; gap: 8px; flex-wrap: wrap; flex: 1;">
-    <input type="text" id="searchPemberian" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 180px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px;">
-    <select id="filterTahapPemberian" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff;">
+    <input type="text" id="searchPemberian" placeholder="Cari Nama / NISN..." style="padding: 6px 10px; flex: 1; min-width: 160px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
+    <select id="filterTahunPemberian" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
+      <option value="">Semua Tahun</option>
+    </select>
+    <select id="filterTahapPemberian" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
       <option value="">Semua Tahap</option>
     </select>
-    <select id="filterStatusPemberian" style="padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 13px; background: #fff;">
+    <select id="filterStatusPemberian" style="padding: 6px 10px; border: 1px solid var(--border-color, #ccc); border-radius: 6px; font-size: 13px; background: var(--input-bg, #fff); color: var(--text-color, inherit);">
       <option value="">Semua Status</option>
     </select>
   </div>
-  <span id="countPemberian" style="font-size: 13px; color: #666; font-weight: 500;">Memuat jumlah data...</span>
+  <span id="countPemberian" style="font-size: 13px; opacity: 0.8; font-weight: 500;">Memuat jumlah data...</span>
 </div>
 
-<div class="table-responsive" style="overflow-x: auto; margin-bottom: 10px; border-radius: 8px; border: 1px solid #e0e0e0;">
-  <table id="tablePemberian" class="table table-bordered table-striped" style="width:100%; min-width: 900px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
+<div class="table-responsive" style="overflow-x: auto; margin-bottom: 10px; border-radius: 8px; border: 1px solid var(--border-color, #e0e0e0);">
+  <table id="tablePemberian" class="table table-bordered table-striped" style="width:100%; min-width: 800px; font-size: 14px; border-collapse: collapse; margin-bottom: 0;">
     <thead>
       <tr style="background: #1c7c91; color: white; text-align: left;">
         <th style="padding: 10px;">No</th>
@@ -211,15 +214,13 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
         <th style="padding: 10px;">Nama Peserta Didik</th>
         <th style="padding: 10px;">Rombel</th>
         <th style="padding: 10px;">Tahap ID</th>
-        <th style="padding: 10px;">Tanggal Cair</th>
         <th style="padding: 10px;">Keterangan Pencairan</th>
         <th style="padding: 10px;">Tanggal SK</th>
-        <th style="padding: 10px;">Nomor SK</th>
         <th style="padding: 10px;">Status Cair</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td colspan="10" style="text-align: center; padding: 20px;">Memuat data Pemberian...</td></tr>
+      <tr><td colspan="8" style="text-align: center; padding: 20px;">Memuat data Pemberian...</td></tr>
     </tbody>
   </table>
 </div>
@@ -256,6 +257,7 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
         const tbody = document.querySelector('#tablePemberian tbody');
         const countSpan = document.getElementById('countPemberian');
         const searchInput = document.getElementById('searchPemberian');
+        const filterTahun = document.getElementById('filterTahunPemberian');
         const filterTahap = document.getElementById('filterTahapPemberian');
         const filterStatus = document.getElementById('filterStatusPemberian');
         const paginationDiv = document.getElementById('paginationPemberian');
@@ -268,119 +270,127 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
 
           if (rows.length === 0) {
             countSpan.textContent = `Total: 0 siswa`;
-            tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Tidak ada data ditemukan.</td></tr>';
             return;
           }
 
+          let tahunSet = new Set();
           let tahapSet = new Set();
           let statusSet = new Set();
           rows.forEach(r => {
+            if (r.tanggal_sk) {
+              let tahun = r.tanggal_sk.substring(0, 4);
+              tahunSet.add(tahun);
+            }
             if (r.tahap_id) tahapSet.add(String(r.tahap_id));
             if (r.status_cair) statusSet.add(String(r.status_cair));
           });
-          populateDropdown(filterTahap, tahapSet);
-          populateDropdown(filterStatus, statusSet);
+          populateDropdown(filterTahun, tahunSet);
+        populateDropdown(filterTahap, tahapSet);
+        populateDropdown(filterStatus, statusSet);
 
-          function getFilteredData() {
-            const keyword = searchInput.value.toLowerCase();
-            const selectedTahap = filterTahap.value;
-            const selectedStatus = filterStatus.value;
+        function getFilteredData() {
+          const keyword = searchInput.value.toLowerCase();
+          const selectedTahun = filterTahun.value;
+          const selectedTahap = filterTahap.value;
+          const selectedStatus = filterStatus.value;
 
-            return rows.filter(r => {
-              const nisn = (r.nisn || '').toLowerCase();
-              const nama = (r.nama_pd || '').toLowerCase();
-              const tahap = String(r.tahap_id || '');
-              const status = String(r.status_cair || '');
+          return rows.filter(r => {
+            const nisn = (r.nisn || '').toLowerCase();
+            const nama = (r.nama_pd || '').toLowerCase();
+            const tahun = r.tanggal_sk ? r.tanggal_sk.substring(0, 4) : '';
+            const tahap = String(r.tahap_id || '');
+            const status = String(r.status_cair || '');
 
-              const matchText = nisn.includes(keyword) || nama.includes(keyword);
-              const matchTahap = !selectedTahap || tahap === selectedTahap;
-              const matchStatus = !selectedStatus || status === selectedStatus;
+            const matchText = nisn.includes(keyword) || nama.includes(keyword);
+            const matchTahun = !selectedTahun || tahun === selectedTahun;
+            const matchTahap = !selectedTahap || tahap === selectedTahap;
+            const matchStatus = !selectedStatus || status === selectedStatus;
 
-              return matchText && matchTahap && matchStatus;
-            });
-          }
-
-          function renderTable() {
-            const filteredData = getFilteredData();
-            const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE) || 1;
-            
-            if (currentPage > totalPages) currentPage = 1;
-
-            const start = (currentPage - 1) * ROWS_PER_PAGE;
-            const paginatedData = filteredData.slice(start, start + ROWS_PER_PAGE);
-
-            tbody.innerHTML = '';
-            if (paginatedData.length === 0) {
-              tbody.innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 15px;">Data tidak ditemukan sesuai filter.</td></tr>';
-            } else {
-              paginatedData.forEach((row, index) => {
-                let tr = document.createElement('tr');
-                tr.innerHTML = `
-                  <td style="padding: 8px 10px;">${start + index + 1}</td>
-                  <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
-                  <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
-                  <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
-                  <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
-                  <td style="padding: 8px 10px;">${row.tanggal_cair || '-'}</td>
-                  <td style="padding: 8px 10px;">${row.keterangan_pencairan || '-'}</td>
-                  <td style="padding: 8px 10px;">${row.tanggal_sk || '-'}</td>
-                  <td style="padding: 8px 10px;">${row.nomor_sk || '-'}</td>
-                  <td style="padding: 8px 10px; font-weight: 600; color: ${row.status_cair === 'Sudah Cair' ? '#0e6b58' : '#d9534f'};">${row.status_cair || '-'}</td>
-              `;
-              tbody.appendChild(tr);
-            });
-          }
-
-          countSpan.textContent = `Ditampilkan: ${filteredData.length} dari ${rows.length} siswa`;
-          renderPagination(totalPages);
-        }
-
-        function renderPagination(totalPages) {
-          paginationDiv.innerHTML = '';
-          if (totalPages <= 1) return;
-
-          for (let i = 1; i <= totalPages; i++) {
-            let btn = document.createElement('button');
-            btn.textContent = i;
-            btn.style.padding = '5px 10px';
-            btn.style.border = '1px solid #ccc';
-            btn.style.borderRadius = '4px';
-            btn.style.cursor = 'pointer';
-            btn.style.fontSize = '13px';
-            
-            if (i === currentPage) {
-              btn.style.background = '#1c7c91';
-              btn.style.color = 'white';
-              btn.style.fontWeight = 'bold';
-              btn.style.borderColor = '#1c7c91';
-            } else {
-              btn.style.background = '#fff';
-              btn.style.color = '#333';
-          }
-
-          btn.addEventListener('click', function() {
-            currentPage = i;
-            renderTable();
-          });
-
-          paginationDiv.appendChild(btn);
-        }
+            return matchText && matchTahun && matchTahap && matchStatus;
+        });
       }
 
-      renderTable();
+      function renderTable() {
+          const filteredData = getFilteredData();
+          const totalPages = Math.ceil(filteredData.length / ROWS_PER_PAGE) || 1;
+          
+          if (currentPage > totalPages) currentPage = 1;
 
-      searchInput.addEventListener('input', function() { currentPage = 1; renderTable(); });
-      filterTahap.addEventListener('change', function() { currentPage = 1; renderTable(); });
-      filterStatus.addEventListener('change', function() { currentPage = 1; renderTable(); });
+          const start = (currentPage - 1) * ROWS_PER_PAGE;
+          const paginatedData = filteredData.slice(start, start + ROWS_PER_PAGE);
+
+          tbody.innerHTML = '';
+          if (paginatedData.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px;">Data tidak ditemukan sesuai filter.</td></tr>';
+          } else {
+            paginatedData.forEach((row, index) => {
+              let tr = document.createElement('tr');
+              tr.innerHTML = `
+                <td style="padding: 8px 10px;">${start + index + 1}</td>
+                <td style="padding: 8px 10px;">${row.nisn || '-'}</td>
+                <td style="padding: 8px 10px; font-weight: 500;">${row.nama_pd || '-'}</td>
+                <td style="padding: 8px 10px;">${row.rombel || row.kelas || '-'}</td>
+                <td style="padding: 8px 10px; text-align: center; font-weight: 600;">${row.tahap_id || '-'}</td>
+                <td style="padding: 8px 10px;">${row.keterangan_pencairan || '-'}</td>
+                <td style="padding: 8px 10px;">${row.tanggal_sk || '-'}</td>
+                <td style="padding: 8px 10px; font-weight: 600; color: ${row.status_cair === 'Sudah Cair' ? '#2ecc71' : '#e74c3c'};">${row.status_cair || '-'}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+      }
+
+      countSpan.textContent = `Ditampilkan: ${filteredData.length} dari ${rows.length} siswa`;
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+        paginationDiv.innerHTML = '';
+        if (totalPages <= 1) return;
+
+        for (let i = 1; i <= totalPages; i++) {
+          let btn = document.createElement('button');
+          btn.textContent = i;
+          btn.style.padding = '5px 10px';
+          btn.style.border = '1px solid var(--border-color, #ccc)';
+          btn.style.borderRadius = '4px';
+          btn.style.cursor = 'pointer';
+          btn.style.fontSize = '13px';
+          
+          if (i === currentPage) {
+            btn.style.background = '#1c7c91';
+            btn.style.color = 'white';
+            btn.style.fontWeight = 'bold';
+            btn.style.borderColor = '#1c7c91';
+          } else {
+            btn.style.background = 'var(--input-bg, #fff)';
+            btn.style.color = 'var(--text-color, #333)';
+        }
+
+        btn.addEventListener('click', function() {
+          currentPage = i;
+          renderTable();
+        });
+
+        paginationDiv.appendChild(btn);
+      }
+    }
+
+    renderTable();
+
+    searchInput.addEventListener('input', function() { currentPage = 1; renderTable(); });
+    filterTahun.addEventListener('change', function() { currentPage = 1; renderTable(); });
+    filterTahap.addEventListener('change', function() { currentPage = 1; renderTable(); });
+    filterStatus.addEventListener('change', function() { currentPage = 1; renderTable(); });
 
     } else {
       countSpan.textContent = 'Gagal memuat';
-      tbody.innerHTML = `<tr><td colspan="10" style="text-align: center; padding: 15px; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa'}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">Gagal memuat: ${res.message || 'Sesi kedaluwarsa'}</td></tr>`;
     }
   })
   .catch(err => {
     document.getElementById('countPemberian').textContent = 'Koneksi Gagal';
-    document.querySelector('#tablePemberian tbody').innerHTML = '<tr><td colspan="10" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server worker.</td></tr>';
+    document.querySelector('#tablePemberian tbody').innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">Gagal terhubung ke server worker.</td></tr>';
   });
 
   // Data Nominasi
@@ -459,14 +469,14 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
               <td style="padding: 8px 10px;">${row.aktif || row.keterangan_pencairan || '-'}</td>
             `;
             tbody.appendChild(tr);
-          });
-        }
-
-        countSpan.textContent = `Ditampilkan: ${filteredData.length} dari ${rows.length} siswa`;
-        renderPagination(totalPages);
+        });
       }
 
-      function renderPagination(totalPages) {
+      countSpan.textContent = `Ditampilkan: ${filteredData.length} dari ${rows.length} siswa`;
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
         paginationDiv.innerHTML = '';
         if (totalPages <= 1) return;
 
@@ -474,7 +484,7 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
           let btn = document.createElement('button');
           btn.textContent = i;
           btn.style.padding = '5px 10px';
-          btn.style.border = '1px solid #ccc';
+          btn.style.border = '1px solid var(--border-color, #ccc)';
           btn.style.borderRadius = '4px';
           btn.style.cursor = 'pointer';
           btn.style.fontSize = '13px';
@@ -485,24 +495,24 @@ Terima kasih atas kerja samanya demi kelancaran pencairan bantuan PIP putra-putr
             btn.style.fontWeight = 'bold';
             btn.style.borderColor = '#1c7c91';
           } else {
-            btn.style.background = '#fff';
-            btn.style.color = '#333';
-          }
-
-          btn.addEventListener('click', function() {
-            currentPage = i;
-            renderTable();
-          });
-
-          paginationDiv.appendChild(btn);
+            btn.style.background = 'var(--input-bg, #fff)';
+            btn.style.color = 'var(--text-color, #333)';
         }
+
+        btn.addEventListener('click', function() {
+          currentPage = i;
+          renderTable();
+        });
+
+        paginationDiv.appendChild(btn);
       }
+    }
 
-      renderTable();
+    renderTable();
 
-      searchInput.addEventListener('input', function() { currentPage = 1; renderTable(); });
-      filterTahap.addEventListener('change', function() { currentPage = 1; renderTable(); });
-      filterStatus.addEventListener('change', function() { currentPage = 1; renderTable(); });
+    searchInput.addEventListener('input', function() { currentPage = 1; renderTable(); });
+    filterTahap.addEventListener('change', function() { currentPage = 1; renderTable(); });
+    filterStatus.addEventListener('change', function() { currentPage = 1; renderTable(); });
 
     } else {
       countSpan.textContent = 'Gagal memuat';
