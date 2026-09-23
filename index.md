@@ -15,7 +15,6 @@ title: Beranda
         <a class="btn btn--ghost" href="{{ '/profil/' | relative_url }}">Kenali Sekolah Kami</a>
       </div>
     </div>
-
     <div class="hero__stats">
       <div class="hero__stat">
         <strong>{{ site.school.founded }}</strong>
