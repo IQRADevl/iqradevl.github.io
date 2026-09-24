@@ -10,8 +10,6 @@
   var statsVisible = false;
   var animated = false;
 
-  statsContainer.classList.remove("hero__stats");
-
   function isPureNumber(value) {
     return /^\d+$/.test(value);
   }
@@ -66,7 +64,12 @@
     });
   }
 
-  fetch(apiUrl)
+  var controller = new AbortController();
+  var timeout = setTimeout(function () {
+    controller.abort();
+  }, 10000);
+
+  fetch(apiUrl, { signal: controller.signal })
     .then(function (response) {
       if (!response.ok) throw new Error("Gagal mengambil data Dapodik");
       return response.json();
@@ -76,14 +79,10 @@
       return;
     })
     .finally(function () {
+      clearTimeout(timeout);
       apiSettled = true;
       maybeStartCounter();
-      statsContainer.classList.add("hero__stats");
     });
-
-  setTimeout(function () {
-    statsContainer.classList.add("hero__stats");
-  }, 0);
 
   if ("IntersectionObserver" in window) {
     var observer = new IntersectionObserver(function (entries) {

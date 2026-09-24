@@ -60,7 +60,7 @@
   }
 
   /* ---------- Animasi Statistik / Counter ---------- */
-  var statsContainer = document.querySelector(".hero__stats");
+  var statsContainer = document.querySelector(".hero__stats:not([data-animation-owner])");
 
   if (statsContainer) {
     var animated = false;
