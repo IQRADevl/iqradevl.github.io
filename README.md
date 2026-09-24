@@ -10,6 +10,7 @@ Website resmi SD Islam Iqra Petobo yang dikembangkan dengan Jekyll dan dihosting
 - Halaman berita dengan pagination
 - Halaman PPDB dan profil sekolah
 - Halaman PIP dengan pencarian, filter tahap/status, dan tabel data dinamis
+- Hero stat sekolah dengan data Dapodik dan fallback konfigurasi lokal
 - SEO dasar siap pakai via Jekyll SEO Tag, sitemap, dan feed
 
 ## Prasyarat
@@ -18,6 +19,10 @@ Pastikan di komputer sudah terpasang:
 
 - Ruby
 - Bundler
+
+Gunakan Ruby 3.2 atau 3.3 untuk kompatibilitas dengan versi `github-pages` pada
+project ini. Ruby 4.0 belum kompatibel dengan dependency Liquid/Jekyll yang
+digunakan.
 
 Untuk deploy di GitHub Pages, project ini menggunakan konfigurasi yang kompatibel dengan `github-pages` agar build aman dan konsisten.
 
@@ -45,6 +50,7 @@ _includes/                   Header, footer, dan metadata HTML
 _posts/                      File berita dan pengumuman
 assets/css/style.scss        Styling utama situs
 assets/js/main.js            Script umum situs
+assets/js/dapo.js            Data hero stat Dapodik dan animasi counter
 assets/js/pip-tables.js      Script tabel PIP (filter, pencarian, pagination)
 index.md                     Halaman depan
 profil.md                    Profil sekolah
@@ -72,6 +78,26 @@ Atur nilai berikut sesuai kenyataan sekolah:
 - `school.students`
 - `school.teachers`
 - `school.accreditation`
+
+Nilai `school.students`, `school.teachers`, dan `school.accreditation` juga
+digunakan sebagai fallback hero stat. Saat halaman dibuka, `assets/js/dapo.js`
+mencoba mengambil data dari API Dapodik. Field API yang digunakan adalah:
+
+```json
+{
+	"data": [
+		{
+			"akreditasi": "B",
+			"pd": 108,
+			"jum_ptk": 11
+		}
+	]
+}
+```
+
+Jika API gagal, timeout, atau field tidak tersedia, nilai dari `_config.yml`
+tetap digunakan. Animasi counter dimulai setelah sumber data selesai diproses,
+baik data tersebut berasal dari API maupun fallback.
 
 ### `Gemfile`
 
@@ -130,6 +156,10 @@ Beberapa fitur khusus dibuat dengan JavaScript pada `assets/js/pip-tables.js`, m
 - filter tahap dan status
 - paginasi tabel PIP
 - pengambilan data real-time dari API sekolah
+
+Hero stat dikelola terpisah oleh `assets/js/dapo.js`. Script ini tidak mengubah
+`main.js`, menjalankan animasi satu kali ketika hero terlihat, dan mengambil
+data dari endpoint API yang dikonfigurasi di dalam script tersebut.
 
 ## Kredit
 
