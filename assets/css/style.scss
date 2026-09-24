@@ -1099,3 +1099,68 @@ figure.img-large img {
   stroke-linejoin: round;
   fill: none;
 }
+
+.school-report { margin-top: 2rem; }
+.report-status {
+  margin: 0 0 1rem;
+  padding: .75rem 1rem;
+  border-left: 3px solid var(--teal-600);
+  background: var(--bg-alt);
+  color: var(--ink-soft);
+}
+.school-report.has-error .report-status { border-left-color: #b34a3c; }
+.report-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem 1.5rem;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-soft);
+  font-size: .9rem;
+}
+.report-section { margin-top: 2.5rem; }
+.report-section h2 { font-size: 1.45rem; }
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+.report-grid > div {
+  padding: .85rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.report-grid > div:nth-child(odd) { padding-right: 1.5rem; }
+.report-grid > div:nth-child(even) { padding-left: 1.5rem; border-left: 1px solid var(--line); }
+.report-grid__wide { grid-column: 1 / -1; }
+.report-grid > .report-grid__wide { padding-right: 0; padding-left: 0; border-left: 0; }
+.report-grid dt { color: var(--ink-soft); font-size: .88rem; }
+.report-grid dd { margin: .15rem 0 0; color: var(--ink); font-weight: 600; }
+.report-grid--numbers dd { color: var(--teal-700); font-family: var(--font-display); font-size: 1.35rem; }
+.report-note { margin-top: 2rem; color: var(--ink-soft); font-size: .9rem; }
+.report-table-wrap { overflow-x: auto; }
+.report-table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--line); }
+.report-table th,
+.report-table td { padding: .8rem 1rem; border-bottom: 1px solid var(--line); text-align: left; }
+.report-table td { text-align: right; color: var(--teal-700); font-weight: 700; }
+.report-table__total th,
+.report-table__total td { border-top: 2px solid var(--line); font-weight: 700; }
+.report-charts { display: grid; gap: 1.25rem; }
+.report-chart { padding: 1rem 0; border-top: 1px solid var(--line); }
+.report-chart h3 { font-size: 1.1rem; }
+.bar-chart { display: grid; gap: .75rem; }
+.bar-row { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) 2.5rem; align-items: center; gap: .7rem; font-size: .88rem; }
+.bar-row > strong { text-align: right; color: var(--teal-700); }
+.bar-track { height: .65rem; overflow: hidden; background: var(--teal-100); border-radius: 99px; }
+.bar-fill { display: block; width: 0; height: 100%; border-radius: inherit; background: var(--teal-600); transition: width .7s ease; }
+.school-report:not(.is-loaded) .bar-fill { width: 0 !important; }
+
+@media (max-width: 560px) {
+  .report-grid { grid-template-columns: 1fr; }
+  .report-grid > div:nth-child(even),
+  .report-grid > .report-grid__wide { padding-left: 0; padding-right: 0; border-left: 0; }
+  .report-grid__wide { grid-column: auto; }
+  .bar-row { grid-template-columns: 4.5rem minmax(0, 1fr) 2.25rem; gap: .45rem; }
+}

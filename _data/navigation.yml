@@ -2,6 +2,8 @@
   url: /
 - title: Profil
   url: /profil/
+- title: Data Sekolah
+  url: /data-induk-sekolah/
 
 - title: Berita
   url: /berita/
