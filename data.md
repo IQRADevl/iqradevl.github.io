@@ -3,6 +3,7 @@ layout: page
 title: Data Induk Sekolah
 section: Transparansi
 excerpt_text: Ringkasan data sekolah yang bersumber dari pembaruan terbaru Dapodik.
+permalink: /data/
 ---
 
 <div class="school-report" data-school-report>
