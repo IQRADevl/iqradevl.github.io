@@ -178,8 +178,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       })
       .catch(error => {
-        countSpan.textContent = 'Koneksi Gagal';
-        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">${error.message || 'Gagal terhubung ke server.'}</td></tr>`;
+        console.error('Gagal memuat data PIP pemberian:', error);
+        countSpan.textContent = 'Data tidak tersedia';
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px; color: #b42318;">Data PIP sedang tidak tersedia. Silakan coba lagi nanti.</td></tr>';
       });
   }
 
@@ -320,8 +321,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       })
       .catch(error => {
-        countSpan.textContent = 'Koneksi Gagal';
-        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; padding: 15px; color: red;">${error.message || 'Gagal terhubung ke server.'}</td></tr>`;
+        console.error('Gagal memuat data PIP nominasi:', error);
+        countSpan.textContent = 'Data tidak tersedia';
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 15px; color: #b42318;">Data PIP sedang tidak tersedia. Silakan coba lagi nanti.</td></tr>';
       });
   }
 
