@@ -21,15 +21,15 @@ title: Beranda
         <span>Tahun berdiri</span>
       </div>
       <div class="hero__stat">
-        <strong>{{ site.school.students }}</strong>
+        <strong data-api-field="pd">{{ site.school.students }}</strong>
         <span>Siswa aktif</span>
       </div>
       <div class="hero__stat">
-        <strong>{{ site.school.teachers }}</strong>
+        <strong data-api-field="jum_ptk">{{ site.school.teachers }}</strong>
         <span>Tenaga pengajar</span>
       </div>
       <div class="hero__stat">
-        <strong>{{ site.school.accreditation }}</strong>
+        <strong data-api-field="akreditasi">{{ site.school.accreditation }}</strong>
         <span>Akreditasi</span>
       </div>
     </div>
