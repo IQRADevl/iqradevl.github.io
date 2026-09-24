@@ -4,7 +4,7 @@
   var statsContainer = document.querySelector(".hero__stats");
   if (!statsContainer) return;
 
-  var apiUrl = "https://api.dapo.sdislamiqrapetobo.sch.id";
+  var apiUrl = "https://api.dapo.sdislamiqrapetobo.sch.id/getData?npsn=40203707";
   var statElements = statsContainer.querySelectorAll(".hero__stat strong");
   var apiSettled = false;
   var statsVisible = false;
@@ -50,8 +50,26 @@
     }
   }
 
+  function getLatestRecord(payload) {
+    var records = payload && Array.isArray(payload.data) ? payload.data : [];
+    var latestRecord = null;
+    var latestTimestamp = -Infinity;
+
+    records.forEach(function (record) {
+      if (!record || typeof record !== "object") return;
+
+      var timestamp = Date.parse(record.tanggal_update);
+      if (!isNaN(timestamp) && timestamp > latestTimestamp) {
+        latestRecord = record;
+        latestTimestamp = timestamp;
+      }
+    });
+
+    return latestRecord;
+  }
+
   function applyApiStats(payload) {
-    var row = payload && Array.isArray(payload.data) ? payload.data[0] : null;
+    var row = getLatestRecord(payload);
     if (!row || typeof row !== "object") return;
 
     statElements.forEach(function (element) {
