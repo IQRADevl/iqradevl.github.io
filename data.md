@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Data Induk Sekolah
-section: Transparansi
+section: Data Induk Sekolah
 excerpt_text: Ringkasan data sekolah yang bersumber dari pembaruan terbaru Dapodik.
 permalink: /data/
 ---
