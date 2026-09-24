@@ -1,7 +1,12 @@
 - title: Beranda
   url: /
-- title: Profil
-  url: /profil/
+- title : Tentang Kami
+  url: #
+  subitems:
+    - title: Profil
+      url: /profil/
+    - title: Data Induk Sekolah
+      url: /data/
 - title: Berita
   url: /berita/
 - title: PPDB
@@ -11,8 +16,6 @@
 - title : Layanan
   url: #
   subitems:
-    - title: Data Induk Sekolah
-      url: /data/
     - title: Erapor
       url: https://erapor.sdislamiqrapetobo.sch.id
     - title: Validasi Dokumen
