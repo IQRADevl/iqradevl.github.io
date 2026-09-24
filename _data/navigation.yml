@@ -2,9 +2,6 @@
   url: /
 - title: Profil
   url: /profil/
-- title: Data Sekolah
-  url: /data-induk-sekolah/
-
 - title: Berita
   url: /berita/
 - title: PPDB
@@ -20,6 +17,8 @@
       url: https://vrai.sdislamiqrapetobo.sch.id
     - title: Perpustakaan Digital
       url: https://nurulilmi.sdislamiqrapetobo.sch.id
+    - title: Data Sekolah
+      url: /data/
 - title: Kontak
   url: /kontak/
 
