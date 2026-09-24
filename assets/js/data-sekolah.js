@@ -77,6 +77,31 @@
     renderClassChart(record);
   }
 
+  function renderMap(record) {
+    var map = report.querySelector("[data-report-map]");
+    var mapLink = report.querySelector("[data-map-link]");
+    var latitude = Number(record.lintang);
+    var longitude = Number(record.bujur);
+    var validCoordinates = Number.isFinite(latitude) && Number.isFinite(longitude) &&
+      latitude >= -90 && latitude <= 90 && longitude >= -180 && longitude <= 180;
+
+    if (!map || !validCoordinates) return;
+
+    var coordinates = latitude + "," + longitude;
+    var mapUrl = "https://www.google.com/maps?q=" + encodeURIComponent(coordinates) + "&z=17&output=embed";
+    var mapLinkUrl = "https://www.google.com/maps?q=" + encodeURIComponent(coordinates);
+    var iframe = document.createElement("iframe");
+
+    iframe.src = mapUrl;
+    iframe.title = "Peta lokasi sekolah";
+    iframe.loading = "lazy";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.setAttribute("allowfullscreen", "");
+    map.replaceChildren(iframe);
+
+    if (mapLink) mapLink.href = mapLinkUrl;
+  }
+
   function renderRecord(record) {
     report.querySelectorAll("[data-field]").forEach(function (element) {
       var field = element.getAttribute("data-field");
@@ -84,6 +109,7 @@
     });
 
     renderBars(record);
+    renderMap(record);
 
     report.classList.add("is-loaded");
     if (statusElement) statusElement.textContent = "Data berhasil diperbarui.";

@@ -1140,6 +1140,10 @@ figure.img-large img {
 .report-grid dd { margin: .15rem 0 0; color: var(--ink); font-weight: 600; }
 .report-grid--numbers dd { color: var(--teal-700); font-family: var(--font-display); font-size: 1.35rem; }
 .report-note { margin-top: 2rem; color: var(--ink-soft); font-size: .9rem; }
+.report-map { overflow: hidden; min-height: 320px; border: 1px solid var(--line); background: var(--bg-alt); }
+.report-map iframe { display: block; width: 100%; min-height: 320px; border: 0; }
+.report-map__status { display: grid; min-height: 320px; margin: 0; place-items: center; color: var(--ink-soft); }
+.report-map__link { display: inline-block; margin-top: .75rem; font-size: .9rem; }
 .report-table-wrap { overflow-x: auto; }
 .report-table { width: 100%; border-collapse: collapse; border-top: 1px solid var(--line); }
 .report-table th,

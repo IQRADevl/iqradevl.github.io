@@ -23,7 +23,17 @@ permalink: /data/
 			<div><dt>SK pendirian sekolah</dt><dd data-field="sk_pendirian_sekolah">-</dd></div>
 			<div><dt>SK izin operasional</dt><dd data-field="sk_izin_operasional">-</dd></div>
 			<div><dt>Tanggal izin operasional</dt><dd data-field="tlg_sk_izin_operasional">-</dd></div>
+			<div><dt>Lintang</dt><dd data-field="lintang">-</dd></div>
+			<div><dt>Bujur</dt><dd data-field="bujur">-</dd></div>
 		</dl>
+	</section>
+
+	<section class="report-section" aria-labelledby="report-location">
+		<h2 id="report-location">Lokasi sekolah</h2>
+		<div class="report-map" data-report-map>
+			<p class="report-map__status">Memuat peta...</p>
+		</div>
+		<a class="report-map__link" data-map-link target="_blank" rel="noopener noreferrer">Buka lokasi di Google Maps</a>
 	</section>
 
 	<section class="report-section" aria-labelledby="report-students">
