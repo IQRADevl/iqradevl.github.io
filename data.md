@@ -80,6 +80,15 @@ permalink: /data/
 		</div>
 	</section>
 
+	<section class="report-section" aria-labelledby="report-staff">
+		<h2 id="report-staff">Ringkasan tenaga pendidikan</h2>
+		<dl class="report-grid report-grid--numbers">
+			<div><dt>Jumlah PTK</dt><dd data-field="jum_ptk">-</dd></div>
+			<div><dt>Jumlah guru</dt><dd data-field="jum_guru">-</dd></div>
+			<div><dt>Jumlah tendik</dt><dd data-field="jum_tendik">-</dd></div>
+		</dl>
+	</section>
+
 	<section class="report-section" aria-labelledby="report-ikd">
 		<h2 id="report-ikd">Indeks Kualitas Data (IKD)</h2>
 		<p data-ikd-status aria-live="polite">Memuat data IKD...</p>
@@ -91,15 +100,6 @@ permalink: /data/
 				<tbody data-ikd-rows></tbody>
 			</table>
 		</div>
-	</section>
-
-	<section class="report-section" aria-labelledby="report-staff">
-		<h2 id="report-staff">Ringkasan tenaga pendidikan</h2>
-		<dl class="report-grid report-grid--numbers">
-			<div><dt>Jumlah PTK</dt><dd data-field="jum_ptk">-</dd></div>
-			<div><dt>Jumlah guru</dt><dd data-field="jum_guru">-</dd></div>
-			<div><dt>Jumlah tendik</dt><dd data-field="jum_tendik">-</dd></div>
-		</dl>
 	</section>
 
 	<p class="report-note">Data ditampilkan dari record Dapodik dengan tanggal pembaruan paling baru.</p>
