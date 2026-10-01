@@ -80,6 +80,19 @@ permalink: /data/
 		</div>
 	</section>
 
+	<section class="report-section" aria-labelledby="report-ikd">
+		<h2 id="report-ikd">Indeks Kualitas Data (IKD)</h2>
+		<p data-ikd-status aria-live="polite">Memuat data IKD...</p>
+		<div class="report-table-wrap">
+			<table class="report-table">
+				<thead>
+					<tr><th scope="col">Entitas</th><th scope="col">Kelengkapan</th><th scope="col">Validitas</th><th scope="col">Mutakhir</th><th scope="col">Total</th></tr>
+				</thead>
+				<tbody data-ikd-rows></tbody>
+			</table>
+		</div>
+	</section>
+
 	<section class="report-section" aria-labelledby="report-staff">
 		<h2 id="report-staff">Ringkasan tenaga pendidikan</h2>
 		<dl class="report-grid report-grid--numbers">

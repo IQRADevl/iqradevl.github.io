@@ -5,6 +5,7 @@
   if (!report) return;
 
   var apiUrl = "https://api.dapo.sdislamiqrapetobo.sch.id/getData?npsn=40203707";
+  var ikdApiUrl = "https://api.dapo.sdislamiqrapetobo.sch.id/getIKD?npsn=40203707";
   var statusElement = report.querySelector("[data-report-status]");
   var updatedElement = report.querySelector("[data-field='tanggal_update']");
   var controller = new AbortController();
@@ -114,6 +115,60 @@
     report.classList.add("is-loaded");
     if (statusElement) statusElement.textContent = "Data berhasil diperbarui.";
   }
+
+  function formatPercent(value) {
+    var numericValue = Number(value);
+    return Number.isFinite(numericValue)
+      ? new Intl.NumberFormat("id-ID", { maximumFractionDigits: 1 }).format(numericValue) + "%"
+      : "-";
+  }
+
+  function renderIkd(payload) {
+    var rows = payload && Array.isArray(payload.data) ? payload.data : [];
+    var tableBody = report.querySelector("[data-ikd-rows]");
+    var ikdStatus = report.querySelector("[data-ikd-status]");
+
+    if (!rows.length || !tableBody) throw new Error("Data IKD tidak tersedia");
+
+    rows.forEach(function (record) {
+      if (!record || typeof record !== "object") return;
+
+      var row = document.createElement("tr");
+      var entity = document.createElement("th");
+      entity.scope = "row";
+      entity.textContent = String(record.entitas || "-").replace(/\s+/g, " ").trim();
+      row.appendChild(entity);
+
+      ["Kelengkapan", "Validitas", "Mutakhir", "total"].forEach(function (field) {
+        var cell = document.createElement("td");
+        cell.textContent = formatPercent(record[field]);
+        row.appendChild(cell);
+      });
+
+      tableBody.appendChild(row);
+    });
+
+    if (ikdStatus) ikdStatus.textContent = "Data IKD berhasil diperbarui.";
+  }
+
+  var ikdController = new AbortController();
+  var ikdTimeout = setTimeout(function () {
+    ikdController.abort();
+  }, 10000);
+
+  fetch(ikdApiUrl, { signal: ikdController.signal })
+    .then(function (response) {
+      if (!response.ok) throw new Error("Respons API IKD tidak berhasil");
+      return response.json();
+    })
+    .then(renderIkd)
+    .catch(function () {
+      var ikdStatus = report.querySelector("[data-ikd-status]");
+      if (ikdStatus) ikdStatus.textContent = "Data IKD belum dapat dimuat. Silakan coba lagi nanti.";
+    })
+    .finally(function () {
+      clearTimeout(ikdTimeout);
+    });
 
   fetch(apiUrl, { signal: controller.signal })
     .then(function (response) {
