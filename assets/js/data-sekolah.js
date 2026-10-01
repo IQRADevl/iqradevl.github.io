@@ -143,10 +143,11 @@
       var caption = document.createElement("figcaption");
 
       figure.className = "ikd-chart";
+      figure.style.setProperty("--ikd-delay", charts.children.length * 70 + "ms");
       ring.className = "ikd-chart__ring";
       ring.setAttribute("role", "img");
       ring.setAttribute("aria-label", "IKD " + entityName + ": " + formatPercent(record.total));
-      ring.style.setProperty("--ikd-value", score + "%");
+      ring.style.setProperty("--ikd-target", score + "%");
       scoreLabel.textContent = formatPercent(record.total);
       ring.appendChild(scoreLabel);
       caption.textContent = entityName;

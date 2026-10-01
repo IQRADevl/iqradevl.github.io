@@ -1154,8 +1154,29 @@ figure.img-large img {
 .report-charts { display: grid; gap: 1.25rem; }
 .report-chart { padding: 1rem 0; border-top: 1px solid var(--line); }
 .report-chart h3 { font-size: 1.1rem; }
+@property --ikd-value {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+@keyframes ikd-chart-reveal {
+  from { opacity: 0; transform: translateY(.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ikd-ring-fill {
+  from { --ikd-value: 0%; }
+  to { --ikd-value: var(--ikd-target); }
+}
 .ikd-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: 1.5rem 1rem; margin: 1.5rem 0; }
-.ikd-chart { display: grid; justify-items: center; gap: .65rem; margin: 0; text-align: center; }
+.ikd-chart {
+  display: grid;
+  justify-items: center;
+  gap: .65rem;
+  margin: 0;
+  text-align: center;
+  animation: ikd-chart-reveal .45s ease-out both;
+  animation-delay: var(--ikd-delay, 0ms);
+}
 .ikd-chart__ring {
   display: grid;
   width: 7.5rem;
@@ -1164,6 +1185,8 @@ figure.img-large img {
   position: relative;
   border-radius: 50%;
   background: conic-gradient(var(--teal-600) var(--ikd-value), var(--teal-100) 0);
+  animation: ikd-ring-fill .9s cubic-bezier(.2, .7, .2, 1) both;
+  animation-delay: var(--ikd-delay, 0ms);
 }
 .ikd-chart__ring::before { position: absolute; inset: .7rem; border-radius: 50%; background: var(--bg); content: ""; }
 .ikd-chart__ring strong { position: relative; color: var(--ink); font-family: var(--font-display); font-size: 1.15rem; }
