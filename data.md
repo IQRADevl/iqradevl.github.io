@@ -92,6 +92,7 @@ permalink: /data/
 	<section class="report-section" aria-labelledby="report-ikd">
 		<h2 id="report-ikd">Indeks Kualitas Data (IKD)</h2>
 		<p data-ikd-status aria-live="polite">Memuat data IKD...</p>
+		<div class="ikd-charts" data-ikd-charts aria-label="Grafik bundaran skor IKD per entitas"></div>
 		<div class="report-table-wrap">
 			<table class="report-table">
 				<thead>

@@ -1154,6 +1154,20 @@ figure.img-large img {
 .report-charts { display: grid; gap: 1.25rem; }
 .report-chart { padding: 1rem 0; border-top: 1px solid var(--line); }
 .report-chart h3 { font-size: 1.1rem; }
+.ikd-charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr)); gap: 1.5rem 1rem; margin: 1.5rem 0; }
+.ikd-chart { display: grid; justify-items: center; gap: .65rem; margin: 0; text-align: center; }
+.ikd-chart__ring {
+  display: grid;
+  width: 7.5rem;
+  aspect-ratio: 1;
+  place-items: center;
+  position: relative;
+  border-radius: 50%;
+  background: conic-gradient(var(--teal-600) var(--ikd-value), var(--teal-100) 0);
+}
+.ikd-chart__ring::before { position: absolute; inset: .7rem; border-radius: 50%; background: var(--bg); content: ""; }
+.ikd-chart__ring strong { position: relative; color: var(--ink); font-family: var(--font-display); font-size: 1.15rem; }
+.ikd-chart figcaption { color: var(--ink-soft); font-size: .9rem; }
 .bar-chart { display: grid; gap: .75rem; }
 .bar-row { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr) 2.5rem; align-items: center; gap: .7rem; font-size: .88rem; }
 .bar-row > strong { text-align: right; color: var(--teal-700); }

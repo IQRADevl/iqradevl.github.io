@@ -126,17 +126,38 @@
   function renderIkd(payload) {
     var rows = payload && Array.isArray(payload.data) ? payload.data : [];
     var tableBody = report.querySelector("[data-ikd-rows]");
+    var charts = report.querySelector("[data-ikd-charts]");
     var ikdStatus = report.querySelector("[data-ikd-status]");
 
-    if (!rows.length || !tableBody) throw new Error("Data IKD tidak tersedia");
+    if (!rows.length || !tableBody || !charts) throw new Error("Data IKD tidak tersedia");
 
     rows.forEach(function (record) {
       if (!record || typeof record !== "object") return;
 
+      var entityName = String(record.entitas || "-").replace(/\s+/g, " ").trim();
+      var total = Number(record.total);
+      var score = Number.isFinite(total) ? Math.max(0, Math.min(100, total)) : 0;
+      var figure = document.createElement("figure");
+      var ring = document.createElement("div");
+      var scoreLabel = document.createElement("strong");
+      var caption = document.createElement("figcaption");
+
+      figure.className = "ikd-chart";
+      ring.className = "ikd-chart__ring";
+      ring.setAttribute("role", "img");
+      ring.setAttribute("aria-label", "IKD " + entityName + ": " + formatPercent(record.total));
+      ring.style.setProperty("--ikd-value", score + "%");
+      scoreLabel.textContent = formatPercent(record.total);
+      ring.appendChild(scoreLabel);
+      caption.textContent = entityName;
+      figure.appendChild(ring);
+      figure.appendChild(caption);
+      charts.appendChild(figure);
+
       var row = document.createElement("tr");
       var entity = document.createElement("th");
       entity.scope = "row";
-      entity.textContent = String(record.entitas || "-").replace(/\s+/g, " ").trim();
+      entity.textContent = entityName;
       row.appendChild(entity);
 
       ["Kelengkapan", "Validitas", "Mutakhir", "total"].forEach(function (field) {
