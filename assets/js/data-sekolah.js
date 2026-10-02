@@ -124,52 +124,92 @@
   }
 
   function renderIkd(payload) {
-    var rows = payload && Array.isArray(payload.data) ? payload.data : [];
-    var tableBody = report.querySelector("[data-ikd-rows]");
-    var charts = report.querySelector("[data-ikd-charts]");
+    var sourceRows = payload && Array.isArray(payload.data) ? payload.data : [];
+    var overview = report.querySelector("[data-ikd-overview]");
+    var totalElement = report.querySelector("[data-ikd-total]");
+    var groupsElement = report.querySelector("[data-ikd-groups]");
     var ikdStatus = report.querySelector("[data-ikd-status]");
+    var fields = ["Kelengkapan", "Validitas", "Mutakhir", "total"];
+    var seen = Object.create(null);
+    var rows = [];
 
-    if (!rows.length || !tableBody || !charts) throw new Error("Data IKD tidak tersedia");
+    if (!sourceRows.length || !overview || !totalElement || !groupsElement) {
+      throw new Error("Data IKD tidak tersedia");
+    }
 
-    rows.forEach(function (record) {
+    sourceRows.forEach(function (record) {
       if (!record || typeof record !== "object") return;
 
       var entityName = String(record.entitas || "-").replace(/\s+/g, " ").trim();
-      var total = Number(record.total);
-      var score = Number.isFinite(total) ? Math.max(0, Math.min(100, total)) : 0;
-      var figure = document.createElement("figure");
-      var ring = document.createElement("div");
-      var scoreLabel = document.createElement("strong");
-      var caption = document.createElement("figcaption");
+      var values = fields.map(function (field) { return Number(record[field]); });
+      var fingerprint = JSON.stringify([entityName].concat(values));
 
-      figure.className = "ikd-chart";
-      figure.style.setProperty("--ikd-delay", charts.children.length * 70 + "ms");
-      ring.className = "ikd-chart__ring";
-      ring.setAttribute("role", "img");
-      ring.setAttribute("aria-label", "IKD " + entityName + ": " + formatPercent(record.total));
-      ring.style.setProperty("--ikd-target", score + "%");
-      scoreLabel.textContent = formatPercent(record.total);
-      ring.appendChild(scoreLabel);
-      caption.textContent = entityName;
-      figure.appendChild(ring);
-      figure.appendChild(caption);
-      charts.appendChild(figure);
-
-      var row = document.createElement("tr");
-      var entity = document.createElement("th");
-      entity.scope = "row";
-      entity.textContent = entityName;
-      row.appendChild(entity);
-
-      ["Kelengkapan", "Validitas", "Mutakhir", "total"].forEach(function (field) {
-        var cell = document.createElement("td");
-        cell.textContent = formatPercent(record[field]);
-        row.appendChild(cell);
-      });
-
-      tableBody.appendChild(row);
+      if (seen[fingerprint]) return;
+      seen[fingerprint] = true;
+      rows.push({ name: entityName, values: values });
     });
 
+    if (!rows.length) throw new Error("Data IKD tidak tersedia");
+
+    var groups = [
+      { name: "Kelengkapan", description: "Persentase kelengkapan data Dapodik", valueIndex: 0 },
+      { name: "Validitas", description: "Tingkat validitas data terhadap referensi", valueIndex: 1 },
+      { name: "Mutakhir", description: "Kebaruan pembaruan data per semester", valueIndex: 2 }
+    ];
+    var overallTotal = rows.reduce(function (sum, row) {
+      return sum + (Number.isFinite(row.values[3]) ? row.values[3] : 0);
+    }, 0) / rows.length;
+
+    totalElement.textContent = formatPercent(overallTotal);
+    groupsElement.replaceChildren();
+
+    groups.forEach(function (group) {
+      var groupTotal = rows.reduce(function (sum, row) {
+        return sum + (Number.isFinite(row.values[group.valueIndex]) ? row.values[group.valueIndex] : 0);
+      }, 0);
+      var groupAverage = groupTotal / rows.length;
+      var details = document.createElement("details");
+      var summary = document.createElement("summary");
+      var heading = document.createElement("span");
+      var score = document.createElement("strong");
+      var description = document.createElement("p");
+      var progress = document.createElement("div");
+      var entityList = document.createElement("div");
+
+      details.className = "ikd-group";
+      details.open = true;
+      summary.className = "ikd-group__summary";
+      heading.textContent = group.name;
+      score.textContent = formatPercent(groupAverage);
+      summary.append(heading, score);
+      description.className = "ikd-group__description";
+      description.textContent = group.description;
+      progress.className = "ikd-progress";
+      progress.setAttribute("role", "progressbar");
+      progress.setAttribute("aria-label", group.name);
+      progress.setAttribute("aria-valuemin", "0");
+      progress.setAttribute("aria-valuemax", "100");
+      progress.setAttribute("aria-valuenow", String(groupAverage));
+      progress.style.setProperty("--ikd-progress", Math.max(0, Math.min(100, groupAverage)) + "%");
+      entityList.className = "ikd-entity-list";
+
+      rows.forEach(function (row) {
+        var entity = document.createElement("div");
+        var entityName = document.createElement("span");
+        var entityScore = document.createElement("strong");
+
+        entity.className = "ikd-entity";
+        entityName.textContent = row.name;
+        entityScore.textContent = formatPercent(row.values[group.valueIndex]);
+        entity.append(entityName, entityScore);
+        entityList.appendChild(entity);
+      });
+
+      details.append(summary, description, progress, entityList);
+      groupsElement.appendChild(details);
+    });
+
+    overview.hidden = false;
     if (ikdStatus) ikdStatus.textContent = "Data IKD berhasil diperbarui.";
   }
 
