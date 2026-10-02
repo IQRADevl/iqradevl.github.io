@@ -92,14 +92,15 @@ permalink: /data/
 	<section class="report-section" aria-labelledby="report-ikd">
 		<h2 id="report-ikd">Indikator Kualitas Data (IKD)</h2>
 		<p data-ikd-status aria-live="polite">Memuat data IKD...</p>
-		<div class="ikd-charts" data-ikd-charts aria-label="Grafik bundaran skor IKD per entitas"></div>
-		<div class="report-table-wrap">
-			<table class="report-table">
-				<thead>
-					<tr><th scope="col">Entitas</th><th scope="col">Kelengkapan</th><th scope="col">Validitas</th><th scope="col">Mutakhir</th><th scope="col">Total</th></tr>
-				</thead>
-				<tbody data-ikd-rows></tbody>
-			</table>
+		<div class="ikd-overview" data-ikd-overview hidden>
+			<div class="ikd-total">
+				<div>
+					<h3>Indikator Kualitas Dapodik</h3>
+					<p>Ringkasan kelengkapan, validitas, dan kemutakhiran data</p>
+				</div>
+				<strong data-ikd-total>-</strong>
+			</div>
+			<div class="ikd-groups" data-ikd-groups></div>
 		</div>
 	</section>
 
