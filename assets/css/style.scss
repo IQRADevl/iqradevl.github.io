@@ -1172,13 +1172,11 @@ figure.img-large img {
 .ikd-group { min-width: 0; padding: 1rem; border: 1px solid var(--line); border-radius: 4px; background: var(--bg-alt); }
 .ikd-group__summary { display: flex; align-items: center; justify-content: space-between; gap: .75rem; cursor: pointer; font-weight: 700; }
 .ikd-group__summary strong { flex: 0 0 auto; color: var(--teal-700); font-family: var(--font-display); font-size: 1.2rem; }
-.ikd-group__description { margin: .3rem 0 .75rem; color: var(--ink-soft); font-size: .82rem; }
 .ikd-progress { height: .5rem; overflow: hidden; border-radius: 99px; background: var(--teal-100); }
 .ikd-progress::before { display: block; width: var(--ikd-progress); height: 100%; background: var(--teal-600); content: ""; }
 .ikd-entity-list { display: grid; gap: .55rem; margin-top: 1rem; }
 .ikd-entity { display: flex; justify-content: space-between; gap: .75rem; color: var(--ink-soft); font-size: .85rem; }
 .ikd-entity strong { flex: 0 0 auto; color: var(--ink); font-weight: 600; }
-.ikd-group:not([open]) .ikd-group__description,
 .ikd-group:not([open]) .ikd-progress,
 .ikd-group:not([open]) .ikd-entity-list { display: none; }
 .bar-chart { display: grid; gap: .75rem; }

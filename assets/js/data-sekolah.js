@@ -152,9 +152,9 @@
     if (!rows.length) throw new Error("Data IKD tidak tersedia");
 
     var groups = [
-      { name: "Kelengkapan", description: "Persentase kelengkapan data Dapodik", valueIndex: 0 },
-      { name: "Validitas", description: "Tingkat validitas data terhadap referensi", valueIndex: 1 },
-      { name: "Mutakhir", description: "Kebaruan pembaruan data per semester", valueIndex: 2 }
+      { name: "Kelengkapan", valueIndex: 0 },
+      { name: "Validitas", valueIndex: 1 },
+      { name: "Mutakhir", valueIndex: 2 }
     ];
     var overallTotal = rows.reduce(function (sum, row) {
       return sum + (Number.isFinite(row.values[3]) ? row.values[3] : 0);
@@ -172,7 +172,6 @@
       var summary = document.createElement("summary");
       var heading = document.createElement("span");
       var score = document.createElement("strong");
-      var description = document.createElement("p");
       var progress = document.createElement("div");
       var entityList = document.createElement("div");
 
@@ -182,8 +181,6 @@
       heading.textContent = group.name;
       score.textContent = formatPercent(groupAverage);
       summary.append(heading, score);
-      description.className = "ikd-group__description";
-      description.textContent = group.description;
       progress.className = "ikd-progress";
       progress.setAttribute("role", "progressbar");
       progress.setAttribute("aria-label", group.name);
@@ -205,7 +202,7 @@
         entityList.appendChild(entity);
       });
 
-      details.append(summary, description, progress, entityList);
+      details.append(summary, progress, entityList);
       groupsElement.appendChild(details);
     });
 
