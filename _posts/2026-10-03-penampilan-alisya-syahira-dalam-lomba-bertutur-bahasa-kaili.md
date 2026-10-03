@@ -19,7 +19,7 @@ Dalam perlombaan tersebut, Ananda Alisya sebagai pencerita membawakan sebuah mon
 Penampilannya di atas panggung sungguh luar biasa, penuh percaya diri, dan sangat menghayati setiap bait cerita bersejarah tersebut. 
 
 <figure class="img-small">
-  <img src="https://lh3.googleusercontent.com/d/11RjMU0z2Ro66lib8TNh-49phodxUGUiy" alt="Potret Alisya Syahira di Lomba Bertutur Bahasa Kaili">
+  <img src="https://lh3.googleusercontent.com/d/1uF6hc4lX-NPOg26qld-8-Tni73FWG6BCy" alt="Potret Alisya Syahira di Lomba Bertutur Bahasa Kaili">
   <figcaption>Penampilan anggun Alisya Syahira dalam balutan busana tradisional di acara Lomba Bertutur Bahasa Kaili.</figcaption>
 </figure>
 

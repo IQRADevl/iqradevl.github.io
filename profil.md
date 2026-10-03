@@ -7,7 +7,7 @@ permalink: /profil/
 
 
 <figure class="img-medium">
-  <img src="https://lh3.googleusercontent.com/d/1wm45SNL5PC2Z495t2TOLBSUYaOe7k8Ch" referrerpolicy="no-referrer" alt="Foto Guru dan Staf SD Islam Iqra Petobo">
+  <img src="https://lh3.googleusercontent.com/d/1isKYSA6CDk5GY1699upRGRLL0BvepQkR" referrerpolicy="no-referrer" alt="Foto Guru dan Staf SD Islam Iqra Petobo">
   <figcaption>Foto Guru dan Staf SD Islam Iqra Petobo</figcaption>
 </figure>
 
