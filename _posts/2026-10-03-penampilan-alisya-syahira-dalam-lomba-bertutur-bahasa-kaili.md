@@ -14,7 +14,7 @@ Pada tanggal 3 Oktober 2026, salah satu siswi berbakat dari SD Islam Iqra Petobo
 
 ## Membawakan Kisah Penuh Makna "Kinta"
 
-Dalam perlombaan tersebut, Ananda Alisya sebagai pencerita membawakan sebuah monolog yang berjudul **"KINTA: Sebuah Suara dari Balik Jemari Diliswarno"**. Kisah ini sangat menyentuh dan dekat dengan kita, karena mengangkat cerita tentang daerah Kinta di Petobo serta mengenang kembali peristiwa kelam likuifaksi yang terjadi pada 28 September silam. 
+Dalam perlombaan tersebut, Ananda Alisya sebagai pencerita membawakan sebuah monolog yang berjudul **"KINTA"**. Kisah ini sangat menyentuh dan dekat dengan kita, karena mengangkat cerita tentang daerah Kinta di Petobo serta mengenang kembali peristiwa kelam likuifaksi yang terjadi pada 28 September silam. 
 
 Penampilannya di atas panggung sungguh luar biasa, penuh percaya diri, dan sangat menghayati setiap bait cerita bersejarah tersebut. 
 
@@ -28,6 +28,7 @@ Meski pada kesempatan kali ini belum berhasil membawa pulang piala juara, semang
 ## Dukungan Penuh dari Tim Sekolah
 
 Penampilan gemilang Alisya tentunya tidak lepas dari persiapan yang matang dan dukungan penuh dari persembahan tim SD Islam Iqra Petobo. Kami mengucapkan terima kasih yang sebesar-besarnya kepada tim hebat yang telah mendampingi:
+- **Penulis Naskah**: Dili Swarno, S,Sn.
 - **Penerjemah**: Nurdin Saeno, S.E.
 - **Penanggungjawab**: Fitriani, S.Pd., M.Pd.
 - **Pendamping**: Winda
