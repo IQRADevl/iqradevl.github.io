@@ -187,6 +187,6 @@ Langkah-langkah strategis berikut disusun berdasarkan rekomendasi prioritas PBD 
 * Mendukung layanan dan lingkungan sekolah yang inklusif melalui kebijakan, program, dan pembiasaan yang menjamin penerimaan, perlindungan, partisipasi, serta kesempatan yang setara bagi murid penyandang disabilitas.
 
 ## Penutup
-Dinamika capaian pada periode 2022–2025 memberikan banyak ruang evaluasi bagi kami. Setiap capaian positif menjadi dorongan semangat, sementara tantangan yang ada menjadi dasar untuk terus berbenah.
+Dinamika capaian pada periode 2022–2026 memberikan banyak ruang evaluasi bagi kami. Setiap capaian positif menjadi dorongan semangat, sementara tantangan yang ada menjadi dasar untuk terus berbenah.
 
 Terima kasih atas kepercayaan dan dukungan seluruh pihak dalam perjalanan pengembangan SD Islam Iqra Petobo. Bersama-sama, mari kita wujudkan pendidikan yang unggul dan berkarakter bagi putra-putri kita.
