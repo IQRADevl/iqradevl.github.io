@@ -144,19 +144,47 @@ Skor Karakter (54,10) dan Iklim Inklusivitas (63,00) menunjukkan tren yang stabi
 ## Langkah Strategis Sekolah
 Langkah-langkah strategis berikut disusun berdasarkan rekomendasi prioritas PBD SD Islam Iqra Petobo Tahun 2026:
 
-* **Menguatkan numerasi, khususnya domain aljabar**: Meningkatkan kompetensi pendidik melalui pelatihan, diskusi kelompok belajar, dan belajar mandiri. Pembelajaran numerasi direncanakan secara bertahap dan dikaitkan dengan masalah kontekstual agar pemahaman murid dapat berkembang.
+### Penguatan Kemampuan Numerasi
+* Meningkatkan kompetensi pendidik tentang domain aljabar melalui pelatihan, diskusi kelompok belajar, belajar mandiri, dan pemanfaatan beragam sumber belajar.
+* Merencanakan pembelajaran domain bilangan melalui kegiatan intrakurikuler, kokurikuler, dan/atau ekstrakurikuler untuk meningkatkan minat baca dan memperbaiki pembelajaran numerasi.
+* Mendorong program dan kebijakan sekolah untuk memperbaiki kemampuan murid pada domain aljabar, baik melalui kegiatan yang memerlukan anggaran maupun yang tidak.
+* Menerapkan strategi pembelajaran seperti pola, tabel, diagram, dan masalah kontekstual agar murid memahami konsep aljabar serta menggunakannya dalam masalah sehari-hari.
 
+### Refleksi Pembelajaran Numerasi
+* Mendorong pendidik melakukan refleksi rutin melalui pelatihan, diskusi kelompok belajar, dan pendampingan.
+* Mengintegrasikan refleksi ke dalam program kerja sekolah, supervisi akademik, dan kelompok belajar pendidik, lalu menggunakannya untuk menyusun serta menjalankan perbaikan pembelajaran.
+* Menelaah pekerjaan dan asesmen murid untuk mengenali materi yang belum dipahami dan menyesuaikan strategi mengajar dengan kebutuhan murid.
+* Melakukan refleksi bersama rekan sejawat atau melalui telaah rekaman pembelajaran untuk menentukan langkah perbaikan yang konkret.
 
-* **Membiasakan refleksi pembelajaran**: Kepala sekolah dan pendidik melakukan refleksi secara berkala atas praktik mengajar, membahas hasil belajar dan tantangan murid, lalu menerjemahkan temuannya ke dalam rencana perbaikan pembelajaran dan program kerja sekolah.
+### Penguatan Karakter dan Penalaran Kritis
+* Mendukung penguatan penalaran kritis melalui pengembangan kompetensi pendidik, sumber belajar yang beragam, dan sarana prasarana yang sesuai.
+* Merancang kegiatan intrakurikuler, kokurikuler, dan/atau ekstrakurikuler yang menumbuhkan rasa ingin tahu, kemampuan menelaah informasi, menyampaikan alasan logis, menafsirkan data, mempertimbangkan berbagai sudut pandang, dan mengambil keputusan berdasarkan bukti.
+* Membiasakan murid menelaah informasi dan menggunakan bukti melalui kegiatan literasi dan numerasi, forum diskusi, serta penyelidikan masalah di lingkungan sekitar.
 
+### Refleksi untuk Penguatan Karakter
+* Membiasakan pendidik mencatat refleksi singkat tentang perilaku murid yang teramati dan praktik mengajar yang memengaruhinya, kemudian menentukan tindak lanjut pada pembelajaran atau kegiatan berikutnya.
+* Mengintegrasikan refleksi praktik mengajar ke dalam kegiatan intrakurikuler, kokurikuler, dan/atau ekstrakurikuler untuk memperbaiki pembelajaran yang mendukung karakter murid.
+* Menyediakan waktu dan forum rutin untuk refleksi serta supervisi, dan meninjau tindak lanjutnya bersama pendidik pada akhir semester.
 
-* **Mengembangkan karakter dan penalaran kritis**: Menumbuhkan rasa ingin tahu, kebiasaan menelaah informasi, kemampuan menyampaikan alasan yang logis, dan pengambilan keputusan berdasarkan bukti melalui diskusi serta kegiatan belajar yang mendorong murid berpikir mendalam.
+### Pengelolaan Kelas dan Kualitas Pembelajaran
+* Meningkatkan kompetensi manajemen kelas melalui pelatihan dan refleksi agar suasana belajar kondusif dan interaksi antara pendidik, murid, serta materi pembelajaran semakin berkualitas.
+* Menyusun dan menerapkan strategi manajemen kelas dalam kegiatan intrakurikuler, kokurikuler, dan/atau ekstrakurikuler.
+* Mendorong program dan kebijakan manajemen kelas, baik yang memerlukan anggaran maupun yang tidak, untuk mendukung suasana belajar yang kondusif.
 
+### Refleksi untuk Peningkatan Kualitas Pembelajaran
+* Membiasakan pendidik mencatat bagian pembelajaran yang sudah dipahami murid, bagian yang belum dipahami, serta bukti dari pekerjaan, asesmen, atau umpan balik murid.
+* Menggunakan catatan refleksi untuk menentukan satu aspek pengajaran yang perlu diperbaiki, menerapkannya pada pertemuan berikutnya, dan memeriksa dampaknya terhadap pemahaman atau keterlibatan murid.
+* Mengintegrasikan sesi refleksi praktik mengajar ke dalam proses pembelajaran dan menyusun kebijakan yang mendorong refleksi rutin.
 
-* **Meningkatkan kualitas pengelolaan pembelajaran**: Menyusun pembelajaran yang berpusat pada murid dan sesuai kebutuhan belajar, memperkuat pengelolaan kelas, serta menggunakan hasil asesmen dan refleksi sebagai dasar untuk memperbaiki proses pembelajaran.
+### Kesejahteraan Psikologis Murid
+* Meningkatkan kompetensi pendidik dalam menciptakan rasa aman dan nyaman secara psikologis bagi murid melalui pelatihan, kelompok belajar, dan belajar mandiri.
+* Merencanakan pembelajaran yang memperhatikan keamanan psikologis murid dalam kegiatan intrakurikuler, kokurikuler, dan ekstrakurikuler.
+* Mendorong kegiatan, program, dan kebijakan untuk meningkatkan kesejahteraan serta keamanan psikologis murid, baik yang memerlukan anggaran maupun yang tidak.
 
-
-* **Mendukung kesejahteraan psikologis dan inklusivitas**: Meningkatkan kapasitas warga sekolah dalam mendukung kesejahteraan psikologis murid, membangun sikap positif terhadap disabilitas, dan menciptakan lingkungan serta kegiatan belajar yang lebih inklusif.
+### Lingkungan Pendidikan Inklusif
+* Meningkatkan pemahaman warga sekolah tentang keberagaman kondisi, karakteristik, dan kebutuhan murid penyandang disabilitas serta membangun sikap positif melalui pelatihan, diskusi kelompok belajar, dan belajar mandiri.
+* Mengintegrasikan pemahaman dan sikap positif terhadap disabilitas dalam pembelajaran serta kegiatan sekolah untuk membangun interaksi yang setara dan mencegah stigma, diskriminasi, pengucilan, serta perundungan.
+* Mendukung layanan dan lingkungan sekolah yang inklusif melalui kebijakan, program, dan pembiasaan yang menjamin penerimaan, perlindungan, partisipasi, serta kesempatan yang setara bagi murid penyandang disabilitas.
 
 ## Penutup
 Dinamika capaian pada periode 2022–2025 memberikan banyak ruang evaluasi bagi kami. Setiap capaian positif menjadi dorongan semangat, sementara tantangan yang ada menjadi dasar untuk terus berbenah.
