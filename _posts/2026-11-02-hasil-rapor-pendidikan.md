@@ -145,9 +145,17 @@ Skor Karakter (54,10) dan Iklim Inklusivitas (63,00) menunjukkan tren yang stabi
 Langkah-langkah strategis berikut disusun berdasarkan rekomendasi prioritas PBD SD Islam Iqra Petobo Tahun 2026:
 
 * **Menguatkan numerasi, khususnya domain aljabar**: Meningkatkan kompetensi pendidik melalui pelatihan, diskusi kelompok belajar, dan belajar mandiri. Pembelajaran numerasi direncanakan secara bertahap dan dikaitkan dengan masalah kontekstual agar pemahaman murid dapat berkembang.
+
+
 * **Membiasakan refleksi pembelajaran**: Kepala sekolah dan pendidik melakukan refleksi secara berkala atas praktik mengajar, membahas hasil belajar dan tantangan murid, lalu menerjemahkan temuannya ke dalam rencana perbaikan pembelajaran dan program kerja sekolah.
+
+
 * **Mengembangkan karakter dan penalaran kritis**: Menumbuhkan rasa ingin tahu, kebiasaan menelaah informasi, kemampuan menyampaikan alasan yang logis, dan pengambilan keputusan berdasarkan bukti melalui diskusi serta kegiatan belajar yang mendorong murid berpikir mendalam.
+
+
 * **Meningkatkan kualitas pengelolaan pembelajaran**: Menyusun pembelajaran yang berpusat pada murid dan sesuai kebutuhan belajar, memperkuat pengelolaan kelas, serta menggunakan hasil asesmen dan refleksi sebagai dasar untuk memperbaiki proses pembelajaran.
+
+
 * **Mendukung kesejahteraan psikologis dan inklusivitas**: Meningkatkan kapasitas warga sekolah dalam mendukung kesejahteraan psikologis murid, membangun sikap positif terhadap disabilitas, dan menciptakan lingkungan serta kegiatan belajar yang lebih inklusif.
 
 ## Penutup
