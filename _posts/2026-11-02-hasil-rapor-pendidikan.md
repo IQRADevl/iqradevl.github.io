@@ -10,7 +10,7 @@ Assalamu’alaikum Warahmatullahi Wabarakatuh.
 
 Selamat datang di halaman transparansi mutu pendidikan SD Islam Iqra Petobo.
 
-Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualitas pendidikan yang lebih baik. Halaman ini menyajikan ringkasan capaian pembelajaran dan perkembangan lingkungan sekolah kami selama lima tahun terakhir (2022–2026).
+Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualitas pendidikan yang lebih baik. Halaman ini menyajikan ringkasan capaian pembelajaran dan perkembangan lingkungan sekolah kami selama empat tahun terakhir (2022–2025).
 
 <div class="chart-container">
   <canvas id="raporMutuChart"></canvas>
@@ -129,29 +129,28 @@ Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualit
 </script>
 
 ## Analisis & Capaian Utama
-1. **Literasi terus menguat**  
-Skor literasi meningkat dari 60,00 pada 2022 menjadi 88,23 pada 2026. Setelah berada di angka 60,00 pada 2022 dan 2023, capaian ini naik secara bertahap pada tiga tahun berikutnya dan menjadi nilai tertinggi literasi dalam periode yang ditampilkan.
+1. Kenaikan Capaian Literasi
+Skor literasi mengalami peningkatan dari 60,00 (2024) menjadi 75,00 (2025). Perkembangan ini mencerminkan keberhasilan ekosistem sekolah dalam membangun budaya membaca serta mengasah kemampuan analisis informasi peserta didik.
 
-2. **Numerasi pulih, tetapi masih perlu diperkuat**  
-Capaian numerasi berfluktuasi: naik dari 37,50 pada 2022 hingga mencapai 87,50 pada 2024, turun menjadi 42,86 pada 2025, lalu meningkat kembali menjadi 64,71 pada 2026. Pemulihan ini menjadi perkembangan positif, meski nilainya masih di bawah capaian 2024.
+2. Peningkatan Kemampuan Numerasi
+Capaian numerasi mencatatkan lompatan yang sangat positif. Setelah mencapai skor 70,00 pada tahun 2024, nilai numerasi melonjak naik menjadi 87,50 pada tahun 2025. Hasil ini membuktikan efektivitas pembenahan metode pembelajaran matematika yang telah diterapkan sekolah.
 
-3. **Karakter dan kualitas pembelajaran menunjukkan kemajuan**  
-Skor karakter meningkat dari 51,40 pada 2022 menjadi 63,91 pada 2026. Kualitas pembelajaran juga naik dari 60,87 menjadi 66,50 pada periode yang sama. Kedua indikator tersebut kembali meningkat pada 2026 dibandingkan tahun sebelumnya.
+3. Konsistensi Iklim Keamanan
+Sekolah berkomitmen menghadirkan lingkungan belajar yang aman dan ramah anak. Skor Iklim Keamanan yang terus naik hingga mencapai 73,00 menunjukkan bahwa program keselamatan dan kenyamanan siswa berjalan secara efektif dan sustained.
 
-4. **Iklim keamanan tetap tinggi, dengan sedikit penurunan terbaru**  
-Skor iklim keamanan naik dari 59,35 pada 2022 dan mencapai 74,61 pada 2025, sebelum berada di 72,76 pada 2026. Meski turun 1,85 poin dari tahun sebelumnya, capaian 2026 masih lebih tinggi dibandingkan 2022.
-
-5. **Kebinekaan menguat, sementara inklusivitas perlu menjadi perhatian**  
-Skor iklim kebinekaan meningkat menjadi 73,72 pada 2026 setelah turun ke 62,37 pada 2025, sekaligus melampaui capaian tahun-tahun sebelumnya. Sebaliknya, iklim inklusivitas turun dari 63,03 pada 2025 menjadi 59,91 pada 2026, sehingga perlu terus dievaluasi dan diperkuat.
+4. Pematangan Karakter & Inklusivitas
+Skor Karakter (54,10) dan Iklim Inklusivitas (63,00) menunjukkan tren yang stabil dan positif. Capaian ini sejalan dengan visi sekolah untuk membentuk lulusan yang berakhlak mulia, cerdas, dan mampu menghargai keberagaman.
 
 ## Langkah Strategis Sekolah
-Sebagai bentuk tanggung jawab terhadap mutu pendidikan, SD Islam Iqra Petobo telah menyiapkan beberapa prioritas kerja:
+Langkah-langkah strategis berikut disusun berdasarkan rekomendasi prioritas PBD SD Islam Iqra Petobo Tahun 2026:
 
-* **Penguatan Numerasi dan Pemeliharaan Literasi**: Menindaklanjuti fluktuasi capaian numerasi melalui evaluasi pembelajaran dan latihan pemecahan masalah (*problem-solving*), sambil menjaga perkembangan literasi.
-* **Penguatan Iklim Sekolah**: Menjaga lingkungan yang aman dan kebinekaan yang saling menghargai, serta mengevaluasi upaya untuk meningkatkan inklusivitas.
-* **Peningkatan Kualitas Pembelajaran dan Karakter**: Melanjutkan refleksi pembelajaran dan penguatan karakter agar kemajuan kedua indikator dapat dipertahankan.
+* **Menguatkan numerasi, khususnya domain aljabar**: Meningkatkan kompetensi pendidik melalui pelatihan, diskusi kelompok belajar, dan belajar mandiri. Pembelajaran numerasi direncanakan secara bertahap dan dikaitkan dengan masalah kontekstual agar pemahaman murid dapat berkembang.
+* **Membiasakan refleksi pembelajaran**: Kepala sekolah dan pendidik melakukan refleksi secara berkala atas praktik mengajar, membahas hasil belajar dan tantangan murid, lalu menerjemahkan temuannya ke dalam rencana perbaikan pembelajaran dan program kerja sekolah.
+* **Mengembangkan karakter dan penalaran kritis**: Menumbuhkan rasa ingin tahu, kebiasaan menelaah informasi, kemampuan menyampaikan alasan yang logis, dan pengambilan keputusan berdasarkan bukti melalui diskusi serta kegiatan belajar yang mendorong murid berpikir mendalam.
+* **Meningkatkan kualitas pengelolaan pembelajaran**: Menyusun pembelajaran yang berpusat pada murid dan sesuai kebutuhan belajar, memperkuat pengelolaan kelas, serta menggunakan hasil asesmen dan refleksi sebagai dasar untuk memperbaiki proses pembelajaran.
+* **Mendukung kesejahteraan psikologis dan inklusivitas**: Meningkatkan kapasitas warga sekolah dalam mendukung kesejahteraan psikologis murid, membangun sikap positif terhadap disabilitas, dan menciptakan lingkungan serta kegiatan belajar yang lebih inklusif.
 
 ## Penutup
-Dinamika capaian pada periode 2022–2026 memberikan ruang evaluasi bagi kami. Perkembangan positif akan terus dijaga, sementara indikator yang berfluktuasi atau menurun menjadi dasar untuk menentukan langkah perbaikan berikutnya.
+Dinamika capaian pada periode 2022–2025 memberikan banyak ruang evaluasi bagi kami. Setiap capaian positif menjadi dorongan semangat, sementara tantangan yang ada menjadi dasar untuk terus berbenah.
 
 Terima kasih atas kepercayaan dan dukungan seluruh pihak dalam perjalanan pengembangan SD Islam Iqra Petobo. Bersama-sama, mari kita wujudkan pendidikan yang unggul dan berkarakter bagi putra-putri kita.
