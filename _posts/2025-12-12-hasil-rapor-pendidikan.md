@@ -40,27 +40,27 @@ Kami meyakini bahwa data merupakan kompas yang mengarahkan sekolah menuju kualit
           'Iklim Inklusivitas'
         ],
         datasets: [
-          {
+        {
             label: '2022',
-            data: [31.82, 13.64, 50.9, 55.75, 59.35, 56.68, 51.57],
+            data: [60, 37.5, 51.4, 60.87, 59.35, 67.84, 55.63],
             backgroundColor: '#94a3b8',
             borderRadius: 4
           },
           {
             label: '2023',
-            data: [60, 37.5, 51.4, 60.87, 59.35, 67.84, 55.63],
+            data: [60, 70, 55.23, 55.63, 66.09, 69.73, 53.09],
             backgroundColor: '#38bdf8',
             borderRadius: 4
           },
           {
             label: '2024',
-            data: [60, 70, 55.23, 55.63, 66.09, 69.73, 53.09],
+            data: [75, 87.5, 54.1, 63, 73, 72, 63],
             backgroundColor: '#f59e0b',
             borderRadius: 4
           },
           {
             label: '2025',
-            data: [75, 87.5, 54.1, 63, 73, 72, 63],
+            data: [85.71, 42.86, 58.44, 63.1, 74.61, 62.37, 63.03],
             backgroundColor: '#1c7c91',
             borderRadius: 4
           }
