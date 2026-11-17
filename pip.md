@@ -44,7 +44,7 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
         datasets: [
           {
             label: 'Jumlah Penerima',
-            data: [56,76,66,61,44,58,35],
+            data: [56,76,66,61,44,58,48],
             backgroundColor: '#1c7c91',
             hoverBackgroundColor: '#2393ab',
             borderRadius: 6
@@ -109,7 +109,7 @@ PIP juga diharapkan dapat meringankan biaya personal pendidikan peserta didik, b
 
 * **Puncak Penerima:** Jumlah penerima bantuan terbanyak tercatat pada tahun 2021, yaitu sebanyak 76 siswa.
 * **Dinamika Tren:** Jumlah penerima sempat mengalami penurunan hingga 44 siswa pada tahun 2024, sebelum kembali meningkat menjadi 58 siswa pada tahun 2025.
-* **Data Berjalan (2026):** Untuk tahun anggaran 2026, saat ini tercatat sebanyak 35 siswa yang terdaftar sebagai penerima.
+* **Data Berjalan (2026):** Untuk tahun anggaran 2026, saat ini tercatat sebanyak 48 siswa yang terdaftar sebagai penerima.
 * **Cakupan Data:** Angka pada grafik di atas merupakan status **Siswa Pemberian** (rekening aktif).
 * **Pembaruan Data:** Jumlah siswa penerima diperbarui secara berkala mengikuti penetapan SK resmi dari pusat.
 
