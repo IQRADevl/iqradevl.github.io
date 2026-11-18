@@ -110,7 +110,7 @@ title: Beranda
     </div>
 
     <ul class="bulletin">
-      {% for post in site.posts limit: 5 %}
+      {% for post in site.posts limit: 6 %}
       <li class="bulletin__item">
         <span class="bulletin__date">{{ post.date | date: "%d %b %Y" }}</span>
         <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
