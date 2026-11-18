@@ -6,7 +6,7 @@ excerpt_text: "Siswa/siswi kelas 3, 4, 5, dan 6 SD Islam Iqra Petobo mengikuti k
 
 Rabu, 11 November 2026, suasana belajar di lingkungan SD Islam Iqra Petobo terasa berbeda dari hari-hari biasanya. Alih-alih duduk menyimak pelajaran di dalam ruang kelas, para siswa dari kelas 3, 4, 5, dan 6 diajak mengikuti kegiatan kunjungan edukatif ke museum. Kegiatan yang berlangsung pada pukul 13.00 hingga 15.00 WITA ini disambut dengan penuh antusiasme oleh seluruh peserta.
 
-<figure class="img-small">
+<figure class="img-medium">
   <img src="https://lh3.googleusercontent.com/d/1z0jfCOMMbsskJbzsuxAnSsTmcprDeQh0" alt="Foto Bersama Guru dan Siswa">
   <figcaption>Siswa-siswi kelas 3, 4, 5, dan 6 SD Islam Iqra Petobo berfoto bersama di area museum dalam rangkaian kegiatan kunjungan edukatif pada Rabu 11 November 2026.</figcaption>
 </figure>
